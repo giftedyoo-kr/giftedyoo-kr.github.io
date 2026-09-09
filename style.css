@@ -1122,3 +1122,46 @@ footer a {
     grid-template-columns: 90px 1fr;
   }
 }
+
+
+/* Current position / Career details */
+.current-position {
+  margin-top: 46px;
+  padding-top: 24px;
+  border-top: 1px solid #c6c4bd;
+  max-width: 520px;
+}
+.current-position strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.current-position strong span,
+.current-position p span {
+  color: #777;
+  font-weight: 400;
+}
+.current-position p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 14px;
+}
+.career-detail {
+  min-width: 0;
+}
+.career-group + .career-group {
+  margin-top: 58px;
+}
+.career-group > .mini-label {
+  margin-bottom: 18px;
+  color: #777;
+}
+.education-group .timeline-item p + p {
+  color: #888;
+  margin-top: 3px;
+}
+@media (max-width: 820px) {
+  .current-position { margin-top: 32px; }
+  .career-group + .career-group { margin-top: 45px; }
+}

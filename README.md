@@ -1,23 +1,16 @@
-# Multi-sheet Google Sheets 연동 홈페이지
+# Youngjae Yoo personal website — Google Sheets multi-tab version
 
-Google Sheets의 여러 탭을 gid 기준으로 각각 불러오는 버전입니다.
+## Google Sheets 연결
+Google Visualization JSONP를 사용하여 브라우저 CORS 문제를 피하도록 수정했습니다.
 
-## 연결된 탭
-- SCI: 1044637119 → Publications
-- KCI: 977487788 → Publications
-- 저서: 1750437029 → Publications
-- R&D: 445426444 → Projects
-- 용역: 2133901227 → Projects
-- 수상: 1362262409 → Awards
+- SCI → Publications
+- KCI → Publications
+- 저서 → Publications
+- R&D → Projects
+- 용역 → Projects
+- 수상 → Awards
 
-## 홈페이지
-- Publications: ALL / SCI / KCI / BOOK
-- Projects: ALL / R&D / 용역
-- Awards: 별도 섹션
+Google Spreadsheet는 링크가 있는 사용자가 볼 수 있는 상태여야 합니다.
 
-## 중요
-각 탭이 Google Sheets의 `웹에 게시` 대상에 포함되어 있어야 합니다.
-탭별 열 제목이 서로 달라도 흔한 열 이름을 여러 개 자동 인식하도록 작성되어 있습니다.
-
-특정 데이터가 표시되지 않으면 해당 탭의 첫 행(열 제목)을 확인한 뒤
-`script.js`의 후보 열 이름 목록에 추가하면 됩니다.
+## 실제 정보 반영
+Career, Education, 소속, 이메일, ResearchGate, Google Scholar 정보를 반영했습니다.
