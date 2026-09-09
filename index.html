@@ -23,12 +23,17 @@
   <nav class="nav" aria-label="주요 메뉴">
     <a href="#profile">PROFILE</a>
     <a href="#research">RESEARCH</a>
-    <a href="#projects">PROJECTS</a>
     <a href="#publications">PUBLICATIONS</a>
+    <a href="#projects">PROJECTS</a>
     <a href="#awards">AWARDS</a>
-    <a href="#career">CAREER</a>
     <a href="#contact">CONTACT</a>
   </nav>
+
+  <div class="language-switch" aria-label="Language">
+    <button class="language-button active" type="button" data-lang="ko">KO</button>
+    <span>/</span>
+    <button class="language-button" type="button" data-lang="en">EN</button>
+  </div>
 
   <button class="menu-button" id="menuButton" aria-label="모바일 메뉴 열기">
     <span></span><span></span><span></span>
@@ -41,7 +46,6 @@
   <a href="#projects">PROJECTS</a>
   <a href="#publications">PUBLICATIONS</a>
   <a href="#awards">AWARDS</a>
-  <a href="#career">CAREER</a>
   <a href="#contact">CONTACT</a>
 </div>
 
@@ -58,7 +62,7 @@
         <span>Resilient Regions.</span>
       </h1>
 
-      <p class="hero-description">
+      <p class="hero-description" data-i18n-html="hero.description">
         기후위기 적응, 재난·재해 위험, 환경정책 및 공간분석을 연구합니다.<br>
         과학적 근거를 지역의 정책과 계획으로 연결하는 연구를 지향합니다.
       </p>
@@ -81,15 +85,113 @@
   </section>
 
 
-  <section id="profile" class="section profile-section">
+  <section id="profile" class="section career-section profile-section">
     <div class="section-heading">
       <span class="section-number">01</span>
       <h2>PROFILE</h2>
     </div>
 
-    <div class="profile-grid">
+    <div class="career-layout">
+      <div class="career-title">
+
+        <div class="optional-image-slot namecard-slot">
+          <img class="adaptive-image namecard-image"
+               src="images/profile.png"
+               alt="Youngjae Yoo profile">
+        </div>
+
+        <p class="mini-label emphasis-label current-position-label">CURRENT POSITION</p>
+
+        <div class="optional-image-slot current-position-logo-slot">
+          <a class="current-position-logo-link"
+             href="https://kric.re.kr/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="한국기후변화연구원 홈페이지">
+            <img class="current-position-logo"
+                 src="images/current_position_logo.png"
+                 alt="Korea Research Institute on Climate Change logo">
+          </a>
+        </div>
+
+        <div class="current-position">
+          <div class="current-position-row">
+            <strong class="current-ko">한국기후변화연구원</strong>
+            <span class="current-en">Korea Research Institute on Climate Change</span>
+          </div>
+          <div class="current-position-row">
+            <strong class="current-ko">기후재난연구실</strong>
+            <span class="current-en">Climate Disaster Research Department</span>
+          </div>
+          <div class="current-position-row">
+            <strong class="current-ko">선임연구원</strong>
+            <span class="current-en">Senior Researcher</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-detail">
+        <div class="career-group">
+          <p class="mini-label emphasis-label">PROFESSIONAL EXPERIENCE</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-period" data-i18n="profile.periodCurrent">2026.08.–현재</div>
+              <div>
+                <span class="timeline-type">SENIOR RESEARCHER</span>
+                <h4 class="institution-ko">한국기후변화연구원</h4>
+                <p class="institution-en">Korea Research Institute on Climate Change</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-period" data-i18n="profile.periodProfessor">2023.03.–2026.08.</div>
+              <div>
+                <span class="timeline-type">RESEARCH PROFESSOR</span>
+                <h4 class="institution-ko">고려대학교 오정리질리언스연구원</h4>
+                <p class="institution-en">OJEong Resilience Institute, Korea University</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-period" data-i18n="profile.periodResearcher">2019.01.–2019.08.</div>
+              <div>
+                <span class="timeline-type">RESEARCHER</span>
+                <h4 class="institution-ko">고려대학교 환경 GIS/RS센터</h4>
+                <p class="institution-en">Environmental GIS/RS Center, Korea University</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="career-group education-group">
+          <p class="mini-label emphasis-label">EDUCATION</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-period" data-i18n="profile.periodEducation">2019.09.–2023.02.</div>
+              <div class="education-content">
+                <span class="timeline-type">Ph.D.</span>
+                <p class="degree-detail education-ko">이학박사 · 환경계획및조경학</p>
+                <p class="degree-detail education-en">Ph.D. in Environmental Planning and Landscape Architecture</p>
+                <h4 class="institution-ko">고려대학교 일반대학원 환경생태공학과</h4>
+                <p class="institution-en">Department of Environmental Science and Ecological Engineering, Korea University</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="research" class="section research-section">
+    <div class="section-heading">
+      <span class="section-number">02</span>
+      <h2>RESEARCH</h2>
+    </div>
+
+    <div class="profile-grid research-profile-grid">
       <div class="profile-title">
-        <p class="mini-label">ABOUT ME</p>
+        <p class="mini-label">RESEARCH PROFILE</p>
         <h3>
           Environmental Policy<br>
           & Climate Researcher
@@ -97,12 +199,12 @@
       </div>
 
       <div class="profile-copy">
-        <p class="lead">
+        <p class="lead" data-i18n="research.profileLead">
           환경정책과 공간계획을 기반으로 기후변화가 지역사회와 자연환경에 미치는 영향을 분석하고,
           이를 실질적인 정책 수단과 적응 전략으로 연결하는 연구를 수행하고 있습니다.
         </p>
 
-        <p>
+        <p data-i18n="research.profileBody">
           주요 관심 분야는 기후위기 적응, 재난·재해 위험평가, GIS 및 위성영상 기반 환경변화 분석,
           자연자본과 생태계서비스, 지역단위 환경정책입니다.
         </p>
@@ -123,18 +225,10 @@
         </div>
       </div>
     </div>
-  </section>
 
-
-  <section id="research" class="section research-section">
-    <div class="section-heading">
-      <span class="section-number">02</span>
-      <h2>RESEARCH</h2>
-    </div>
-
-    <div class="research-intro">
+    <div class="research-intro research-interests-heading">
       <h3>Research Interests</h3>
-      <p>
+      <p data-i18n="research.interestsBody">
         기후·환경 문제를 공간적으로 진단하고,
         지역의 정책 의사결정에 활용할 수 있는 분석 체계로 발전시키는 데 관심이 있습니다.
       </p>
@@ -145,8 +239,7 @@
         <span class="card-number">01</span>
         <h4>Climate Change<br>Adaptation</h4>
         <p>
-          기후변화 영향, 취약성 및 적응능력을 분석하고
-          지역 특성에 기반한 적응정책과 실행 전략을 연구합니다.
+          <span data-i18n="research.card1">기후변화 영향, 취약성 및 적응능력을 분석하고 지역 특성에 기반한 적응정책과 실행 전략을 연구합니다.</span>
         </p>
         <div class="tags">
           <span>Adaptation</span><span>Vulnerability</span><span>Policy</span>
@@ -157,8 +250,7 @@
         <span class="card-number">02</span>
         <h4>Disaster &<br>Climate Risk</h4>
         <p>
-          폭염, 홍수, 산사태 등 기후재난의 위해성·노출성·취약성을 분석하고
-          위험의 공간적 불균형을 평가합니다.
+          <span data-i18n="research.card2">폭염, 홍수, 산사태 등 기후재난의 위해성·노출성·취약성을 분석하고 위험의 공간적 불균형을 평가합니다.</span>
         </p>
         <div class="tags">
           <span>Heatwave</span><span>Flood</span><span>Risk</span>
@@ -169,8 +261,7 @@
         <span class="card-number">03</span>
         <h4>GIS & Remote<br>Sensing</h4>
         <p>
-          GIS, 위성영상, NDVI 및 토지피복 자료를 활용하여
-          환경변화와 보호·완충지역의 효과를 분석합니다.
+          <span data-i18n="research.card3">GIS, 위성영상, NDVI 및 토지피복 자료를 활용하여 환경변화와 보호·완충지역의 효과를 분석합니다.</span>
         </p>
         <div class="tags">
           <span>GIS</span><span>NDVI</span><span>Satellite</span>
@@ -181,47 +272,26 @@
         <span class="card-number">04</span>
         <h4>Natural Capital<br>& Ecosystems</h4>
         <p>
-          자연자본, 생물다양성, 생태계서비스 평가와
-          관련 인증·검증 체계 및 정책 활용방안을 연구합니다.
+          <span data-i18n="research.card4">자연자본, 생물다양성, 생태계서비스 평가와 관련 인증·검증 체계 및 정책 활용방안을 연구합니다.</span>
         </p>
         <div class="tags">
           <span>Nature</span><span>Biodiversity</span><span>ESG</span>
         </div>
       </article>
     </div>
-  </section>
 
-
-  <section id="projects" class="section projects-section">
-    <div class="section-heading">
-      <span class="section-number">03</span>
-      <h2>PROJECTS</h2>
-    </div>
-
-    <div class="projects-top">
-      <h3>Research & Projects</h3>
-      <div class="project-filters" role="group" aria-label="프로젝트 분류 필터">
-        <button class="project-filter active" type="button" data-filter="ALL">ALL <span id="countProjectAll">0</span></button>
-        <button class="project-filter" type="button" data-filter="RND">R&amp;D <span id="countRnd">0</span></button>
-        <button class="project-filter" type="button" data-filter="SERVICE">용역 <span id="countService">0</span></button>
-      </div>
-    </div>
-
-    <div class="sheet-status" id="projectStatus">Loading projects...</div>
-    <div class="project-list" id="projectList"></div>
   </section>
 
 
   <section id="publications" class="section publications-section">
     <div class="section-heading light">
-      <span class="section-number">04</span>
+      <span class="section-number">03</span>
       <h2>PUBLICATIONS</h2>
     </div>
 
     <div class="publications-top">
       <h3>Publications</h3>
       <div class="publications-summary">
-        <p>Google Sheets의 SCI·KCI 논문과 저서를 자동으로 불러옵니다.</p>
         <div class="publication-filters" role="group" aria-label="출판물 분류 필터">
           <button class="pub-filter active" type="button" data-filter="ALL">ALL <span id="countAll">0</span></button>
           <button class="pub-filter" type="button" data-filter="SCI">SCI <span id="countSci">0</span></button>
@@ -231,8 +301,43 @@
       </div>
     </div>
 
-    <div class="publication-status" id="publicationStatus">Loading publications...</div>
+    <div class="publication-status" id="publicationStatus" data-i18n="status.publications">Loading publications...</div>
     <div class="publication-list" id="publicationList"></div>
+    <div class="list-toggle-wrap publications-toggle-wrap"><button id="publicationToggle" class="list-toggle-button dark-toggle" type="button" hidden>Publications 더보기</button></div>
+  </section>
+
+
+  <section id="projects" class="section projects-section">
+    <div class="section-heading">
+      <span class="section-number">04</span>
+      <h2>PROJECTS</h2>
+    </div>
+
+    <div class="projects-top">
+      <h3>Research & Projects</h3>
+      <div class="project-filter-panel">
+        <div class="project-filter-row">
+          <span class="filter-caption">TYPE</span>
+          <div class="project-filters" role="group" aria-label="프로젝트 유형 필터">
+            <button class="project-filter active" type="button" data-filter="ALL">ALL <span id="countProjectAll">0</span></button>
+            <button class="project-filter" type="button" data-filter="RND">R&amp;D <span id="countRnd">0</span></button>
+            <button class="project-filter" type="button" data-filter="SERVICE"><span data-i18n="project.service">용역</span> <span id="countService">0</span></button>
+          </div>
+        </div>
+        <div class="project-filter-row">
+          <span class="filter-caption">ROLE</span>
+          <div class="project-role-filters" role="group" aria-label="프로젝트 역할 필터">
+            <button class="project-role-filter active" type="button" data-role-filter="ALL">ALL</button>
+            <button class="project-role-filter" type="button" data-role-filter="PI"><span data-i18n="project.pi">책임연구원</span> <span id="countPi">0</span></button>
+            <button class="project-role-filter" type="button" data-role-filter="PARTICIPANT"><span data-i18n="project.participant">참여연구원</span> <span id="countParticipant">0</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet-status" id="projectStatus" data-i18n="status.projects">Loading projects...</div>
+    <div class="project-list" id="projectList"></div>
+    <div class="list-toggle-wrap"><button id="projectToggle" class="list-toggle-button" type="button" hidden>Projects 더보기</button></div>
   </section>
 
 
@@ -244,82 +349,12 @@
 
     <div class="awards-layout">
       <div>
-        <p class="mini-label">HONORS & AWARDS</p>
         <h3>Recognition<br>& Awards</h3>
       </div>
       <div>
-        <div class="sheet-status" id="awardStatus">Loading awards...</div>
+        <p class="mini-label emphasis-label awards-right-label">HONORS & AWARDS</p>
+        <div class="sheet-status" id="awardStatus" data-i18n="status.awards">Loading awards...</div>
         <div class="award-list" id="awardList"></div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="career" class="section career-section">
-    <div class="section-heading">
-      <span class="section-number">06</span>
-      <h2>CAREER</h2>
-    </div>
-
-    <div class="career-layout">
-      <div class="career-title">
-        <p class="mini-label">CURRENT POSITION</p>
-        <h3>Senior<br>Researcher</h3>
-
-        <div class="current-position">
-          <strong>선임연구원 <span>Senior Researcher</span></strong>
-          <p>기후재난연구실<br><span>Climate Disaster Research Department</span></p>
-          <p>한국기후변화연구원<br><span>Korea Research Institute on Climate Change</span></p>
-        </div>
-      </div>
-
-      <div class="career-detail">
-        <div class="career-group">
-          <p class="mini-label">PROFESSIONAL EXPERIENCE</p>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-period">2026.08.–현재</div>
-              <div>
-                <span class="timeline-type">SENIOR RESEARCHER</span>
-                <h4>한국기후변화연구원</h4>
-                <p>Korea Research Institute on Climate Change</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-period">2023.03.–2026.08.</div>
-              <div>
-                <span class="timeline-type">RESEARCH PROFESSOR</span>
-                <h4>고려대학교 오정리질리언스연구원</h4>
-                <p>OJEong Resilience Institute, Korea University</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-period">2019.01.–2019.08.</div>
-              <div>
-                <span class="timeline-type">RESEARCHER</span>
-                <h4>고려대학교 환경 GIS/RS센터</h4>
-                <p>Environmental GIS/RS Center, Korea University</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="career-group education-group">
-          <p class="mini-label">EDUCATION</p>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-period">2019.09.–2023.02.</div>
-              <div>
-                <span class="timeline-type">PH.D.</span>
-                <h4>고려대학교 일반대학원 환경생태공학과</h4>
-                <p>이학박사 · 환경계획및조경학</p>
-                <p>Department of Environmental Science and Ecological Engineering, Korea University</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -327,21 +362,22 @@
 
   <section id="contact" class="section contact-section">
     <div class="section-heading">
-      <span class="section-number">07</span>
+      <span class="section-number">06</span>
       <h2>CONTACT</h2>
     </div>
 
     <div class="contact-grid">
-      <div>
-        <p class="mini-label">GET IN TOUCH</p>
-        <h3>
-          Research,<br>
-          Collaboration,<br>
-          Conversation.
-        </h3>
+      <div class="contact-photo-column">
+        <div class="optional-image-slot contact-photo-slot">
+          <img class="contact-photo"
+               src="images/namecard.png"
+               alt="Youngjae Yoo">
+        </div>
       </div>
 
-      <div class="contact-info">
+      <div>
+        <p class="mini-label emphasis-label contact-right-label">GET IN TOUCH</p>
+        <div class="contact-info">
         <div>
           <span>EMAIL</span>
           <a href="mailto:giftedyoo@kric.re.kr">giftedyoo@kric.re.kr</a>
@@ -357,9 +393,6 @@
           <a href="https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
         </div>
 
-        <div>
-          <span>AFFILIATION</span>
-          <p>Korea Research Institute on Climate Change</p>
         </div>
       </div>
     </div>

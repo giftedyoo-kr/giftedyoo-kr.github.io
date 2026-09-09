@@ -1165,3 +1165,2113 @@ footer a {
   .current-position { margin-top: 32px; }
   .career-group + .career-group { margin-top: 45px; }
 }
+
+
+/* =========================================================
+   COMPACT LAYOUT + PUBLICATION EMPHASIS
+========================================================= */
+
+/* 전체 페이지 세로 길이를 줄이기 위한 공통 여백 조정 */
+.section {
+  padding-top: 105px;
+  padding-bottom: 105px;
+}
+
+.section-heading {
+  margin-bottom: 58px;
+}
+
+/* 메인 비주얼: 기존보다 작고 압축된 타이포 */
+.hero {
+  height: 88vh;
+  min-height: 620px;
+}
+
+.hero-inner {
+  padding-bottom: 5vh;
+}
+
+.hero h1 {
+  max-width: 940px;
+  font-size: clamp(50px, 6.5vw, 106px);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+
+.hero-description {
+  margin-top: 28px;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.hero-buttons {
+  margin-top: 25px;
+}
+
+/* Projects: 한 항목의 높이와 앞뒤 여백 축소 */
+.projects-section,
+.publications-section {
+  padding-top: 78px;
+  padding-bottom: 78px;
+}
+
+.projects-section .section-heading,
+.publications-section .section-heading {
+  margin-bottom: 38px;
+}
+
+.projects-top {
+  margin-bottom: 24px;
+}
+
+.projects-top h3,
+.publications-top h3 {
+  font-size: clamp(30px, 3.6vw, 52px);
+}
+
+.project-item {
+  min-height: 132px;
+  grid-template-columns: 90px 1fr 30px;
+  gap: 24px;
+  padding: 20px 8px;
+}
+
+.project-item:hover {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.project-main h3 {
+  margin-top: 5px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.project-main p {
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.project-arrow {
+  font-size: 19px;
+}
+
+/* Publications: 제목/저자/저널 간격과 항목 높이 축소 */
+.publications-top {
+  margin-bottom: 28px;
+}
+
+.publications-summary {
+  gap: 14px;
+}
+
+.publications-top p {
+  line-height: 1.6;
+}
+
+.publication-status {
+  min-height: 0;
+  padding: 12px 0;
+  margin-bottom: 0;
+}
+
+.publication-item-sheet {
+  grid-template-columns: 72px 1fr 94px;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.publication-item-sheet:hover {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.pub-main h4 {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.pub-authors-sheet {
+  margin-top: 6px;
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.pub-journal-sheet {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* 본인 이름 강조 */
+.author-highlight {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* 오른쪽 원형에는 SCI / KCI 분류만 표시 */
+.pub-side {
+  gap: 6px;
+}
+
+.pub-class-badge {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #666;
+  border-radius: 50%;
+  color: #eee;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+/* 원 아래 실제 학술지 등급(SCI, SCI(E), SCOPUS, KCI 등) */
+.pub-indexing {
+  max-width: 92px;
+  color: #8f8f8f;
+  font-size: 9px;
+  line-height: 1.35;
+  letter-spacing: .07em;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.pub-doi {
+  margin-top: 3px;
+}
+
+/* 저서: 분류 원 대신 역할을 본문에서 강조 */
+.pub-book-role {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+  font-size: 11px;
+  color: #929292;
+}
+
+.pub-book-role span {
+  font-size: 8px;
+  letter-spacing: .14em;
+  color: #666;
+}
+
+.pub-book-role strong {
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+/* 다른 섹션도 약간 압축 */
+.research-intro {
+  margin-bottom: 38px;
+}
+
+.research-card {
+  min-height: 370px;
+}
+
+.card-number {
+  margin-bottom: 50px;
+}
+
+.award-item,
+.timeline-item {
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+
+@media (max-width: 820px) {
+  .hero {
+    height: 82vh;
+    min-height: 580px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 13vw, 72px);
+  }
+
+  .section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+  .projects-section,
+  .publications-section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  .project-item {
+    grid-template-columns: 58px 1fr;
+    gap: 15px;
+    min-height: auto;
+    padding: 16px 0;
+  }
+
+  .publication-item-sheet {
+    grid-template-columns: 50px 1fr;
+    gap: 14px;
+    padding: 17px 0;
+  }
+
+  .pub-side {
+    grid-column: 2;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .pub-class-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 8px;
+  }
+
+  .pub-indexing {
+    text-align: left;
+    max-width: none;
+  }
+}
+
+
+/* =========================================================
+   TIGHT LAYOUT / UNIFIED TYPOGRAPHY / CATEGORY COLORS
+========================================================= */
+
+:root {
+  --feature-heading-size: clamp(30px, 3.15vw, 48px);
+  --sci-color: #4f82c3;
+  --kci-color: #4b9a70;
+  --book-color: #b78535;
+  --rnd-color: #655fb5;
+  --service-color: #b9674d;
+}
+
+/* 첫 화면부터 전체 섹션까지 세로 여백을 강하게 압축 */
+.hero {
+  height: 70vh;
+  min-height: 500px;
+}
+
+.hero-inner {
+  padding-top: 64px;
+  padding-bottom: 28px;
+}
+
+.hero h1 {
+  max-width: 820px;
+  font-size: clamp(42px, 5.25vw, 82px);
+  line-height: .94;
+}
+
+.eyebrow {
+  margin-bottom: 19px;
+}
+
+.hero-description {
+  margin-top: 19px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.hero-buttons {
+  margin-top: 18px;
+}
+
+.section,
+.projects-section,
+.publications-section {
+  padding-top: 52px;
+  padding-bottom: 52px;
+}
+
+.section-heading,
+.projects-section .section-heading,
+.publications-section .section-heading {
+  margin-bottom: 24px;
+}
+
+.profile-grid,
+.career-layout,
+.contact-grid,
+.awards-layout {
+  gap: 6vw;
+}
+
+.profile-copy .lead {
+  margin-bottom: 18px;
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+.profile-copy > p:not(.lead) {
+  line-height: 1.7;
+}
+
+.profile-facts {
+  margin-top: 26px;
+}
+
+.profile-facts > div {
+  padding: 12px 0;
+}
+
+.research-intro {
+  margin-bottom: 22px;
+  gap: 6vw;
+}
+
+.research-intro p {
+  line-height: 1.65;
+}
+
+.research-card {
+  min-height: 285px;
+  padding: 22px 20px;
+}
+
+.card-number {
+  margin-bottom: 28px;
+}
+
+.research-card p {
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.tags {
+  padding-top: 18px;
+}
+
+.projects-top,
+.publications-top {
+  margin-bottom: 16px;
+}
+
+.project-item {
+  min-height: 92px;
+  grid-template-columns: 72px 1fr auto;
+  gap: 18px;
+  padding: 14px 6px;
+}
+
+.project-item:hover {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.project-main h3 {
+  margin-top: 0;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.project-main p {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.publications-top {
+  gap: 6vw;
+}
+
+.publication-item-sheet {
+  grid-template-columns: 62px 1fr 88px;
+  gap: 18px;
+  padding: 14px 0;
+}
+
+.publication-item-sheet:hover {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.pub-main h4 {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.pub-authors-sheet {
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.pub-journal-sheet {
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.award-item,
+.timeline-item {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.career-group + .career-group {
+  margin-top: 28px;
+}
+
+.current-position {
+  margin-top: 24px;
+}
+
+.contact-info > div {
+  padding: 14px 0;
+}
+
+/* 각 섹션 대표 문구 크기를 동일하게 */
+.profile-title h3,
+.research-intro h3,
+.projects-top h3,
+.publications-top h3,
+.awards-layout > div:first-child h3,
+.career-title h3,
+.contact-grid h3 {
+  margin-top: 14px;
+  font-size: var(--feature-heading-size);
+  line-height: 1.05;
+  letter-spacing: -.045em;
+  font-weight: 500;
+}
+
+/* Publication 분류: 납작한 pill 형태 */
+.pub-class-badge {
+  width: auto;
+  min-width: 54px;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 999px;
+  font-size: 8.5px;
+  letter-spacing: .08em;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.pub-class-sci {
+  color: #8db8ee;
+  background: rgba(79, 130, 195, .14);
+}
+
+.pub-class-kci {
+  color: #81c49e;
+  background: rgba(75, 154, 112, .14);
+}
+
+.pub-class-book {
+  color: #d9b067;
+  background: rgba(183, 133, 53, .15);
+}
+
+.pub-indexing {
+  margin-top: 1px;
+  font-size: 8.5px;
+  line-height: 1.25;
+  color: #999;
+}
+
+/* Projects 분류 pill */
+.project-type-badge {
+  display: inline-flex;
+  min-width: 54px;
+  height: 25px;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+
+.project-type-rnd {
+  color: var(--rnd-color);
+  background: rgba(101, 95, 181, .09);
+}
+
+.project-type-service {
+  color: var(--service-color);
+  background: rgba(185, 103, 77, .09);
+}
+
+/* 이전 화살표는 링크 기능이 없으므로 사용하지 않음 */
+.project-arrow,
+.project-category {
+  display: none !important;
+}
+
+/* Filter에도 같은 분류색을 은은하게 반영 */
+.pub-filter[data-filter="SCI"] {
+  border-color: rgba(141,184,238,.55);
+}
+.pub-filter[data-filter="KCI"] {
+  border-color: rgba(129,196,158,.55);
+}
+.pub-filter[data-filter="BOOK"] {
+  border-color: rgba(217,176,103,.55);
+}
+
+.project-filter[data-filter="RND"] {
+  border-color: rgba(101,95,181,.55);
+}
+.project-filter[data-filter="SERVICE"] {
+  border-color: rgba(185,103,77,.55);
+}
+
+/* 모바일에서도 최대한 압축 */
+@media (max-width: 820px) {
+  .hero {
+    height: 66vh;
+    min-height: 470px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 11.5vw, 64px);
+  }
+
+  .section,
+  .projects-section,
+  .publications-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .section-heading,
+  .projects-section .section-heading,
+  .publications-section .section-heading {
+    margin-bottom: 20px;
+  }
+
+  .profile-grid,
+  .research-intro,
+  .career-layout,
+  .contact-grid,
+  .awards-layout {
+    gap: 28px;
+  }
+
+  .project-item {
+    grid-template-columns: 48px 1fr auto;
+    gap: 11px;
+    padding: 11px 0;
+  }
+
+  .project-type-badge {
+    min-width: 44px;
+    height: 23px;
+    padding: 0 7px;
+  }
+
+  .publication-item-sheet {
+    grid-template-columns: 45px 1fr;
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  .pub-side {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .pub-class-badge {
+    min-width: 48px;
+    height: 24px;
+    padding: 0 8px;
+  }
+}
+
+
+/* =========================================================
+   V6 — TIGHT SPACING WITHOUT SMALL TYPOGRAPHY
+========================================================= */
+
+:root {
+  --feature-heading-size: clamp(40px, 4.8vw, 70px);
+}
+
+/* 여백은 더 줄이되 글자 크기는 원래 수준으로 복원 */
+.hero {
+  height: 64vh;
+  min-height: 480px;
+}
+
+.hero-inner {
+  padding-top: 62px;
+  padding-bottom: 24px;
+}
+
+.hero h1 {
+  max-width: 920px;
+  font-size: clamp(52px, 6.3vw, 100px);
+  line-height: .92;
+}
+
+.hero-description {
+  margin-top: 22px;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.section,
+.projects-section,
+.publications-section {
+  padding-top: 38px;
+  padding-bottom: 38px;
+}
+
+.section-heading,
+.projects-section .section-heading,
+.publications-section .section-heading {
+  margin-bottom: 18px;
+}
+
+.profile-title h3,
+.research-intro h3,
+.projects-top h3,
+.publications-top h3,
+.awards-layout > div:first-child h3,
+.career-title h3,
+.contact-grid h3 {
+  font-size: var(--feature-heading-size);
+}
+
+.profile-copy .lead {
+  font-size: 24px;
+  line-height: 1.65;
+}
+
+.research-card {
+  min-height: 310px;
+}
+
+.research-card h4 {
+  font-size: clamp(23px, 2.1vw, 34px);
+}
+
+.research-card p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.project-item {
+  min-height: 98px;
+  padding: 13px 6px;
+}
+
+.project-main h3 {
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.project-main p {
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.publication-item-sheet {
+  padding: 13px 0;
+}
+
+.pub-main h4 {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.pub-authors-sheet,
+.pub-journal-sheet {
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.award-item h4,
+.timeline-item h4 {
+  font-size: 22px;
+}
+
+.contact-info a,
+.contact-info p {
+  font-size: 16px;
+}
+
+/* 프로젝트 유형 + 역할 필터 */
+.project-filter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.project-filter-row {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-caption {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  color: #999;
+}
+
+.project-role-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.project-role-filter {
+  appearance: none;
+  border: 1px solid #c9c8c3;
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-family: inherit;
+  font-size: 9px;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.project-role-filter:hover,
+.project-role-filter.active {
+  background: var(--black);
+  color: white;
+  border-color: var(--black);
+}
+
+.project-role-filter span {
+  margin-left: 5px;
+  opacity: .65;
+}
+
+/* 공동 1저자 */
+.cofirst-author-note {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 7px;
+  border: 1px solid #777;
+  border-radius: 999px;
+  color: #bbb;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  vertical-align: 1px;
+}
+
+/* 수상: 사용자 시트 열 구조에 맞춘 표현 */
+.award-title-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.award-result-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 3px 10px;
+  border: 1px solid #b78535;
+  border-radius: 999px;
+  background: rgba(183, 133, 53, .08);
+  color: #9b702a;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.award-content p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+.award-meta-label {
+  display: inline-block;
+  min-width: 48px;
+  margin-right: 8px;
+  color: #999;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+/* Career 명함 / 로고 */
+.optional-image-slot[hidden] {
+  display: none !important;
+}
+
+.namecard-slot {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  max-width: 460px;
+}
+
+.namecard-image {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.namecard-image.landscape {
+  width: min(100%, 430px);
+  max-height: 240px;
+}
+
+.namecard-image.portrait {
+  width: min(100%, 245px);
+  max-height: 430px;
+}
+
+.current-position {
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.current-position-logo-slot {
+  margin-top: 18px;
+}
+
+.current-position-logo {
+  display: block;
+  width: auto;
+  max-width: 240px;
+  max-height: 78px;
+  object-fit: contain;
+}
+
+/* Contact 사진 */
+.contact-photo-slot {
+  margin-top: 14px;
+  max-width: 430px;
+}
+
+.contact-photo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+}
+
+/* Contact에는 대표 문구 대신 사진이 들어가므로 빈 제목 관련 스타일 영향 제거 */
+.contact-photo-column {
+  min-width: 0;
+}
+
+/* 모바일 */
+@media (max-width: 820px) {
+  .hero {
+    height: 61vh;
+    min-height: 455px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 13vw, 72px);
+  }
+
+  .section,
+  .projects-section,
+  .publications-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .project-filter-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .project-main h3 {
+    font-size: 18px;
+  }
+
+  .pub-main h4 {
+    font-size: 16px;
+  }
+
+  .award-title-line {
+    align-items: flex-start;
+  }
+
+  .namecard-image.landscape {
+    width: min(100%, 390px);
+  }
+
+  .namecard-image.portrait {
+    width: min(100%, 230px);
+  }
+}
+
+
+/* =========================================================
+   V7 — STRUCTURE / COMPACT LISTS / SHOW-MORE CONTROLS
+========================================================= */
+
+/* Career is now Profile; Research absorbs the former profile copy */
+.research-profile-grid {
+  margin-bottom: 34px;
+}
+
+.research-interests-heading {
+  padding-top: 28px;
+  border-top: 1px solid #c9c8c3;
+}
+
+/* Profile image name changed to profile.png, still auto adapts to aspect ratio */
+.profile-section .namecard-slot {
+  margin-top: 12px;
+}
+
+/* Consistent bilingual current-position rows */
+.current-position-row {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.current-position-row strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.current-position-row span {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Larger year labels shared across Projects / Publications / Awards / Profile timeline */
+.project-year,
+.pub-year,
+.award-date,
+.timeline-period {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: #555;
+}
+
+/* Projects: smaller title = publication title size, tighter rows */
+.project-item {
+  min-height: 0;
+  padding: 9px 4px;
+  grid-template-columns: 76px 1fr auto;
+  gap: 14px;
+}
+
+.project-main h3,
+.pub-main h4 {
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.project-main p {
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Type + role pills */
+.project-badge-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.project-role-badge {
+  display: inline-flex;
+  min-width: 54px;
+  min-height: 24px;
+  padding: 3px 10px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+
+/* 책임연구원 / 참여연구원 family colors */
+.project-role-pi {
+  color: #a85d91;
+  background: rgba(168, 93, 145, .09);
+}
+
+.project-role-participant {
+  color: #467f91;
+  background: rgba(70, 127, 145, .09);
+}
+
+/* Show-more buttons */
+.list-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 14px;
+}
+
+.list-toggle-button {
+  appearance: none;
+  min-width: 160px;
+  padding: 9px 18px;
+  border: 1px solid #bbb;
+  border-radius: 999px;
+  background: transparent;
+  color: #333;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.list-toggle-button:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.dark-toggle {
+  color: #ddd;
+  border-color: #555;
+}
+
+.dark-toggle:hover {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+/* Awards / Contact labels moved to right-hand content columns */
+.awards-right-label,
+.contact-right-label {
+  margin-bottom: 14px;
+}
+
+.contact-photo-column .mini-label {
+  display: none;
+}
+
+/* Contact image now uses namecard.png */
+.contact-photo-slot {
+  margin-top: 0;
+}
+
+/* Keep section typography readable while compacting space, not font size */
+.section,
+.projects-section,
+.publications-section {
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+
+.section-heading,
+.projects-section .section-heading,
+.publications-section .section-heading {
+  margin-bottom: 16px;
+}
+
+.projects-top,
+.publications-top {
+  margin-bottom: 12px;
+}
+
+.award-item,
+.timeline-item,
+.publication-item-sheet {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 820px) {
+  .project-year,
+  .pub-year,
+  .award-date,
+  .timeline-period {
+    font-size: 15px;
+  }
+
+  .project-item {
+    grid-template-columns: 52px 1fr;
+  }
+
+  .project-badge-stack {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2px;
+  }
+
+  .current-position-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
+
+/* =========================================================
+   V8 — SECTION CONTRAST / PROFILE / PROJECT / AWARD TUNING
+========================================================= */
+
+/* 01–06 배경 구분:
+   01 Profile = white
+   02 Research = warm gray
+   03 Projects = white
+   04 Publications = dark
+   05 Awards = warm gray
+   06 Contact = white
+*/
+.profile-section {
+  background: #ffffff !important;
+}
+
+.research-section {
+  background: #f4f3ef !important;
+}
+
+.projects-section {
+  background: #ffffff !important;
+}
+
+.publications-section {
+  background: #111111 !important;
+}
+
+.awards-section {
+  background: #f4f3ef !important;
+}
+
+.contact-section {
+  background: #ffffff !important;
+}
+
+/* PROFILE — current position order and compact spacing */
+.current-position {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.current-position-row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* 경력 기간은 한 줄 유지 */
+.profile-section .timeline-item {
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.profile-section .timeline-period {
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: -.015em;
+}
+
+/* PROFESSIONAL EXPERIENCE / EDUCATION 위아래 간격 추가 압축 */
+.profile-section .career-group + .career-group {
+  margin-top: 16px !important;
+}
+
+.profile-section .career-group > .mini-label {
+  margin-bottom: 8px !important;
+}
+
+.profile-section .timeline {
+  margin-top: 0;
+}
+
+.profile-section .timeline-item h4 {
+  margin-top: 3px;
+}
+
+.profile-section .timeline-item p {
+  margin-top: 2px;
+}
+
+.current-position-logo-link {
+  display: inline-block;
+}
+
+.current-position-logo-link:hover {
+  opacity: .72;
+}
+
+/* PROJECTS — role badge sits inline with organization */
+.project-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.project-organization {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #666;
+}
+
+.project-role-inline {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 8.5px;
+  line-height: 1;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* 연구원/연구보조원/참여연구원은 원래 표기를 유지하면서 같은 계열 색 */
+.project-role-inline.project-role-participant {
+  color: #467f91;
+  background: rgba(70, 127, 145, .09);
+}
+
+.project-role-inline.project-role-pi {
+  color: #a85d91;
+  background: rgba(168, 93, 145, .09);
+}
+
+/* 이전 세로 역할 배지 영역은 사용하지 않음 */
+.project-badge-stack,
+.project-role-badge {
+  display: none !important;
+}
+
+/* AWARDS — year / contest / result in one clear row */
+.award-item-plain {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) 100px;
+  gap: 18px;
+  align-items: start;
+}
+
+.award-main h4 {
+  margin: 0;
+}
+
+.award-main p {
+  margin-top: 4px;
+}
+
+.award-result-text {
+  padding-top: 1px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6f5324;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* old result pill no longer used */
+.award-result-badge {
+  display: none !important;
+}
+
+/* Contact affiliation removed; keep rows compact */
+.contact-info > div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 820px) {
+  .profile-section .timeline-item {
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+  }
+
+  .profile-section .timeline-period {
+    font-size: 11.5px;
+  }
+
+  .award-item-plain {
+    grid-template-columns: 52px 1fr;
+    gap: 12px;
+  }
+
+  .award-result-text {
+    grid-column: 2;
+    font-size: 14px;
+    padding-top: 0;
+  }
+}
+
+
+/* =========================================================
+   V9 — ANCHOR OFFSET / PROFILE ALIGNMENT / FILTER LEGIBILITY
+========================================================= */
+
+/* Fixed header를 고려한 섹션 이동 위치 */
+html {
+  scroll-padding-top: 82px;
+}
+
+section[id] {
+  scroll-margin-top: 82px;
+}
+
+/* PROFILE — 모든 영문명이 같은 x축에서 시작하도록 고정 2열 */
+.current-position-row {
+  grid-template-columns: 190px minmax(0, 1fr) !important;
+  column-gap: 18px !important;
+}
+
+.current-position-row strong,
+.current-position-row span {
+  margin: 0;
+}
+
+/* PROFESSIONAL EXPERIENCE: 기관명-영문기관명 사이 간격 축소 */
+.profile-section .timeline-item h4 {
+  margin-top: 2px !important;
+  margin-bottom: 0 !important;
+  line-height: 1.3;
+}
+
+.profile-section .timeline-item .institution-en {
+  margin-top: 0 !important;
+  line-height: 1.28;
+}
+
+/* EDUCATION 순서/간격 */
+.education-content .timeline-type {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.education-content .degree-detail {
+  margin: 0 0 3px 0 !important;
+  font-size: 13px;
+  line-height: 1.3;
+  color: #666;
+}
+
+.education-content h4 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.education-content .institution-en {
+  margin-top: 0 !important;
+}
+
+/* Projects filter: TYPE / ROLE 및 버튼 글씨 확대 */
+.filter-caption {
+  font-size: 11px !important;
+}
+
+.project-filter,
+.project-role-filter {
+  font-size: 10.5px !important;
+  padding: 9px 15px !important;
+}
+
+/* ROLE 필터에도 역할별 색상 적용 */
+.project-role-filter[data-role-filter="PI"] {
+  border-color: rgba(168, 93, 145, .65);
+  color: #a85d91;
+}
+
+.project-role-filter[data-role-filter="PARTICIPANT"] {
+  border-color: rgba(70, 127, 145, .65);
+  color: #467f91;
+}
+
+.project-role-filter[data-role-filter="PI"]:hover,
+.project-role-filter[data-role-filter="PI"].active {
+  background: #a85d91;
+  border-color: #a85d91;
+  color: #fff;
+}
+
+.project-role-filter[data-role-filter="PARTICIPANT"]:hover,
+.project-role-filter[data-role-filter="PARTICIPANT"].active {
+  background: #467f91;
+  border-color: #467f91;
+  color: #fff;
+}
+
+/* ALL은 중립색 유지 */
+.project-role-filter[data-role-filter="ALL"].active,
+.project-role-filter[data-role-filter="ALL"]:hover {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+/* 각 Project 오른쪽 유형 pill 및 기관 옆 역할 pill 확대 */
+.project-type-badge {
+  font-size: 10px !important;
+  min-width: 58px !important;
+  height: 27px !important;
+  padding: 0 11px !important;
+}
+
+.project-role-inline {
+  font-size: 9.5px !important;
+  min-height: 22px !important;
+  padding: 3px 9px !important;
+}
+
+/* Publications filter 글씨 확대 */
+.publication-filters .pub-filter {
+  font-size: 10.5px !important;
+  padding: 9px 15px !important;
+}
+
+/* Publication 오른쪽 pill / 세부 indexing / DOI 글씨 확대 */
+.pub-class-badge {
+  font-size: 10px !important;
+  min-width: 58px !important;
+  height: 27px !important;
+  padding: 0 11px !important;
+}
+
+.pub-indexing {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  margin-top: 2px !important;
+}
+
+.pub-doi {
+  font-size: 10.5px !important;
+  margin-top: 3px !important;
+}
+
+/* 모바일: 영문 정렬은 유지하되 너무 좁으면 한 열로 */
+@media (max-width: 820px) {
+  html {
+    scroll-padding-top: 74px;
+  }
+
+  section[id] {
+    scroll-margin-top: 74px;
+  }
+
+  .current-position-row {
+    grid-template-columns: 1fr !important;
+    row-gap: 1px !important;
+  }
+
+  .filter-caption {
+    font-size: 10px !important;
+  }
+
+  .project-filter,
+  .project-role-filter,
+  .publication-filters .pub-filter {
+    font-size: 10px !important;
+  }
+}
+
+
+/* =========================================================
+   V10 — ANCHOR FINE TUNING / TIGHTER HERO / FILLED FILTER PILLS
+========================================================= */
+
+/* 실제 스크롤 시 header는 72px이므로 정확히 맞춤 */
+html {
+  scroll-padding-top: 72px !important;
+}
+
+section[id] {
+  scroll-margin-top: 72px !important;
+}
+
+/* 메인 첫 화면 여백 추가 축소 */
+.hero {
+  height: 56vh !important;
+  min-height: 420px !important;
+}
+
+.hero-inner {
+  padding-top: 54px !important;
+  padding-bottom: 16px !important;
+}
+
+.eyebrow {
+  margin-bottom: 13px !important;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 5.9vw, 92px) !important;
+  line-height: .92 !important;
+}
+
+.hero-description {
+  margin-top: 14px !important;
+  line-height: 1.62 !important;
+}
+
+.hero-buttons {
+  margin-top: 13px !important;
+}
+
+.hero-meta {
+  bottom: 16px !important;
+}
+
+/* -------------------------
+   PROJECT FILTERS
+------------------------- */
+
+/* TYPE: 기본 상태부터 은은한 배경색 */
+.project-filter[data-filter="RND"] {
+  color: #655fb5 !important;
+  border-color: rgba(101, 95, 181, .58) !important;
+  background: rgba(101, 95, 181, .10) !important;
+}
+
+.project-filter[data-filter="SERVICE"] {
+  color: #b9674d !important;
+  border-color: rgba(185, 103, 77, .58) !important;
+  background: rgba(185, 103, 77, .10) !important;
+}
+
+/* TYPE 선택/hover 시 더 진하게 */
+.project-filter[data-filter="RND"].active,
+.project-filter[data-filter="RND"]:hover {
+  color: #fff !important;
+  border-color: #655fb5 !important;
+  background: #655fb5 !important;
+}
+
+.project-filter[data-filter="SERVICE"].active,
+.project-filter[data-filter="SERVICE"]:hover {
+  color: #fff !important;
+  border-color: #b9674d !important;
+  background: #b9674d !important;
+}
+
+/* ROLE: 기본 상태부터 은은한 배경색 */
+.project-role-filter[data-role-filter="PI"] {
+  color: #a85d91 !important;
+  border-color: rgba(168, 93, 145, .62) !important;
+  background: rgba(168, 93, 145, .10) !important;
+}
+
+.project-role-filter[data-role-filter="PARTICIPANT"] {
+  color: #467f91 !important;
+  border-color: rgba(70, 127, 145, .62) !important;
+  background: rgba(70, 127, 145, .10) !important;
+}
+
+.project-role-filter[data-role-filter="PI"].active,
+.project-role-filter[data-role-filter="PI"]:hover {
+  color: #fff !important;
+  border-color: #a85d91 !important;
+  background: #a85d91 !important;
+}
+
+.project-role-filter[data-role-filter="PARTICIPANT"].active,
+.project-role-filter[data-role-filter="PARTICIPANT"]:hover {
+  color: #fff !important;
+  border-color: #467f91 !important;
+  background: #467f91 !important;
+}
+
+/* ALL은 중립 배경 */
+.project-filter[data-filter="ALL"],
+.project-role-filter[data-role-filter="ALL"] {
+  background: rgba(17,17,17,.045) !important;
+}
+
+/* -------------------------
+   PUBLICATION FILTERS
+------------------------- */
+
+.pub-filter[data-filter="SCI"] {
+  color: #9fc7f6 !important;
+  border-color: rgba(141, 184, 238, .62) !important;
+  background: rgba(79, 130, 195, .18) !important;
+}
+
+.pub-filter[data-filter="KCI"] {
+  color: #91cfaa !important;
+  border-color: rgba(129, 196, 158, .62) !important;
+  background: rgba(75, 154, 112, .18) !important;
+}
+
+.pub-filter[data-filter="BOOK"] {
+  color: #e0bb79 !important;
+  border-color: rgba(217, 176, 103, .62) !important;
+  background: rgba(183, 133, 53, .18) !important;
+}
+
+/* Publications는 dark background이므로 선택 시 밝은 글자 + 진한 분류색 */
+.pub-filter[data-filter="SCI"].active,
+.pub-filter[data-filter="SCI"]:hover {
+  color: #fff !important;
+  border-color: #4f82c3 !important;
+  background: #4f82c3 !important;
+}
+
+.pub-filter[data-filter="KCI"].active,
+.pub-filter[data-filter="KCI"]:hover {
+  color: #fff !important;
+  border-color: #4b9a70 !important;
+  background: #4b9a70 !important;
+}
+
+.pub-filter[data-filter="BOOK"].active,
+.pub-filter[data-filter="BOOK"]:hover {
+  color: #fff !important;
+  border-color: #b78535 !important;
+  background: #b78535 !important;
+}
+
+.pub-filter[data-filter="ALL"] {
+  background: rgba(255,255,255,.06) !important;
+}
+
+/* 모바일 header는 70px */
+@media (max-width: 820px) {
+  html {
+    scroll-padding-top: 70px !important;
+  }
+
+  section[id] {
+    scroll-margin-top: 70px !important;
+  }
+
+  .hero {
+    height: 54vh !important;
+    min-height: 400px !important;
+  }
+
+  .hero-inner {
+    padding-top: 50px !important;
+    padding-bottom: 14px !important;
+  }
+}
+
+
+/* =========================================================
+   V11 — CORRECT SINGLE ANCHOR OFFSET / VISIBLE ALL PILLS
+========================================================= */
+
+/* 기존에는 scroll-padding + scroll-margin가 중복 적용되어 약 2배 떨어졌음.
+   scroll-padding만 사용하고 section 자체 margin offset은 제거. */
+html {
+  scroll-padding-top: 72px !important;
+}
+
+section[id] {
+  scroll-margin-top: 0 !important;
+}
+
+/* PROJECTS - ALL: 밝은 중립 배경 + 진한 글자 */
+.project-filter[data-filter="ALL"],
+.project-role-filter[data-role-filter="ALL"] {
+  color: #333 !important;
+  border-color: #b9b9b5 !important;
+  background: #ecebe7 !important;
+}
+
+.project-filter[data-filter="ALL"].active,
+.project-filter[data-filter="ALL"]:hover,
+.project-role-filter[data-role-filter="ALL"].active,
+.project-role-filter[data-role-filter="ALL"]:hover {
+  color: #fff !important;
+  border-color: #555 !important;
+  background: #555 !important;
+}
+
+/* PUBLICATIONS - dark section에서도 ALL 글자가 확실히 보이게 */
+.pub-filter[data-filter="ALL"] {
+  color: #e8e8e8 !important;
+  border-color: #6b6b6b !important;
+  background: #353535 !important;
+}
+
+.pub-filter[data-filter="ALL"].active,
+.pub-filter[data-filter="ALL"]:hover {
+  color: #111 !important;
+  border-color: #f1f1f1 !important;
+  background: #f1f1f1 !important;
+}
+
+/* 모바일도 한 가지 offset만 사용 */
+@media (max-width: 820px) {
+  html {
+    scroll-padding-top: 70px !important;
+  }
+
+  section[id] {
+    scroll-margin-top: 0 !important;
+  }
+}
+
+
+/* =========================================================
+   V12 — LARGER SECTION LABELS / ADAPTIVE CONTACT NAMECARD
+========================================================= */
+
+/* 본문 각 섹션명(PROFILE / RESEARCH / ...) 확대 */
+.section-heading {
+  align-items: center;
+}
+
+.section-heading h2 {
+  font-size: clamp(18px, 1.55vw, 24px) !important;
+  letter-spacing: .16em !important;
+  font-weight: 700 !important;
+}
+
+.section-heading .section-number {
+  font-size: 11px !important;
+}
+
+/* CONTACT의 namecard.png도 이미지 방향 자동 대응 */
+.contact-photo-slot {
+  max-width: 520px;
+}
+
+.contact-photo {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.contact-photo.landscape {
+  width: min(100%, 500px);
+  max-height: 320px;
+}
+
+.contact-photo.portrait {
+  width: min(100%, 300px);
+  max-height: 500px;
+}
+
+@media (max-width: 820px) {
+  .section-heading h2 {
+    font-size: 18px !important;
+  }
+
+  .contact-photo.landscape {
+    width: min(100%, 420px);
+    max-height: 280px;
+  }
+
+  .contact-photo.portrait {
+    width: min(100%, 260px);
+    max-height: 430px;
+  }
+}
+
+
+/* =========================================================
+   V13 — LARGER SECTION NUMBERS
+========================================================= */
+
+/* 섹션명과 숫자의 크기 균형 조정 */
+.section-heading .section-number {
+  font-size: clamp(15px, 1.15vw, 19px) !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  color: #8a8a86;
+}
+
+.publications-section .section-heading .section-number {
+  color: #8f8f8f;
+}
+
+@media (max-width: 820px) {
+  .section-heading .section-number {
+    font-size: 15px !important;
+  }
+}
+
+
+/* =========================================================
+   V14 — BILINGUAL KO / EN SWITCH
+========================================================= */
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  margin-right: 18px;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.language-switch > span {
+  opacity: .35;
+}
+
+.language-button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 4px 2px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: .42;
+  transition: opacity .2s ease;
+}
+
+.language-button:hover,
+.language-button.active {
+  opacity: 1;
+}
+
+/* EN 모드에서는 Profile의 한국어 기관/학과명을 숨기고 영문만 표시 */
+body.lang-en .current-position-row {
+  grid-template-columns: 1fr !important;
+}
+
+body.lang-en .current-position-row .current-ko,
+body.lang-en .profile-section .institution-ko,
+body.lang-en .profile-section .education-ko {
+  display: none !important;
+}
+
+body.lang-en .current-position-row .current-en {
+  font-size: 15px;
+  color: #222;
+  font-weight: 600;
+}
+
+body.lang-en .profile-section .institution-en {
+  color: #222;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+body.lang-en .education-content .institution-en {
+  margin-top: 2px !important;
+}
+
+/* Research translated body text should keep the same visual rhythm */
+[data-i18n] {
+  transition: opacity .15s ease;
+}
+
+/* Language selector on compact screens */
+@media (max-width: 1040px) {
+  .language-switch {
+    margin-left: auto;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 820px) {
+  .language-switch {
+    margin-right: 8px;
+  }
+
+  .language-button {
+    font-size: 10px;
+  }
+
+  body.lang-en .current-position-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* =========================================================
+   V14 FINAL TUNING
+   Header spacing / Profile order / label emphasis / namecard border
+========================================================= */
+
+/* 상단 로고와 섹션 메뉴 사이 여유 확보 */
+.header {
+  column-gap: 34px;
+}
+
+.logo {
+  flex-shrink: 0;
+  margin-right: 28px;
+}
+
+.nav {
+  margin-right: auto;
+}
+
+/* KO/EN은 오른쪽에 유지 */
+.language-switch {
+  margin-left: 22px;
+}
+
+/* 요청한 소제목은 더 굵게 */
+.emphasis-label {
+  font-weight: 700 !important;
+  letter-spacing: .16em;
+  color: #222;
+}
+
+.publications-section .emphasis-label {
+  color: #fff;
+}
+
+/* Profile current-position 배치 */
+.current-position-label {
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+
+.profile-section .current-position-logo-slot {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.profile-section .current-position {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* logo가 너무 크게 보이지 않도록 유지 */
+.profile-section .current-position-logo {
+  max-width: 240px;
+  max-height: 78px;
+}
+
+/* CONTACT의 namecard.png에 얇은 연회색 테두리 */
+.contact-photo {
+  border: 1px solid #d7d7d3;
+  box-sizing: border-box;
+}
+
+/* 이미지 비율 자동 인식은 기존 JS/CSS 그대로 사용 */
+.contact-photo.landscape,
+.contact-photo.portrait {
+  border: 1px solid #d7d7d3;
+}
+
+/* 좁은 화면에서 상단 메뉴 간격 과도해지지 않게 */
+@media (max-width: 1100px) {
+  .header {
+    column-gap: 20px;
+  }
+
+  .logo {
+    margin-right: 14px;
+  }
+
+  .language-switch {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 820px) {
+  .logo {
+    margin-right: 0;
+  }
+
+  .language-switch {
+    margin-left: auto;
+  }
+}
+
+
+/* =========================================================
+   PROFILE KO / EN FIX
+========================================================= */
+
+/* 한국어 화면: 한글 + 공식 영문명을 기존처럼 병기 */
+body.lang-ko .profile-section .current-ko,
+body.lang-ko .profile-section .institution-ko,
+body.lang-ko .profile-section .education-ko {
+  display: block;
+}
+
+body.lang-ko .profile-section .current-en,
+body.lang-ko .profile-section .institution-en {
+  display: block;
+}
+
+body.lang-ko .profile-section .education-en {
+  display: none;
+}
+
+/* 영문 화면: 한국어 Profile 요소는 숨기고 영문만 표시 */
+body.lang-en .profile-section .current-ko,
+body.lang-en .profile-section .institution-ko,
+body.lang-en .profile-section .education-ko {
+  display: none !important;
+}
+
+body.lang-en .profile-section .current-en,
+body.lang-en .profile-section .institution-en,
+body.lang-en .profile-section .education-en {
+  display: block !important;
+}
+
+/* CURRENT POSITION: 영문 모드에서는 영문 기관/부서/직책만 한 줄씩 표시 */
+body.lang-en .profile-section .current-position-row {
+  grid-template-columns: 1fr !important;
+}
+
+body.lang-en .profile-section .current-position-row .current-en {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* 경력 기관 영문 표기 */
+body.lang-en .profile-section .timeline-item .institution-en {
+  margin-top: 0 !important;
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+  line-height: 1.35;
+}
+
+/* 학위/전공 영문 */
+.profile-section .education-en {
+  display: none;
+}
+
+body.lang-en .profile-section .education-en {
+  margin: 0 0 3px 0 !important;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #666;
+}
+
+/* EN에서 이미 Ph.D.가 별도 표시되므로 degree detail 문장 안의 중복 느낌 완화 */
+body.lang-en .profile-section .education-content > .timeline-type {
+  margin-bottom: 2px;
+}
