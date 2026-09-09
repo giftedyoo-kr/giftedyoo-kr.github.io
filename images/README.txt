@@ -5,7 +5,7 @@
    - 가로/세로 비율을 자동으로 인식하여 맞춰 배치합니다.
 
 2. current_position_logo.png
-   - PROFILE의 현재 소속 설명 아래에 기관 로고로 표시됩니다.
+   - PROFILE의 현재 소속 부분에 기관 로고로 표시됩니다.
 
 3. namecard.png
    - CONTACT 왼쪽 영역에 표시됩니다.
