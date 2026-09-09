@@ -1,11 +1,24 @@
-const header = document.querySelector(".header");
+const header = document.getElementById("header");
+const menuButton = document.getElementById("menuButton");
+const mobileNav = document.getElementById("mobileNav");
 
-window.addEventListener("scroll", () => {
-
-  if (window.scrollY > 100) {
+function updateHeader() {
+  if (window.scrollY > 80) {
     header.classList.add("scrolled");
   } else {
     header.classList.remove("scrolled");
   }
+}
 
+window.addEventListener("scroll", updateHeader);
+updateHeader();
+
+menuButton.addEventListener("click", () => {
+  mobileNav.classList.toggle("open");
+});
+
+document.querySelectorAll(".mobile-nav a").forEach((link) => {
+  link.addEventListener("click", () => {
+    mobileNav.classList.remove("open");
+  });
 });
