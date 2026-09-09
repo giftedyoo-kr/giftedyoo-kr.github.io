@@ -25,6 +25,7 @@
     <a href="#research">RESEARCH</a>
     <a href="#projects">PROJECTS</a>
     <a href="#publications">PUBLICATIONS</a>
+    <a href="#awards">AWARDS</a>
     <a href="#career">CAREER</a>
     <a href="#contact">CONTACT</a>
   </nav>
@@ -39,6 +40,7 @@
   <a href="#research">RESEARCH</a>
   <a href="#projects">PROJECTS</a>
   <a href="#publications">PUBLICATIONS</a>
+  <a href="#awards">AWARDS</a>
   <a href="#career">CAREER</a>
   <a href="#contact">CONTACT</a>
 </div>
@@ -196,48 +198,17 @@
       <h2>PROJECTS</h2>
     </div>
 
-    <div class="project-list">
-
-      <article class="project-item">
-        <div class="project-year">2026</div>
-        <div class="project-main">
-          <span class="project-category">CLIMATE ADAPTATION</span>
-          <h3>기후위기 적응 및 재난·재해 위험평가 연구</h3>
-          <p>
-            지역의 기후위험 특성과 취약계층·취약지역을 분석하여
-            정책적 우선순위와 적응 방향을 제시합니다.
-          </p>
-        </div>
-        <div class="project-arrow">↗</div>
-      </article>
-
-      <article class="project-item">
-        <div class="project-year">2026</div>
-        <div class="project-main">
-          <span class="project-category">REMOTE SENSING</span>
-          <h3>위성영상을 활용한 완충지역 변화 DB 구축 및 효과성 분석</h3>
-          <p>
-            보호지역 및 완충지역의 토지피복·식생 변화를 장기 시계열로 비교하여
-            공간적 보전 효과를 분석합니다.
-          </p>
-        </div>
-        <div class="project-arrow">↗</div>
-      </article>
-
-      <article class="project-item">
-        <div class="project-year">2026</div>
-        <div class="project-main">
-          <span class="project-category">NATURAL CAPITAL</span>
-          <h3>자연자본·생물다양성 인증 및 검증체계 분석</h3>
-          <p>
-            국제 자연자본 및 생물다양성 관련 표준의 운영·심사·인증 구조,
-            평가 방법과 정책적 활용 가능성을 비교합니다.
-          </p>
-        </div>
-        <div class="project-arrow">↗</div>
-      </article>
-
+    <div class="projects-top">
+      <h3>Research & Projects</h3>
+      <div class="project-filters" role="group" aria-label="프로젝트 분류 필터">
+        <button class="project-filter active" type="button" data-filter="ALL">ALL <span id="countProjectAll">0</span></button>
+        <button class="project-filter" type="button" data-filter="RND">R&amp;D <span id="countRnd">0</span></button>
+        <button class="project-filter" type="button" data-filter="SERVICE">용역 <span id="countService">0</span></button>
+      </div>
     </div>
+
+    <div class="sheet-status" id="projectStatus">Loading projects...</div>
+    <div class="project-list" id="projectList"></div>
   </section>
 
 
@@ -248,48 +219,45 @@
     </div>
 
     <div class="publications-top">
-      <h3>Selected Publications</h3>
-      <p>
-        아래 항목은 예시입니다. 실제 논문 제목, 학술지, 저자, DOI 링크로 교체해 사용하세요.
-      </p>
+      <h3>Publications</h3>
+      <div class="publications-summary">
+        <p>Google Sheets의 SCI·KCI 논문과 저서를 자동으로 불러옵니다.</p>
+        <div class="publication-filters" role="group" aria-label="출판물 분류 필터">
+          <button class="pub-filter active" type="button" data-filter="ALL">ALL <span id="countAll">0</span></button>
+          <button class="pub-filter" type="button" data-filter="SCI">SCI <span id="countSci">0</span></button>
+          <button class="pub-filter" type="button" data-filter="KCI">KCI <span id="countKci">0</span></button>
+          <button class="pub-filter" type="button" data-filter="BOOK">BOOK <span id="countBook">0</span></button>
+        </div>
+      </div>
     </div>
 
-    <div class="publication-list">
+    <div class="publication-status" id="publicationStatus">Loading publications...</div>
+    <div class="publication-list" id="publicationList"></div>
+  </section>
 
-      <a class="publication-item" href="#" onclick="return false;">
-        <span class="pub-year">2026</span>
-        <div class="pub-info">
-          <h4>Insert your publication title here</h4>
-          <p>Author(s) · Journal Name · Vol. 00, No. 0</p>
-        </div>
-        <span class="pub-type">ARTICLE</span>
-      </a>
 
-      <a class="publication-item" href="#" onclick="return false;">
-        <span class="pub-year">2025</span>
-        <div class="pub-info">
-          <h4>Insert your publication title here</h4>
-          <p>Author(s) · Journal Name · Vol. 00, No. 0</p>
-        </div>
-        <span class="pub-type">ARTICLE</span>
-      </a>
+  <section id="awards" class="section awards-section">
+    <div class="section-heading">
+      <span class="section-number">05</span>
+      <h2>AWARDS</h2>
+    </div>
 
-      <a class="publication-item" href="#" onclick="return false;">
-        <span class="pub-year">2024</span>
-        <div class="pub-info">
-          <h4>Insert your publication title here</h4>
-          <p>Author(s) · Journal Name · Vol. 00, No. 0</p>
-        </div>
-        <span class="pub-type">ARTICLE</span>
-      </a>
-
+    <div class="awards-layout">
+      <div>
+        <p class="mini-label">HONORS & AWARDS</p>
+        <h3>Recognition<br>& Awards</h3>
+      </div>
+      <div>
+        <div class="sheet-status" id="awardStatus">Loading awards...</div>
+        <div class="award-list" id="awardList"></div>
+      </div>
     </div>
   </section>
 
 
   <section id="career" class="section career-section">
     <div class="section-heading">
-      <span class="section-number">05</span>
+      <span class="section-number">06</span>
       <h2>CAREER</h2>
     </div>
 
@@ -336,7 +304,7 @@
 
   <section id="contact" class="section contact-section">
     <div class="section-heading">
-      <span class="section-number">06</span>
+      <span class="section-number">07</span>
       <h2>CONTACT</h2>
     </div>
 
