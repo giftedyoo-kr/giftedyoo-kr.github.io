@@ -1,3 +1,9 @@
+/*
+  Youngjae Yoo Academic Website
+  Client-side interactions, bilingual content, Google Sheets integration,
+  publication/project/award rendering, and homepage statistics.
+*/
+
 const header = document.getElementById("header");
 const menuButton = document.getElementById("menuButton");
 const mobileNav = document.getElementById("mobileNav");
@@ -16,7 +22,7 @@ document.querySelectorAll(".mobile-nav a").forEach((link) => {
 
 
 /* =========================================================
-   LANGUAGE SWITCH — KO / EN
+   LANGUAGE & LOCALIZATION
 ========================================================= */
 
 let currentLang = localStorage.getItem("siteLang") || "ko";
@@ -164,7 +170,7 @@ document.querySelectorAll(".language-button").forEach(button => {
 applyStaticLanguage();
 
 
-/* 선택 이미지: 파일이 없으면 슬롯을 숨기고, 명함은 실제 이미지 방향에 맞춰 배치 */
+/* OPTIONAL IMAGES — hide missing assets and adapt image orientation. */
 document.querySelectorAll(".optional-image-slot img").forEach((img) => {
   const slot = img.closest(".optional-image-slot");
 
@@ -190,8 +196,8 @@ document.querySelectorAll(".optional-image-slot img").forEach((img) => {
 });
 
 /* =========================================================
-   GOOGLE SHEETS MULTI-TAB CMS
-   Google Visualization JSONP를 사용하여 CORS 문제 없이 gid별 탭을 읽습니다.
+   GOOGLE SHEETS DATA SOURCE
+   Google Visualization JSONP is used to load each sheet tab.
 ========================================================= */
 
 const SPREADSHEET_ID = "15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900";
@@ -352,7 +358,9 @@ async function settleSheets(configs) {
   return { rows, failed };
 }
 
-/* ========================= HOME OVERVIEW ========================= */
+/* =========================================================
+   HOME OVERVIEW
+========================================================= */
 function setHomeCount(id, value) {
   const el = document.getElementById(id);
   if (el) el.textContent = String(value);
@@ -484,7 +492,9 @@ function renderHomeOverview() {
   }
 }
 
-/* ========================= PUBLICATIONS ========================= */
+/* =========================================================
+   PUBLICATIONS
+========================================================= */
 let publications = [];
 let currentPublicationFilter = "ALL";
 let publicationsExpanded = false;
@@ -688,7 +698,9 @@ document.getElementById("publicationToggle").addEventListener("click", () => {
   }
 });
 
-/* ========================= PROJECTS ========================= */
+/* =========================================================
+   PROJECTS
+========================================================= */
 let projects = [];
 let currentProjectTypeFilter = "ALL";
 let currentProjectRoleFilter = "ALL";
@@ -933,7 +945,9 @@ document.getElementById("projectToggle").addEventListener("click", () => {
   }
 });
 
-/* ========================= AWARDS ========================= */
+/* =========================================================
+   AWARDS
+========================================================= */
 function awardContest(row) {
   return pickLang(
     row,
