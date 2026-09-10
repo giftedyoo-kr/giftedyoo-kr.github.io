@@ -57,7 +57,7 @@ const I18N = {
     "profile.periodEducation": "2019.09.–2023.02."
   },
   en: {
-    "hero.description": "I study climate adaptation, disaster risk, environmental policy, and spatial analysis.<br>My research connects scientific evidence with regional policy and planning.",
+    "hero.description": "I study planning and policy for climate adaptation, disaster risk reduction, and ecosystem conservation.<br>My research aims to translate scientific evidence into policy and planning for a more resilient future.",
     "research.profileLead": "My research examines how climate change affects communities and natural environments through the lens of environmental policy and spatial planning, and translates these findings into practical policy instruments and adaptation strategies.",
     "research.profileBody": "My main interests include climate adaptation, disaster risk assessment, GIS and satellite-based environmental change analysis, natural capital and ecosystem services, and regional environmental policy.",
     "research.interestsBody": "I am interested in spatially diagnosing climate and environmental challenges and developing analytical frameworks that support regional policy decisions.",
