@@ -4217,3 +4217,35 @@ footer > div:first-child {
   color: #111 !important;
   box-shadow: 0 0 0 1px rgba(242, 193, 78, .18);
 }
+
+
+/* =========================================================
+   V20 — DESKTOP HERO BOTTOM-CLIPPING FIX
+========================================================= */
+
+/*
+  On desktop the hero was still locked to 56vh with overflow:hidden.
+  The overview column can be taller than that, causing its lower edge
+  to be clipped. Let the hero grow with its content while retaining
+  a compact minimum height.
+*/
+@media (min-width: 981px) {
+  .hero {
+    height: auto !important;
+    min-height: max(580px, 62vh) !important;
+    overflow: hidden !important;
+  }
+
+  .hero-inner {
+    height: auto !important;
+    min-height: max(580px, 62vh) !important;
+    padding-top: 82px !important;
+    padding-bottom: 38px !important;
+    box-sizing: border-box;
+  }
+
+  .hero-overview {
+    align-self: center;
+    padding-bottom: 2px;
+  }
+}
