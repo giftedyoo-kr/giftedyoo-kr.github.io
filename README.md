@@ -120,3 +120,9 @@
 - 콘텐츠 높이에 따라 hero가 자연스럽게 늘어나도록 변경
 - 최소 높이는 `max(580px, 62vh)`로 유지하여 지나치게 납작해지지 않도록 조정
 - 그래프/Projects overview 카드의 아래쪽이 hero 경계에 잘리지 않도록 수정
+
+## V21 language-specific contact name card
+- `Kor` 선택 시 `images/namecard_kor.png` 표시
+- `Eng` 선택 시 `images/namecard_eng.png` 표시
+- 기존 `images/namecard.png` 고정 참조 제거
+- 저장소의 `images` 폴더에 위 두 파일을 같은 이름으로 추가하면 자동 전환

@@ -134,6 +134,13 @@ function applyStaticLanguage() {
   document.querySelectorAll(".language-button").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.lang === currentLang);
   });
+
+  document.querySelectorAll(".language-namecard").forEach(img => {
+    const nextSrc = currentLang === "en" ? img.dataset.srcEn : img.dataset.srcKo;
+    if (nextSrc && img.getAttribute("src") !== nextSrc) {
+      img.setAttribute("src", nextSrc);
+    }
+  });
 }
 
 function refreshDynamicLanguage() {
