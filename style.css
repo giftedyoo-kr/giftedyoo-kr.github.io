@@ -3275,3 +3275,945 @@ body.lang-en .profile-section .education-en {
 body.lang-en .profile-section .education-content > .timeline-type {
   margin-bottom: 2px;
 }
+
+
+/* =========================================================
+   HOME OVERVIEW DASHBOARD
+========================================================= */
+.hero-inner {
+  padding: 0 5.5vw 7vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(390px, .65fr);
+  align-items: center;
+  gap: clamp(34px, 4vw, 78px);
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-copy h1 {
+  max-width: none;
+  font-size: clamp(58px, 6.4vw, 112px);
+}
+
+.hero-copy .hero-description {
+  max-width: 690px;
+}
+
+.hero-buttons .button {
+  min-width: 124px;
+}
+
+.hero-overview {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 610px;
+  justify-self: end;
+}
+
+.overview-card {
+  background: rgba(17, 24, 22, .62);
+  border: 1px solid rgba(255, 255, 255, .18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 18px 20px 16px;
+  color: #fff;
+}
+
+.overview-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  font-weight: 700;
+}
+
+.overview-card-head a {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 50%;
+  font-size: 12px;
+  transition: .2s ease;
+}
+
+.overview-card-head a:hover {
+  background: #fff;
+  color: #17201e;
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.overview-stat {
+  min-width: 0;
+  padding-right: 10px;
+  border-right: 1px solid rgba(255,255,255,.16);
+}
+
+.overview-stat:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.overview-stat strong {
+  display: block;
+  margin-bottom: 3px;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(25px, 2.1vw, 35px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -.04em;
+}
+
+.overview-stat span {
+  display: block;
+  font-size: 10px;
+  line-height: 1.35;
+  color: rgba(255,255,255,.68);
+}
+
+.overview-chart-legend {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 13px;
+  font-size: 8px;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.68);
+}
+
+.overview-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+}
+
+.legend-sci { background: rgba(128, 181, 255, .95); }
+.legend-kci { background: rgba(134, 213, 172, .95); }
+.legend-line {
+  display: inline-block;
+  width: 12px;
+  height: 0;
+  border-top: 1.5px solid rgba(255,255,255,.92);
+}
+
+.overview-chart-scroll {
+  margin-top: 2px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.28) transparent;
+}
+
+.overview-chart {
+  min-height: 142px;
+}
+
+.overview-chart-svg {
+  display: block;
+  min-width: 100%;
+}
+
+.overview-grid-line {
+  stroke: rgba(255,255,255,.09);
+  stroke-width: 1;
+}
+
+.overview-bar-sci { fill: rgba(128, 181, 255, .92); }
+.overview-bar-kci { fill: rgba(134, 213, 172, .92); }
+.overview-total-line {
+  fill: none;
+  stroke: rgba(255,255,255,.95);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.overview-total-dot { fill: #fff; }
+.overview-year-label {
+  fill: rgba(255,255,255,.55);
+  font-size: 8px;
+  font-family: "Inter", sans-serif;
+}
+.overview-total-label {
+  fill: rgba(255,255,255,.9);
+  font-size: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+.overview-projects {
+  padding-bottom: 15px;
+}
+
+.overview-note {
+  margin-top: 13px;
+  font-size: 9px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.58);
+}
+
+/* Contact phone follows the same typography as the other contact values. */
+.contact-info a[data-i18n="contact.phone"] {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1180px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+    gap: 28px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(52px, 6vw, 84px);
+  }
+}
+
+@media (max-width: 980px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+  .hero-inner {
+    min-height: 100vh;
+    padding: 125px 7vw 92px;
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 44px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(54px, 10vw, 94px);
+  }
+  .hero-overview {
+    max-width: none;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+  }
+  .hero-meta,
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-inner {
+    padding: 112px 6vw 64px;
+    gap: 34px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(45px, 13vw, 72px);
+  }
+  .hero-description {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .hero-buttons {
+    flex-wrap: wrap;
+  }
+  .hero-buttons .button {
+    min-width: 0;
+    flex: 1 1 30%;
+    padding: 0 10px;
+  }
+  .hero-overview {
+    grid-template-columns: 1fr;
+  }
+  .overview-card {
+    padding: 17px 16px 15px;
+  }
+  .overview-stat strong {
+    font-size: 27px;
+  }
+  .overview-chart-scroll {
+    margin-right: -6px;
+  }
+}
+
+
+/* =========================================================
+   RESEARCH CONTENT REFINEMENT — latest cumulative update
+========================================================= */
+
+/* Research Interest card numbering: slightly larger */
+.research-card .card-number {
+  font-size: 13px !important;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+
+/* Research Interest tags: larger, while keeping the pill shape */
+.research-card .tags span {
+  padding: 6px 11px;
+  font-size: 11px !important;
+  line-height: 1.15;
+}
+
+/* Long method/field strings should remain readable instead of feeling cramped. */
+.research-section .profile-facts strong {
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   V3 — FINAL RESPONSIVE HERO OVERFLOW FIX
+========================================================= */
+
+@media (max-width: 980px) {
+  .hero {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+  }
+
+  .hero-inner {
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 112px 7vw 68px !important;
+    grid-template-columns: 1fr !important;
+    align-content: start !important;
+    gap: 38px !important;
+  }
+
+  .hero-overview {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    justify-self: stretch !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .hero {
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  .hero-inner {
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 96px 6vw 56px !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-inner {
+    padding: 92px 6vw 50px !important;
+  }
+
+  .hero-overview {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* =========================================================
+   V4 — TYPOGRAPHY / RESEARCH INTERESTS / FOOTER REFINEMENTS
+========================================================= */
+
+/* Remove the hero SCROLL indicator at all viewport widths. */
+.scroll-indicator {
+  display: none !important;
+}
+
+/* Korean text should wrap by words/phrases rather than individual Hangul characters. */
+html,
+body,
+button,
+input,
+textarea,
+select {
+  word-break: keep-all;
+}
+
+body {
+  overflow-wrap: break-word;
+}
+
+/* URLs and very long link strings may still break when necessary. */
+a {
+  overflow-wrap: anywhere;
+}
+
+/* Research Interests heading: slightly calmer scale. */
+.research-interests-heading h3 {
+  font-size: clamp(27px, 3.2vw, 46px) !important;
+}
+
+/* Research Interests cards: reduce vertical whitespace and title scale. */
+.research-card {
+  min-height: 260px !important;
+  padding: 17px 18px 16px !important;
+}
+
+.research-card .card-number {
+  margin-bottom: 18px !important;
+}
+
+.research-card h4 {
+  font-size: clamp(20px, 1.75vw, 28px) !important;
+  line-height: 1.08 !important;
+}
+
+.research-card p {
+  margin-top: 12px !important;
+  font-size: 13px !important;
+  line-height: 1.62 !important;
+}
+
+.research-card .tags {
+  padding-top: 13px !important;
+}
+
+.research-card .tags span {
+  padding: 5px 10px !important;
+  font-size: 10.5px !important;
+}
+
+/* Make the copyright more prominent without overpowering the footer. */
+footer > div:first-child {
+  font-weight: 700;
+  color: #a7a7a7;
+}
+
+/* Keep compact research cards comfortable on smaller screens. */
+@media (max-width: 980px) {
+  .research-card {
+    min-height: 235px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .research-card {
+    min-height: 0 !important;
+    padding: 16px 16px 15px !important;
+  }
+
+  .research-card .card-number {
+    margin-bottom: 14px !important;
+  }
+}
+
+
+/* =========================================================
+   V5 — RESEARCH SUMMARY RESTRUCTURE
+========================================================= */
+
+.research-profile-summary {
+  margin-bottom: 34px;
+}
+
+.research-profile-summary h3 {
+  margin: 0 0 24px;
+  font-size: clamp(30px, 3.5vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -.045em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.research-profile-facts {
+  margin-top: 0 !important;
+}
+
+.research-profile-facts > div {
+  grid-template-columns: 92px minmax(0, 1fr);
+}
+
+/* Keep the long research title on one line when there is room,
+   but allow normal wrapping on narrow screens so it never overflows. */
+@media (max-width: 980px) {
+  .research-profile-summary h3 {
+    white-space: normal;
+    font-size: clamp(28px, 5.5vw, 46px);
+  }
+}
+
+@media (max-width: 700px) {
+  .research-profile-summary {
+    margin-bottom: 26px;
+  }
+
+  .research-profile-summary h3 {
+    margin-bottom: 18px;
+  }
+
+  .research-profile-facts > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* Copyright in white */
+footer > div:first-child {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   V6 — SECTION FEATURE TITLE SCALE ALIGNMENT
+   Match 03/04/05 feature headings to the main RESEARCH title.
+========================================================= */
+
+.publications-top h3,
+.projects-top h3,
+.awards-layout > div:first-child h3 {
+  font-size: clamp(30px, 3.5vw, 54px) !important;
+}
+
+@media (max-width: 980px) {
+  .publications-top h3,
+  .projects-top h3,
+  .awards-layout > div:first-child h3 {
+    font-size: clamp(28px, 5.5vw, 46px) !important;
+  }
+}
+
+
+/* =========================================================
+   V7 — RESEARCH FACTS / INTERESTS / AWARDS DENSITY
+========================================================= */
+
+/* FIELD / METHOD / FOCUS: labels black, values use the previous label gray. */
+.research-profile-facts {
+  padding-left: 18px;
+}
+
+.research-profile-facts > div {
+  grid-template-columns: 74px minmax(0, 1fr) !important;
+  gap: 18px !important;
+}
+
+.research-profile-facts span {
+  color: var(--black) !important;
+  font-weight: 700;
+}
+
+.research-profile-facts strong {
+  color: var(--gray) !important;
+  font-weight: 500;
+}
+
+/* Give the Research Interests description more horizontal room.
+   On wide screens the current Korean sentence stays on one line. */
+.research-interests-heading {
+  grid-template-columns: minmax(260px, .58fr) minmax(0, 1.42fr) !important;
+  gap: 4vw !important;
+}
+
+.research-interests-heading p {
+  max-width: none !important;
+}
+
+@media (min-width: 1100px) {
+  .research-interests-heading p {
+    white-space: nowrap;
+  }
+}
+
+/* Compress the four Research Interests cards vertically as far as is
+   comfortable without crowding the text. */
+.research-card {
+  min-height: 220px !important;
+  padding: 13px 16px 12px !important;
+}
+
+.research-card .card-number {
+  margin-bottom: 11px !important;
+}
+
+.research-card h4 {
+  margin: 0 !important;
+}
+
+.research-card p {
+  margin-top: 8px !important;
+  line-height: 1.55 !important;
+}
+
+.research-card .tags {
+  padding-top: 8px !important;
+}
+
+.research-card .tags span {
+  padding: 4px 9px !important;
+}
+
+/* AWARDS: keep Recognition & Awards on one line whenever the layout
+   remains two-column. Give the heading enough width and reduce the gap. */
+.awards-layout {
+  grid-template-columns: minmax(380px, .95fr) minmax(0, 1.05fr) !important;
+  gap: 4vw !important;
+}
+
+.awards-layout > div:first-child h3 {
+  white-space: nowrap;
+}
+
+@media (max-width: 980px) {
+  .research-profile-facts {
+    padding-left: 10px;
+  }
+
+  .research-interests-heading p {
+    white-space: normal;
+  }
+
+  .research-card {
+    min-height: 205px !important;
+  }
+
+  .awards-layout {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .awards-layout > div:first-child h3 {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 700px) {
+  .research-profile-facts {
+    padding-left: 0;
+  }
+
+  .research-profile-facts > div {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+
+  .research-card {
+    min-height: 0 !important;
+    padding: 13px 15px 12px !important;
+  }
+}
+
+
+/* =========================================================
+   V8 — RESEARCH ALIGNMENT / EXPERIENCE ABBREVIATIONS
+========================================================= */
+
+/* Move FIELD / METHOD / FOCUS farther to the right on wide screens. */
+.research-profile-facts {
+  padding-left: 46px !important;
+}
+
+/* Align the Research Interests description with the lower edge/baseline
+   of the heading instead of placing it too high. */
+.research-interests-heading {
+  align-items: end !important;
+}
+
+.research-interests-heading h3,
+.research-interests-heading p {
+  margin-bottom: 0 !important;
+}
+
+/* Research-card titles should use available width naturally:
+   one line when it fits, wrapping only when needed. */
+.research-card h4 {
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  text-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+  .research-profile-facts {
+    padding-left: 28px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .research-profile-facts {
+    padding-left: 0 !important;
+  }
+
+  .research-interests-heading {
+    align-items: start !important;
+  }
+}
+
+
+/* =========================================================
+   V9 — RESEARCH DIVIDERS / INTERESTS STACKING
+========================================================= */
+
+/* The top divider above FIELD should start/end exactly like the
+   FIELD–METHOD and METHOD–FOCUS dividers. */
+.research-profile-facts {
+  border-top: 0 !important;
+}
+
+.research-profile-facts > div:first-child {
+  border-top: 1px solid var(--line);
+}
+
+/* Remove the divider below FOCUS. */
+.research-profile-facts > div:last-child {
+  border-bottom: 0 !important;
+}
+
+/* Remove the long divider between the profile facts and Research Interests. */
+.research-interests-heading {
+  border-top: 0 !important;
+  padding-top: 0 !important;
+
+  /* Place the description below the heading instead of to its right. */
+  display: block !important;
+}
+
+.research-interests-heading h3 {
+  margin: 0 !important;
+}
+
+.research-interests-heading p {
+  margin: 12px 0 0 !important;
+  max-width: none !important;
+  white-space: normal !important;
+}
+
+/* Keep a clear but compact transition into the cards. */
+.research-interests-heading {
+  margin-bottom: 18px !important;
+}
+
+@media (max-width: 700px) {
+  .research-interests-heading p {
+    margin-top: 10px !important;
+  }
+}
+
+
+/* =========================================================
+   V10 — RESTORE FOCUS BOTTOM DIVIDER
+========================================================= */
+
+/* Keep the short divider directly below FOCUS. */
+.research-profile-facts > div:last-child {
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* The separate long divider above Research Interests remains removed. */
+.research-interests-heading {
+  border-top: 0 !important;
+}
+
+
+/* =========================================================
+   V11 — LANGUAGE SWITCH
+========================================================= */
+
+.language-switch {
+  gap: 7px !important;
+  font-size: 12px !important;
+  letter-spacing: .04em !important;
+}
+
+.language-switch > span {
+  display: none !important;
+}
+
+.language-button {
+  min-width: 42px;
+  padding: 6px 9px !important;
+  border: 1px solid currentColor !important;
+  border-radius: 999px;
+  background: transparent !important;
+  font-size: 12px !important;
+  line-height: 1;
+  font-weight: 700 !important;
+  opacity: .48;
+  transition:
+    opacity .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.language-button:hover {
+  opacity: .78;
+}
+
+.language-button.active {
+  opacity: 1 !important;
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+@media (max-width: 820px) {
+  .language-switch {
+    gap: 5px !important;
+  }
+
+  .language-button {
+    min-width: 39px;
+    padding: 6px 8px !important;
+    font-size: 11.5px !important;
+  }
+}
+
+
+/* =========================================================
+   V12 — LANGUAGE SWITCH VERTICAL POSITION
+========================================================= */
+
+/* Lift Kor / Eng slightly within the header so it stays visually
+   clear of the hero overview/chart area. */
+.language-switch {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 820px) {
+  .language-switch {
+    transform: translateY(-3px);
+  }
+}
+
+
+/* =========================================================
+   V13 — PUBLICATIONS CONTRAST
+========================================================= */
+
+/* Make publication years slightly brighter on the dark section. */
+.publications-section .pub-year {
+  color: #a8a8a8 !important;
+}
+
+/* Make the co-first-author pill clearly visible on the dark background. */
+.publications-section .cofirst-author-note {
+  background: #fff !important;
+  border-color: #fff !important;
+  color: #111 !important;
+}
+
+
+/* =========================================================
+   V14 — CO-FIRST AUTHOR EMPHASIS
+========================================================= */
+
+.publications-section .cofirst-author-note {
+  font-weight: 800 !important;
+}
+
+
+/* =========================================================
+   V16 — HERO DESCRIPTION LINE BEHAVIOR
+========================================================= */
+
+/* Keep the intended sentence break, while giving the copy enough width
+   that each sentence does not wrap unnecessarily on desktop. */
+.hero-description,
+.hero-copy p,
+.hero-text p,
+[data-i18n="hero.description"] {
+  max-width: 980px !important;
+  width: min(980px, 100%) !important;
+}
+
+@media (max-width: 1100px) {
+  .hero-description,
+  .hero-copy p,
+  .hero-text p,
+  [data-i18n="hero.description"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+
+/* =========================================================
+   V17 — RESPONSIVE HOME CHART + CO-FIRST AUTHOR READABILITY
+========================================================= */
+
+/* Prevent the publication overview chart from clipping on the right
+   when the hero card becomes narrower. */
+.overview-chart-scroll {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.overview-chart {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.overview-chart-svg {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Remove narrow-screen offsets that can push the chart beyond the card. */
+@media (max-width: 980px) {
+  .overview-chart-scroll,
+  .overview-chart {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* Slightly enlarge the co-first-author pill text while retaining
+   the white pill / dark text contrast introduced earlier. */
+.publications-section .cofirst-author-note {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+}
+
+
+/* =========================================================
+   V18 — PUBLICATION AUTHOR ROLE BADGES
+========================================================= */
+
+/* Role badges now appear immediately before Youngjae Yoo's name. */
+.publications-section .author-role-note {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 2px 7px;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: .02em;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   V19 — AUTHOR ROLE BADGE POSITION + ACCENT
+========================================================= */
+
+/* Put author-role badges at the very beginning of the author line. */
+.publications-section .author-role-note {
+  background: #f2c14e !important;
+  border-color: #f2c14e !important;
+  color: #111 !important;
+  box-shadow: 0 0 0 1px rgba(242, 193, 78, .18);
+}

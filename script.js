@@ -23,14 +23,14 @@ let currentLang = localStorage.getItem("siteLang") || "ko";
 
 const I18N = {
   ko: {
-    "hero.description": "기후위기에 따른 적응, 재난·재해 대응, 생태계 보전 등과 관련된 계획 및 정책을 연구합니다.<br>과학적 근거를 지역의 정책과 계획으로 연결해 더 회복력 있는 미래를 만드는 연구를 지향합니다.",
-    "research.profileLead": "환경정책과 공간계획을 기반으로 기후변화가 지역사회와 자연환경에 미치는 영향을 분석하고, 이를 실질적인 정책 수단과 적응 전략으로 연결하는 연구를 수행하고 있습니다.",
-    "research.profileBody": "주요 관심 분야는 기후위기 적응, 재난·재해 위험평가, GIS 및 위성영상 기반 환경변화 분석, 자연자본과 생태계서비스, 지역단위 환경정책입니다.",
-    "research.interestsBody": "기후·환경 문제를 공간적으로 진단하고, 지역의 정책 의사결정에 활용할 수 있는 분석 체계로 발전시키는 데 관심이 있습니다.",
-    "research.card1": "기후변화 영향, 취약성 및 적응능력을 분석하고 지역 특성에 기반한 적응정책과 실행 전략을 연구합니다.",
-    "research.card2": "폭염, 홍수, 산사태 등 기후재난의 위해성·노출성·취약성을 분석하고 위험의 공간적 불균형을 평가합니다.",
-    "research.card3": "GIS, 위성영상, NDVI 및 토지피복 자료를 활용하여 환경변화와 보호·완충지역의 효과를 분석합니다.",
-    "research.card4": "자연자본, 생물다양성, 생태계서비스 평가와 관련 인증·검증 체계 및 정책 활용방안을 연구합니다.",
+    "hero.description": "기후위기에 따른 적응, 재난·재해 대응, 생태계 보전 등과 관련된 계획 및 정책을 연구합니다.<br>과학적 근거를 정책과 계획으로 연결해 더 회복력 있는 미래를 만드는 연구를 지향합니다.",
+    "research.profileLead": "기후변화가 자연환경과 사회에 미치는 영향을 분석하고, 실질적인 정책 수단과 적응 전략으로 연결합니다.",
+    "research.profileBody": "주요 관심 분야는 기후위기 적응, 재난·재해 위험평가, GIS 및 위성영상 기반 환경변화 분석, 환경계획 및 정책수립, 자연자본과 생태계서비스입니다.",
+    "research.interestsBody": "기후변화가 자연환경과 사회에 미치는 영향을 분석하고, 실질적인 정책 수단과 적응 전략으로 연결합니다.",
+    "research.card1": "기후변화 영향과 취약성, 적응정보를 분석하고 기후위기 적응계획과 정책 의사결정을 지원하는 체계와 전략을 연구합니다.",
+    "research.card2": "자연환경·인간·기반시설 등에서 발생하는 기후 재난·재해 위험에 대한 위험요인과 영향을 분석하고 공간적으로 평가합니다.",
+    "research.card3": "GIS와 위성영상 기반 공간분석, 종분포모형 등 다양한 모델링 기법을 활용해 환경·생태 변화와 공간적 패턴을 분석합니다.",
+    "research.card4": "생물다양성, 보호지역, 생태복원, 생태계서비스와 자연자본을 분석하고 생태계 보전·복원과 정책 활용방안을 연구합니다.",
     "project.service": "용역",
     "project.pi": "책임연구원",
     "project.participant": "참여연구원",
@@ -44,12 +44,23 @@ const I18N = {
     "empty.publications": "표시할 출판물이 없습니다.",
     "empty.awards": "표시할 수상 내역이 없습니다.",
     "award.organizer": "주최",
+    "firstauthor": "1저자",
     "cofirst": "공동1저자",
+    "corresponding": "교신저자",
     "service.label": "용역",
     "role.pi": "책임연구원",
     "role.participant": "참여연구원",
     "role.researcher": "연구원",
     "role.assistant": "연구보조원",
+    "home.publications.total": "총 논문수",
+    "home.publications.sci": "SCI 논문수",
+    "home.publications.kci": "KCI 논문수",
+    "home.projects.total": "총 참여과제수",
+    "home.projects.rnd": "R&D 과제수",
+    "home.projects.service": "용역과제수",
+    "home.projects.note": "※ R&D 과제는 연차와 관계없이 연속과제일 경우 하나의 과제로 집계하였습니다.",
+    "contact.phoneLabel": "OFFICE PHONE",
+    "contact.phone": "033-259-0127",
     "load.partial": "일부 탭을 불러오지 못했습니다",
     "profile.periodCurrent": "2026.08.–현재",
     "profile.periodProfessor": "2023.03.–2026.08.",
@@ -58,13 +69,13 @@ const I18N = {
   },
   en: {
     "hero.description": "I study planning and policy for climate adaptation, disaster risk reduction, and ecosystem conservation.<br>My research aims to translate scientific evidence into policy and planning for a more resilient future.",
-    "research.profileLead": "My research examines how climate change affects communities and natural environments through the lens of environmental policy and spatial planning, and translates these findings into practical policy instruments and adaptation strategies.",
-    "research.profileBody": "My main interests include climate adaptation, disaster risk assessment, GIS and satellite-based environmental change analysis, natural capital and ecosystem services, and regional environmental policy.",
-    "research.interestsBody": "I am interested in spatially diagnosing climate and environmental challenges and developing analytical frameworks that support regional policy decisions.",
-    "research.card1": "I analyze climate impacts, vulnerability, and adaptive capacity and develop locally tailored adaptation policies and implementation strategies.",
-    "research.card2": "I assess hazard, exposure, and vulnerability to climate-related disasters such as heatwaves, floods, and landslides, with a focus on spatial inequality in risk.",
-    "research.card3": "I use GIS, satellite imagery, NDVI, and land-cover data to assess environmental change and the effectiveness of protected and buffer areas.",
-    "research.card4": "I study natural capital, biodiversity, ecosystem-service assessment, certification and verification systems, and their applications in policy.",
+    "research.profileLead": "I analyze how climate change affects natural environments and society, and translate the findings into practical policy instruments and adaptation strategies.",
+    "research.profileBody": "My main interests include climate adaptation, disaster and climate risk assessment, GIS- and satellite-based environmental change analysis, environmental planning and policymaking, natural capital, and ecosystem services.",
+    "research.interestsBody": "I analyze the impacts of climate change on the natural environment and society and translate these insights into practical policy measures and adaptation strategies.",
+    "research.card1": "I analyze climate impacts, vulnerability, and adaptation information, and develop frameworks and strategies that support climate adaptation planning and policy decisions.",
+    "research.card2": "I analyze the drivers and impacts of climate-related disasters and hazards affecting the natural environment, people, and infrastructure, and assess these risks spatially.",
+    "research.card3": "I use GIS- and satellite-based spatial analysis, species distribution modeling, and other modeling approaches to examine environmental and ecological change and spatial patterns.",
+    "research.card4": "I study biodiversity, protected areas, ecological restoration, ecosystem services, and natural capital, with a focus on conservation, restoration, and policy applications.",
     "project.service": "Research Contract",
     "project.pi": "Principal",
     "project.participant": "Participant",
@@ -78,12 +89,23 @@ const I18N = {
     "empty.publications": "No publications to display.",
     "empty.awards": "No awards to display.",
     "award.organizer": "Organizer",
+    "firstauthor": "First author",
     "cofirst": "Co-first author",
+    "corresponding": "Corresponding author",
     "service.label": "Research Contract",
     "role.pi": "Principal Researcher",
     "role.participant": "Participating Researcher",
     "role.researcher": "Researcher",
     "role.assistant": "Research Assistant",
+    "home.publications.total": "Total Papers",
+    "home.publications.sci": "SCI Papers",
+    "home.publications.kci": "KCI Papers",
+    "home.projects.total": "Total Projects",
+    "home.projects.rnd": "R&D Projects",
+    "home.projects.service": "Research Contracts",
+    "home.projects.note": "※ Continuous R&D projects are counted as one project regardless of the project year.",
+    "contact.phoneLabel": "OFFICE PHONE",
+    "contact.phone": "+82-33-259-0127",
     "load.partial": "Some sheets could not be loaded",
     "profile.periodCurrent": "Aug 2026–Present",
     "profile.periodProfessor": "Mar 2023–Aug 2026",
@@ -118,6 +140,7 @@ function refreshDynamicLanguage() {
   if (publications.length) renderPublications(currentPublicationFilter);
   if (projects.length) renderProjects();
   if (typeof renderAwardsFromCache === "function") renderAwardsFromCache();
+  renderHomeOverview();
 }
 
 function setLanguage(lang) {
@@ -322,6 +345,138 @@ async function settleSheets(configs) {
   return { rows, failed };
 }
 
+/* ========================= HOME OVERVIEW ========================= */
+function setHomeCount(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = String(value);
+}
+
+function publicationYearForOverview(pub) {
+  const year = normalizeText(displayYear(pub)).match(/\d{4}/);
+  return year ? Number(year[0]) : 0;
+}
+
+function normalizeContinuousProjectTitle(row) {
+  const raw = pick(row, [
+    "과제명", "연구과제명", "사업명", "용역명", "프로젝트명",
+    "과업명", "연구명", "제목", "Project"
+  ]);
+
+  return normalizeText(raw)
+    .replace(/\s+/g, " ")
+    .replace(/\s*[\(（]\s*\d+\s*차년도\s*[\)）]\s*$/i, "")
+    .replace(/\s*[\(（]\s*Year\s*\d+\s*[\)）]\s*$/i, "")
+    .replace(/\s+\d+\s*차년도\s*$/i, "")
+    .trim()
+    .toLocaleLowerCase("ko-KR");
+}
+
+function uniqueRndProjectCount() {
+  const keys = new Set();
+  projects
+    .filter(project => project.__type === "RND")
+    .forEach(project => {
+      const key = normalizeContinuousProjectTitle(project);
+      if (key) keys.add(key);
+    });
+  return keys.size;
+}
+
+function renderHomePublicationChart() {
+  const container = document.getElementById("homePublicationChart");
+  if (!container) return;
+
+  const paperRows = publications.filter(pub => pub.__type === "SCI" || pub.__type === "KCI");
+  const counts = new Map();
+
+  paperRows.forEach(pub => {
+    const year = publicationYearForOverview(pub);
+    if (!year) return;
+    if (!counts.has(year)) counts.set(year, { SCI: 0, KCI: 0 });
+    counts.get(year)[pub.__type] += 1;
+  });
+
+  const years = [...counts.keys()].sort((a, b) => a - b);
+  if (!years.length) {
+    container.innerHTML = "";
+    return;
+  }
+
+  const totals = years.map(year => counts.get(year).SCI + counts.get(year).KCI);
+  const maxValue = Math.max(1, ...totals, ...years.map(year => counts.get(year).SCI), ...years.map(year => counts.get(year).KCI));
+  const width = Math.max(430, years.length * 58 + 46);
+  const height = 142;
+  const left = 24;
+  const right = 14;
+  const top = 16;
+  const bottom = 28;
+  const plotHeight = height - top - bottom;
+  const plotWidth = width - left - right;
+  const step = plotWidth / years.length;
+  const y = value => top + plotHeight - (value / maxValue) * plotHeight;
+
+  const grid = [0.5, 1].map(ratio => {
+    const gy = top + plotHeight * (1 - ratio);
+    return `<line x1="${left}" y1="${gy.toFixed(1)}" x2="${width-right}" y2="${gy.toFixed(1)}" class="overview-grid-line"/>`;
+  }).join("");
+
+  let bars = "";
+  const points = [];
+
+  years.forEach((year, i) => {
+    const data = counts.get(year);
+    const cx = left + step * (i + 0.5);
+    const stackedBarWidth = Math.min(22, step * 0.42);
+    const barX = cx - stackedBarWidth / 2;
+    const baseY = top + plotHeight;
+    const total = data.SCI + data.KCI;
+    const totalY = y(total);
+    const kciHeight = (data.KCI / maxValue) * plotHeight;
+    const sciHeight = (data.SCI / maxValue) * plotHeight;
+    const kciY = baseY - kciHeight;
+    const sciY = kciY - sciHeight;
+
+    bars += `
+      <rect x="${barX.toFixed(1)}" y="${kciY.toFixed(1)}" width="${stackedBarWidth.toFixed(1)}" height="${Math.max(0, kciHeight).toFixed(1)}" class="overview-bar overview-bar-kci"><title>${year} KCI: ${data.KCI}</title></rect>
+      <rect x="${barX.toFixed(1)}" y="${sciY.toFixed(1)}" width="${stackedBarWidth.toFixed(1)}" height="${Math.max(0, sciHeight).toFixed(1)}" class="overview-bar overview-bar-sci"><title>${year} SCI: ${data.SCI}</title></rect>
+      <text x="${cx.toFixed(1)}" y="${height-8}" text-anchor="middle" class="overview-year-label">${year}</text>`;
+    points.push({ x: cx, y: totalY, total, year });
+  });
+
+  const linePoints = points.map(point => `${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(" ");
+  const line = `<polyline points="${linePoints}" class="overview-total-line"/>`;
+  const dots = points.map(point => `
+    <circle cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="3" class="overview-total-dot"><title>${point.year} Total: ${point.total}</title></circle>
+    <text x="${point.x.toFixed(1)}" y="${Math.max(10, point.y-7).toFixed(1)}" text-anchor="middle" class="overview-total-label">${point.total}</text>`).join("");
+
+  container.innerHTML = `
+    <svg class="overview-chart-svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="Annual SCI and KCI publication counts with total papers line">
+      ${grid}
+      ${bars}
+      ${line}
+      ${dots}
+    </svg>`;
+}
+
+function renderHomeOverview() {
+  if (typeof publications !== "undefined") {
+    const sci = publications.filter(pub => pub.__type === "SCI").length;
+    const kci = publications.filter(pub => pub.__type === "KCI").length;
+    setHomeCount("homePubTotal", sci + kci);
+    setHomeCount("homePubSci", sci);
+    setHomeCount("homePubKci", kci);
+    renderHomePublicationChart();
+  }
+
+  if (typeof projects !== "undefined") {
+    const rnd = uniqueRndProjectCount();
+    const service = projects.filter(project => project.__type === "SERVICE").length;
+    setHomeCount("homeProjectRnd", rnd);
+    setHomeCount("homeProjectService", service);
+    setHomeCount("homeProjectTotal", rnd + service);
+  }
+}
+
 /* ========================= PUBLICATIONS ========================= */
 let publications = [];
 let currentPublicationFilter = "ALL";
@@ -377,17 +532,47 @@ function publicationRole(pub) {
 }
 
 function publicationAuthorCategory(pub) {
-  return pick(pub, ["구분", "저자구분", "저자 구분", "Author Type"]);
+  return pick(pub, ["구분", "저자구분", "저자 구분", "Author Type", "Author Role", "저자역할"]);
 }
 
-function isCoFirstAuthor(pub) {
-  if (pub.__type === "BOOK") return false;
-  const value = normalizeText(publicationAuthorCategory(pub)).replace(/\s+/g, "");
-  return (
+function publicationAuthorRoles(pub) {
+  if (pub.__type === "BOOK") return [];
+
+  const raw = normalizeText(publicationAuthorCategory(pub));
+  const value = raw.replace(/\s+/g, "").toLowerCase();
+  const roles = [];
+
+  const isCoFirst =
     value.includes("1저자(공동)") ||
     value.includes("공동1저자") ||
-    (value.includes("1저자") && value.includes("공동"))
-  );
+    value.includes("공동제1저자") ||
+    value.includes("co-firstauthor") ||
+    value.includes("cofirstauthor") ||
+    (value.includes("1저자") && value.includes("공동"));
+
+  const isFirst =
+    !isCoFirst && (
+      value.includes("제1저자") ||
+      value.includes("1저자") ||
+      value.includes("firstauthor")
+    );
+
+  const isCorresponding =
+    value.includes("교신저자") ||
+    value.includes("correspondingauthor") ||
+    value.includes("corresponding");
+
+  if (isFirst) roles.push("firstauthor");
+  if (isCoFirst) roles.push("cofirst");
+  if (isCorresponding) roles.push("corresponding");
+
+  return roles;
+}
+
+function authorRoleBadges(pub) {
+  return publicationAuthorRoles(pub)
+    .map(role => `<span class="author-role-note author-role-${role}">${escapeHtml(t(role))}</span>`)
+    .join(" ");
 }
 
 function highlightedAuthors(pub) {
@@ -395,16 +580,19 @@ function highlightedAuthors(pub) {
   if (!authors) return "";
 
   let safe = escapeHtml(authors);
+  const badges = authorRoleBadges(pub);
+
   if (pub.__type === "SCI") {
-    safe = safe.replace(/Yoo,\s*Y\.?/g, match => `<strong class="author-highlight">${match}</strong>`);
+    safe = safe.replace(/Yoo,\s*Y\.?/i, match => `<strong class="author-highlight">${match}</strong>`);
   } else if (pub.__type === "KCI") {
-    safe = safe.replace(/유영재/g, '<strong class="author-highlight">유영재</strong>');
+    if (/유영재/.test(safe)) {
+      safe = safe.replace(/유영재/, '<strong class="author-highlight">유영재</strong>');
+    } else {
+      safe = safe.replace(/Yoo,\s*Y\.?/i, match => `<strong class="author-highlight">${match}</strong>`);
+    }
   }
 
-  if (isCoFirstAuthor(pub)) {
-    safe += ` <span class="cofirst-author-note">· ${escapeHtml(t("cofirst"))}</span>`;
-  }
-  return safe;
+  return `${badges ? `${badges} ` : ""}${safe}`;
 }
 function updatePublicationCounts() {
   document.getElementById("countAll").textContent = publications.length;
@@ -472,6 +660,7 @@ async function loadPublications() {
   publications = rows.filter(publicationTitle).sort((a,b) => parseFlexibleDate(b)-parseFlexibleDate(a));
   updatePublicationCounts();
   renderPublications("ALL");
+  renderHomeOverview();
   status.textContent = failed.length ? `${t("load.partial")}: ${failed.join(" | ")}` : "";
 }
 document.querySelectorAll(".pub-filter").forEach(button => {
@@ -703,6 +892,7 @@ async function loadProjects() {
 
   updateProjectCounts();
   renderProjects();
+  renderHomeOverview();
 
   status.textContent = failed.length ? `${t("load.partial")}: ${failed.join(" | ")}` : "";
 }
