@@ -283,6 +283,17 @@ function escapePersonal(value) {
     .replace(/'/g, "&#039;");
 }
 
+function personalPeriod(value) {
+  const period = String(value || "");
+  return currentLang === "en" ? period.replace(/현재/g, "Present") : period;
+}
+
+function personalLocalized(item, baseKey) {
+  const preferred = currentLang === "en" ? item[`${baseKey}_en`] : item[`${baseKey}_ko`];
+  const fallback = currentLang === "en" ? item[`${baseKey}_ko`] : item[`${baseKey}_en`];
+  return preferred || fallback || item[baseKey] || "";
+}
+
 function renderPersonalData() {
   const current = personalData.sections.current_position?.[0] || {};
   const currentBox = document.getElementById("currentPosition");
@@ -312,7 +323,7 @@ function renderPersonalData() {
   if (expBox) {
     expBox.innerHTML = (personalData.sections.professional_experience || []).map(item => `
       <div class="timeline-item">
-        <div class="timeline-period">${escapePersonal(item.period || "")}</div>
+        <div class="timeline-period">${escapePersonal(personalPeriod(item.period))}</div>
         <div>
           <span class="timeline-type">${escapePersonal(item.position || "")}</span>
           <h4 class="institution-ko">${escapePersonal(item.institution_ko || item.institution_en || "")}</h4>
@@ -325,10 +336,10 @@ function renderPersonalData() {
   if (eduBox) {
     eduBox.innerHTML = (personalData.sections.education || []).map(item => `
       <div class="timeline-item">
-        <div class="timeline-period">${escapePersonal(item.period || "")}</div>
+        <div class="timeline-period">${escapePersonal(personalPeriod(item.period))}</div>
         <div class="education-content">
           <span class="timeline-type">${escapePersonal(item.degree || "")}</span>
-          ${item.degree_detail ? `<p class="degree-detail">${escapePersonal(item.degree_detail)}</p>` : ""}
+          ${personalLocalized(item, "degree_detail") ? `<p class="degree-detail">${escapePersonal(personalLocalized(item, "degree_detail"))}</p>` : ""}
           <h4 class="institution-ko">${escapePersonal(item.school_department_ko || item.school_department_en || "")}</h4>
           <p class="institution-en">${escapePersonal(item.school_department_en || item.school_department_ko || "")}</p>
         </div>

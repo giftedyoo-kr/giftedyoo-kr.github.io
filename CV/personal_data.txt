@@ -24,12 +24,6 @@ institution_en=Korea Research Institute on Climate Change (KRIC)
 position=SENIOR RESEARCHER
 
 [professional_experience]
-period=2026.08.–현재
-institution_ko=한국기후변화연구원
-institution_en=Korea Research Institute on Climate Change (KRIC)
-position=SENIOR RESEARCHER
-
-[professional_experience]
 period=2023.03.–2026.08.
 institution_ko=고려대학교 오정리질리언스연구원
 institution_en=OJEong Resilience Institute (OJERI), Korea University
@@ -44,7 +38,8 @@ position=RESEARCHER
 [education]
 period=2019.09.–2023.02.
 degree=Ph.D.
-degree_detail=이학박사 · 환경계획및조경학 / Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
+degree_detail_ko=이학박사 · 환경계획및조경학
+degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
 school_department_ko=고려대학교 일반대학원 환경생태공학과
 school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
 
