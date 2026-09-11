@@ -141,6 +141,8 @@ function applyStaticLanguage() {
     btn.classList.toggle("active", btn.dataset.lang === currentLang);
   });
 
+  if (personalData?.sections) renderPersonalData();
+
   document.querySelectorAll(".language-namecard").forEach(img => {
     const nextSrc = currentLang === "en" ? img.dataset.srcEn : img.dataset.srcKo;
     if (nextSrc && img.getAttribute("src") !== nextSrc) {
@@ -211,7 +213,8 @@ const SHEETS = {
   BOOK:    { gid: "1750437029", type: "BOOK", label: "저서" }
 };
 
-const GOOGLE_SHEETS_CONFIG_FILE = "google_sheets.txt";
+const PERSONAL_DATA_FILE = "personal_data.txt";
+var personalData = { global: {}, sections: {} };
 
 function cleanConfigValue(value) {
   return String(value ?? "")
@@ -228,40 +231,139 @@ function extractGid(value) {
   return numberMatch ? numberMatch[1] : text;
 }
 
-function parseGoogleSheetsConfig(text) {
-  const config = {};
+function parsePersonalData(text) {
+  const result = { global: {}, sections: {} };
+  let current = result.global;
 
   String(text ?? "").split(/\r?\n/).forEach(rawLine => {
     const line = rawLine.trim();
     if (!line || line.startsWith("#") || line.startsWith("//")) return;
 
-    const match = line.match(/^([^:=]+?)\s*[:=]\s*(.+)$/);
-    if (!match) return;
+    const sectionMatch = line.match(/^\[([^\]]+)\]$/);
+    if (sectionMatch) {
+      const section = sectionMatch[1].trim().toLowerCase();
+      result.sections[section] ||= [];
+      current = {};
+      result.sections[section].push(current);
+      return;
+    }
 
+    const match = line.match(/^([^:=]+?)\s*[:=]\s*(.*)$/);
+    if (!match) return;
     const key = match[1].trim().toLowerCase();
-    const value = cleanConfigValue(match[2]);
-    if (key && value) config[key] = value;
+    current[key] = cleanConfigValue(match[2]);
   });
 
-  return config;
+  return result;
 }
 
-async function loadGoogleSheetsConfig() {
+function pd(section, key, fallback = "") {
+  const rows = personalData.sections[section] || [];
+  const value = rows[0]?.[key];
+  return value !== undefined && value !== "" ? value : fallback;
+}
+
+function applyGoogleSheetsPersonalData() {
+  const cfg = personalData.sections.google_sheets?.[0] || personalData.global;
+  if (cfg.spreadsheet_id) SPREADSHEET_ID = cleanConfigValue(cfg.spreadsheet_id);
+  if (cfg.publication_sci_gid) SHEETS.SCI.gid = extractGid(cfg.publication_sci_gid);
+  if (cfg.publication_kci_gid) SHEETS.KCI.gid = extractGid(cfg.publication_kci_gid);
+  if (cfg.publication_book_gid) SHEETS.BOOK.gid = extractGid(cfg.publication_book_gid);
+  if (cfg.project_rnd_gid) SHEETS.RND.gid = extractGid(cfg.project_rnd_gid);
+  if (cfg.project_service_gid) SHEETS.SERVICE.gid = extractGid(cfg.project_service_gid);
+  if (cfg.award_gid) SHEETS.AWARD.gid = extractGid(cfg.award_gid);
+}
+
+function escapePersonal(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function renderPersonalData() {
+  const current = personalData.sections.current_position?.[0] || {};
+  const currentBox = document.getElementById("currentPosition");
+  if (currentBox) {
+    const rows = [
+      [current.company_name_ko, current.company_name_en],
+      [current.department_name_ko, current.department_name_en],
+      [current.position_ko, current.position_en]
+    ].filter(([ko, en]) => ko || en);
+    currentBox.innerHTML = rows.map(([ko, en]) => `
+      <div class="current-position-row">
+        <strong class="current-ko">${escapePersonal(ko || en || "")}</strong>
+        <span class="current-en">${escapePersonal(en || ko || "")}</span>
+      </div>`).join("");
+  }
+
+  const companyLink = document.getElementById("currentPositionCompanyLink");
+  if (companyLink && current.company_url) companyLink.href = current.company_url;
+  const companyLogo = document.getElementById("currentPositionLogo");
+  if (companyLogo && current.logo_image) companyLogo.src = current.logo_image;
+
+  const profile = personalData.sections.profile?.[0] || {};
+  const profileImage = document.getElementById("profileImage");
+  if (profileImage && profile.profile_image) profileImage.src = profile.profile_image;
+
+  const expBox = document.getElementById("professionalExperienceTimeline");
+  if (expBox) {
+    expBox.innerHTML = (personalData.sections.professional_experience || []).map(item => `
+      <div class="timeline-item">
+        <div class="timeline-period">${escapePersonal(item.period || "")}</div>
+        <div>
+          <span class="timeline-type">${escapePersonal(item.position || "")}</span>
+          <h4 class="institution-ko">${escapePersonal(item.institution_ko || item.institution_en || "")}</h4>
+          <p class="institution-en">${escapePersonal(item.institution_en || item.institution_ko || "")}</p>
+        </div>
+      </div>`).join("");
+  }
+
+  const eduBox = document.getElementById("educationTimeline");
+  if (eduBox) {
+    eduBox.innerHTML = (personalData.sections.education || []).map(item => `
+      <div class="timeline-item">
+        <div class="timeline-period">${escapePersonal(item.period || "")}</div>
+        <div class="education-content">
+          <span class="timeline-type">${escapePersonal(item.degree || "")}</span>
+          ${item.degree_detail ? `<p class="degree-detail">${escapePersonal(item.degree_detail)}</p>` : ""}
+          <h4 class="institution-ko">${escapePersonal(item.school_department_ko || item.school_department_en || "")}</h4>
+          <p class="institution-en">${escapePersonal(item.school_department_en || item.school_department_ko || "")}</p>
+        </div>
+      </div>`).join("");
+  }
+
+  const contact = personalData.sections.contact?.[0] || {};
+  const email = document.getElementById("contactEmail");
+  if (email && contact.email) { email.textContent = contact.email; email.href = `mailto:${contact.email}`; }
+  const phone = document.getElementById("contactPhone");
+  if (phone && contact.office_phone) {
+    phone.textContent = currentLang === "en" && contact.office_phone_en ? contact.office_phone_en : contact.office_phone;
+    phone.href = `tel:${(contact.office_phone_tel || contact.office_phone).replace(/[^+\d]/g, "")}`;
+  }
+  const rg = document.getElementById("contactResearchGate");
+  if (rg && contact.researchgate_url) {
+    rg.href = contact.researchgate_url;
+    rg.textContent = `${contact.researchgate_label || "ResearchGate"} ↗`;
+  }
+  const gs = document.getElementById("contactGoogleScholar");
+  if (gs && contact.google_scholar_url) {
+    gs.href = contact.google_scholar_url;
+    gs.textContent = `${contact.google_scholar_label || "Google Scholar"} ↗`;
+  }
+}
+
+async function loadPersonalData() {
   try {
-    const response = await fetch(`${GOOGLE_SHEETS_CONFIG_FILE}?_=${Date.now()}`, { cache: "no-store" });
+    const response = await fetch(`${PERSONAL_DATA_FILE}?_=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-    const config = parseGoogleSheetsConfig(await response.text());
-
-    if (config.spreadsheet_id) SPREADSHEET_ID = cleanConfigValue(config.spreadsheet_id);
-    if (config.publication_sci_gid) SHEETS.SCI.gid = extractGid(config.publication_sci_gid);
-    if (config.publication_kci_gid) SHEETS.KCI.gid = extractGid(config.publication_kci_gid);
-    if (config.publication_book_gid) SHEETS.BOOK.gid = extractGid(config.publication_book_gid);
-    if (config.project_rnd_gid) SHEETS.RND.gid = extractGid(config.project_rnd_gid);
-    if (config.project_service_gid) SHEETS.SERVICE.gid = extractGid(config.project_service_gid);
-    if (config.award_gid) SHEETS.AWARD.gid = extractGid(config.award_gid);
+    personalData = parsePersonalData(await response.text());
+    applyGoogleSheetsPersonalData();
+    renderPersonalData();
   } catch (error) {
-    console.warn(`${GOOGLE_SHEETS_CONFIG_FILE}을 불러오지 못해 기본 Google Sheets 설정을 사용합니다.`, error);
+    console.warn(`${PERSONAL_DATA_FILE}을 불러오지 못해 HTML/JavaScript 기본값을 사용합니다.`, error);
   }
 }
 
@@ -1091,7 +1193,7 @@ async function loadAwards() {
 }
 
 async function initializeGoogleSheetsData() {
-  await loadGoogleSheetsConfig();
+  await loadPersonalData();
   await Promise.all([
     loadPublications(),
     loadProjects(),

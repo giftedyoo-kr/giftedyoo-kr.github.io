@@ -1,0 +1,62 @@
+# =========================================================
+# PERSONAL DATA
+# 값만 수정하면 홈페이지의 개인 정보와 Google Sheets 연결 정보가 바뀝니다.
+# 같은 [professional_experience], [education] 블록을 필요한 만큼 추가/삭제할 수 있습니다.
+# =========================================================
+
+[profile]
+profile_image=images/profile.png
+
+[current_position]
+company_url=https://kric.re.kr/
+company_name_ko=한국기후변화연구원
+company_name_en=Korea Research Institute on Climate Change
+department_name_ko=기후재난연구실
+department_name_en=Climate Disaster Research Department
+position_ko=선임연구원
+position_en=Senior Researcher
+logo_image=images/current_position_logo.png
+
+[professional_experience]
+period=2026.08.–현재
+institution_ko=한국기후변화연구원
+institution_en=Korea Research Institute on Climate Change (KRIC)
+position=SENIOR RESEARCHER
+
+[professional_experience]
+period=2023.03.–2026.08.
+institution_ko=고려대학교 오정리질리언스연구원
+institution_en=OJEong Resilience Institute (OJERI), Korea University
+position=RESEARCH PROFESSOR
+
+[professional_experience]
+period=2019.01.–2019.08.
+institution_ko=고려대학교 환경 GIS/RS센터
+institution_en=Environmental GIS/RS Center, Korea University
+position=RESEARCHER
+
+[education]
+period=2019.09.–2023.02.
+degree=Ph.D.
+degree_detail=이학박사 · 환경계획및조경학 / Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
+school_department_ko=고려대학교 일반대학원 환경생태공학과
+school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
+
+[contact]
+email=giftedyoo@kric.re.kr
+office_phone=033-259-0127
+office_phone_en=+82-33-259-0127
+office_phone_tel=+82332590127
+researchgate_url=https://www.researchgate.net/profile/Youngjae-Yoo-4
+researchgate_label=Youngjae Yoo
+google_scholar_url=https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko
+google_scholar_label=Google Scholar
+
+[google_sheets]
+spreadsheet_id=15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900
+publication_sci_gid=1044637119
+publication_kci_gid=977487788
+publication_book_gid=1750437029
+project_rnd_gid=445426444
+project_service_gid=2133901227
+award_gid=1362262409

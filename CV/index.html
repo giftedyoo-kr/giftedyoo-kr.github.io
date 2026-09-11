@@ -151,87 +151,40 @@
 
         <div class="optional-image-slot namecard-slot">
           <img class="adaptive-image namecard-image"
+               id="profileImage"
                src="images/profile.png"
                alt="Youngjae Yoo profile">
         </div>
 
         <p class="mini-label emphasis-label current-position-label">CURRENT POSITION</p>
 
-        <div class="optional-image-slot current-position-logo-slot">
+        <div class="optional-image-slot current-position-logo-slot" id="currentPositionLogoSlot">
           <a class="current-position-logo-link"
+             id="currentPositionCompanyLink"
              href="https://kric.re.kr/"
              target="_blank"
-             rel="noopener noreferrer"
-             aria-label="한국기후변화연구원 홈페이지">
+             rel="noopener noreferrer">
             <img class="current-position-logo"
+                 id="currentPositionLogo"
                  src="images/current_position_logo.png"
-                 alt="Korea Research Institute on Climate Change logo">
+                 alt="Company logo">
           </a>
         </div>
 
-        <div class="current-position">
-          <div class="current-position-row">
-            <strong class="current-ko">한국기후변화연구원</strong>
-            <span class="current-en">Korea Research Institute on Climate Change</span>
-          </div>
-          <div class="current-position-row">
-            <strong class="current-ko">기후재난연구실</strong>
-            <span class="current-en">Climate Disaster Research Department</span>
-          </div>
-          <div class="current-position-row">
-            <strong class="current-ko">선임연구원</strong>
-            <span class="current-en">Senior Researcher</span>
-          </div>
-        </div>
+        <div class="current-position" id="currentPosition"></div>
       </div>
 
       <div class="career-detail">
         <div class="career-group">
           <p class="mini-label emphasis-label">PROFESSIONAL EXPERIENCE</p>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodCurrent">2026.08.–현재</div>
-              <div>
-                <span class="timeline-type">SENIOR RESEARCHER</span>
-                <h4 class="institution-ko">한국기후변화연구원</h4>
-                <p class="institution-en">Korea Research Institute on Climate Change (KRIC)</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodProfessor">2023.03.–2026.08.</div>
-              <div>
-                <span class="timeline-type">RESEARCH PROFESSOR</span>
-                <h4 class="institution-ko">고려대학교 오정리질리언스연구원</h4>
-                <p class="institution-en">OJEong Resilience Institute (OJERI), Korea University</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodResearcher">2019.01.–2019.08.</div>
-              <div>
-                <span class="timeline-type">RESEARCHER</span>
-                <h4 class="institution-ko">고려대학교 환경 GIS/RS센터</h4>
-                <p class="institution-en">Environmental GIS/RS Center, Korea University</p>
-              </div>
-            </div>
-          </div>
+          <div class="timeline" id="professionalExperienceTimeline"></div>
         </div>
 
         <div class="career-group education-group">
           <p class="education-label mini-label emphasis-label">EDUCATION</p>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodEducation">2019.09.–2023.02.</div>
-              <div class="education-content">
-                <span class="timeline-type">Ph.D.</span>
-                <p class="degree-detail education-ko">이학박사 · 환경계획및조경학</p>
-                <p class="degree-detail education-en">Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture</p>
-                <h4 class="institution-ko">고려대학교 일반대학원 환경생태공학과</h4>
-                <p class="institution-en">Department of Environmental Science and Ecological Engineering, Korea University</p>
-              </div>
-            </div>
-          </div>
+          <div class="timeline" id="educationTimeline"></div>
+        </div>
+      </div>
         </div>
       </div>
     </div>
@@ -418,22 +371,22 @@
         <div class="contact-info">
         <div>
           <span>EMAIL</span>
-          <a href="mailto:giftedyoo@kric.re.kr">giftedyoo@kric.re.kr</a>
+          <a id="contactEmail" href="mailto:giftedyoo@kric.re.kr">giftedyoo@kric.re.kr</a>
         </div>
 
         <div>
           <span data-i18n="contact.phoneLabel">OFFICE PHONE</span>
-          <a href="tel:+82332590127" data-i18n="contact.phone">033-259-0127</a>
+          <a id="contactPhone" href="tel:+82332590127">033-259-0127</a>
         </div>
 
         <div>
           <span>RESEARCHGATE</span>
-          <a href="https://www.researchgate.net/profile/Youngjae-Yoo-4" target="_blank" rel="noopener noreferrer">Youngjae Yoo ↗</a>
+          <a id="contactResearchGate" href="https://www.researchgate.net/profile/Youngjae-Yoo-4" target="_blank" rel="noopener noreferrer">Youngjae Yoo ↗</a>
         </div>
 
         <div>
           <span>GOOGLE SCHOLAR</span>
-          <a href="https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
+          <a id="contactGoogleScholar" href="https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
         </div>
 
         </div>
