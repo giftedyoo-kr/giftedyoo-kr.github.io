@@ -3202,3 +3202,12 @@ footer > div:first-child {
 .profile-section .education-label {
   margin-top: 28px !important;
 }
+
+
+/* Profile subsection labels */
+.profile-section .career-detail .career-group > .mini-label,
+.profile-section .career-detail .career-group > .education-label {
+  color: #000 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #000 !important;
+}
