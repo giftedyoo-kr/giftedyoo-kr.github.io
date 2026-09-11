@@ -200,7 +200,7 @@ document.querySelectorAll(".optional-image-slot img").forEach((img) => {
    Google Visualization JSONP is used to load each sheet tab.
 ========================================================= */
 
-const SPREADSHEET_ID = "15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900";
+let SPREADSHEET_ID = "15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900";
 
 const SHEETS = {
   SCI:     { gid: "1044637119", type: "SCI", label: "SCI" },
@@ -210,6 +210,60 @@ const SHEETS = {
   AWARD:   { gid: "1362262409", type: "AWARD", label: "수상" },
   BOOK:    { gid: "1750437029", type: "BOOK", label: "저서" }
 };
+
+const GOOGLE_SHEETS_CONFIG_FILE = "google_sheets.txt";
+
+function cleanConfigValue(value) {
+  return String(value ?? "")
+    .trim()
+    .replace(/^['"]|['"]$/g, "")
+    .trim();
+}
+
+function extractGid(value) {
+  const text = cleanConfigValue(value);
+  const gidMatch = text.match(/(?:^|[?#&\s])gid\s*=\s*(\d+)/i);
+  if (gidMatch) return gidMatch[1];
+  const numberMatch = text.match(/\b(\d+)\b/);
+  return numberMatch ? numberMatch[1] : text;
+}
+
+function parseGoogleSheetsConfig(text) {
+  const config = {};
+
+  String(text ?? "").split(/\r?\n/).forEach(rawLine => {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#") || line.startsWith("//")) return;
+
+    const match = line.match(/^([^:=]+?)\s*[:=]\s*(.+)$/);
+    if (!match) return;
+
+    const key = match[1].trim().toLowerCase();
+    const value = cleanConfigValue(match[2]);
+    if (key && value) config[key] = value;
+  });
+
+  return config;
+}
+
+async function loadGoogleSheetsConfig() {
+  try {
+    const response = await fetch(`${GOOGLE_SHEETS_CONFIG_FILE}?_=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const config = parseGoogleSheetsConfig(await response.text());
+
+    if (config.spreadsheet_id) SPREADSHEET_ID = cleanConfigValue(config.spreadsheet_id);
+    if (config.publication_sci_gid) SHEETS.SCI.gid = extractGid(config.publication_sci_gid);
+    if (config.publication_kci_gid) SHEETS.KCI.gid = extractGid(config.publication_kci_gid);
+    if (config.publication_book_gid) SHEETS.BOOK.gid = extractGid(config.publication_book_gid);
+    if (config.project_rnd_gid) SHEETS.RND.gid = extractGid(config.project_rnd_gid);
+    if (config.project_service_gid) SHEETS.SERVICE.gid = extractGid(config.project_service_gid);
+    if (config.award_gid) SHEETS.AWARD.gid = extractGid(config.award_gid);
+  } catch (error) {
+    console.warn(`${GOOGLE_SHEETS_CONFIG_FILE}을 불러오지 못해 기본 Google Sheets 설정을 사용합니다.`, error);
+  }
+}
 
 function normalizeText(value) {
   return String(value ?? "")
@@ -1036,6 +1090,13 @@ async function loadAwards() {
   }
 }
 
-loadPublications();
-loadProjects();
-loadAwards();
+async function initializeGoogleSheetsData() {
+  await loadGoogleSheetsConfig();
+  await Promise.all([
+    loadPublications(),
+    loadProjects(),
+    loadAwards()
+  ]);
+}
+
+initializeGoogleSheetsData();

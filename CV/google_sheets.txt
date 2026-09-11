@@ -1,0 +1,13 @@
+# Google Sheets connection settings
+# Change only the values below to reuse this website with another spreadsheet.
+
+spreadsheet_id=15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900
+
+publication_sci_gid=1044637119
+publication_kci_gid=977487788
+publication_book_gid=1750437029
+
+project_rnd_gid=445426444
+project_service_gid=2133901227
+
+award_gid=1362262409
