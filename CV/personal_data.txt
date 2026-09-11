@@ -24,6 +24,12 @@ institution_en=Korea Research Institute on Climate Change (KRIC)
 position=SENIOR RESEARCHER
 
 [professional_experience]
+period=2026.08.–현재
+institution_ko=한국기후변화연구원
+institution_en=Korea Research Institute on Climate Change (KRIC)
+position=SENIOR RESEARCHER
+
+[professional_experience]
 period=2023.03.–2026.08.
 institution_ko=고려대학교 오정리질리언스연구원
 institution_en=OJEong Resilience Institute (OJERI), Korea University
