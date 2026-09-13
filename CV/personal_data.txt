@@ -1,6 +1,6 @@
 # =========================================================
 # PERSONAL DATA
-# 값만 수정하면 홈페이지의 개인 정보와 Google Sheets 연결 정보가 바뀝니다.
+# 값만 수정하면 홈페이지의 개인 정보가 바뀝니다.
 # 같은 [professional_experience], [education] 블록을 필요한 만큼 추가/삭제할 수 있습니다.
 # =========================================================
 
@@ -53,11 +53,13 @@ researchgate_label=Youngjae Yoo
 google_scholar_url=https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko
 google_scholar_label=Google Scholar
 
-[google_sheets]
-# Google Sheets 구조
+# =========================================================
+# Google Sheets 연동
+# Google Sheets의 id와 gid를 수정하면 정보가 연동됩니다. id와 gid를 찾는 방법은 아래를 참고하세요.
 # https://docs.google.com/spreadsheets/d/[spreadsheet_id]/edit?gid=[gid_no]
-# gid_no : Section_sheet_gid (e.g. publication_sci_gid)
-# gid는 Google sheet의 각 sheet별로 확인하여 수정
+# gid는 Google sheet의 각 sheet별로 다르므로, 확인하여 수정해야 합니다.
+# =========================================================
+[google_sheets]
 spreadsheet_id=15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900
 publication_sci_gid=1044637119
 publication_kci_gid=977487788
