@@ -141,8 +141,6 @@ function applyStaticLanguage() {
     btn.classList.toggle("active", btn.dataset.lang === currentLang);
   });
 
-  if (personalData?.sections) renderPersonalData();
-
   document.querySelectorAll(".language-namecard").forEach(img => {
     const nextSrc = currentLang === "en" ? img.dataset.srcEn : img.dataset.srcKo;
     if (nextSrc && img.getAttribute("src") !== nextSrc) {
@@ -202,7 +200,7 @@ document.querySelectorAll(".optional-image-slot img").forEach((img) => {
    Google Visualization JSONP is used to load each sheet tab.
 ========================================================= */
 
-let SPREADSHEET_ID = "15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900";
+const SPREADSHEET_ID = "15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900";
 
 const SHEETS = {
   SCI:     { gid: "1044637119", type: "SCI", label: "SCI" },
@@ -212,171 +210,6 @@ const SHEETS = {
   AWARD:   { gid: "1362262409", type: "AWARD", label: "수상" },
   BOOK:    { gid: "1750437029", type: "BOOK", label: "저서" }
 };
-
-const PERSONAL_DATA_FILE = "personal_data.txt";
-var personalData = { global: {}, sections: {} };
-
-function cleanConfigValue(value) {
-  return String(value ?? "")
-    .trim()
-    .replace(/^['"]|['"]$/g, "")
-    .trim();
-}
-
-function extractGid(value) {
-  const text = cleanConfigValue(value);
-  const gidMatch = text.match(/(?:^|[?#&\s])gid\s*=\s*(\d+)/i);
-  if (gidMatch) return gidMatch[1];
-  const numberMatch = text.match(/\b(\d+)\b/);
-  return numberMatch ? numberMatch[1] : text;
-}
-
-function parsePersonalData(text) {
-  const result = { global: {}, sections: {} };
-  let current = result.global;
-
-  String(text ?? "").split(/\r?\n/).forEach(rawLine => {
-    const line = rawLine.trim();
-    if (!line || line.startsWith("#") || line.startsWith("//")) return;
-
-    const sectionMatch = line.match(/^\[([^\]]+)\]$/);
-    if (sectionMatch) {
-      const section = sectionMatch[1].trim().toLowerCase();
-      result.sections[section] ||= [];
-      current = {};
-      result.sections[section].push(current);
-      return;
-    }
-
-    const match = line.match(/^([^:=]+?)\s*[:=]\s*(.*)$/);
-    if (!match) return;
-    const key = match[1].trim().toLowerCase();
-    current[key] = cleanConfigValue(match[2]);
-  });
-
-  return result;
-}
-
-function pd(section, key, fallback = "") {
-  const rows = personalData.sections[section] || [];
-  const value = rows[0]?.[key];
-  return value !== undefined && value !== "" ? value : fallback;
-}
-
-function applyGoogleSheetsPersonalData() {
-  const cfg = personalData.sections.google_sheets?.[0] || personalData.global;
-  if (cfg.spreadsheet_id) SPREADSHEET_ID = cleanConfigValue(cfg.spreadsheet_id);
-  if (cfg.publication_sci_gid) SHEETS.SCI.gid = extractGid(cfg.publication_sci_gid);
-  if (cfg.publication_kci_gid) SHEETS.KCI.gid = extractGid(cfg.publication_kci_gid);
-  if (cfg.publication_book_gid) SHEETS.BOOK.gid = extractGid(cfg.publication_book_gid);
-  if (cfg.project_rnd_gid) SHEETS.RND.gid = extractGid(cfg.project_rnd_gid);
-  if (cfg.project_service_gid) SHEETS.SERVICE.gid = extractGid(cfg.project_service_gid);
-  if (cfg.award_gid) SHEETS.AWARD.gid = extractGid(cfg.award_gid);
-}
-
-function escapePersonal(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-function personalPeriod(value) {
-  const period = String(value || "");
-  return currentLang === "en" ? period.replace(/현재/g, "Present") : period;
-}
-
-function personalLocalized(item, baseKey) {
-  const preferred = currentLang === "en" ? item[`${baseKey}_en`] : item[`${baseKey}_ko`];
-  const fallback = currentLang === "en" ? item[`${baseKey}_ko`] : item[`${baseKey}_en`];
-  return preferred || fallback || item[baseKey] || "";
-}
-
-function renderPersonalData() {
-  const current = personalData.sections.current_position?.[0] || {};
-  const currentBox = document.getElementById("currentPosition");
-  if (currentBox) {
-    const rows = [
-      [current.company_name_ko, current.company_name_en],
-      [current.department_name_ko, current.department_name_en],
-      [current.position_ko, current.position_en]
-    ].filter(([ko, en]) => ko || en);
-    currentBox.innerHTML = rows.map(([ko, en]) => `
-      <div class="current-position-row">
-        <strong class="current-ko">${escapePersonal(ko || en || "")}</strong>
-        <span class="current-en">${escapePersonal(en || ko || "")}</span>
-      </div>`).join("");
-  }
-
-  const companyLink = document.getElementById("currentPositionCompanyLink");
-  if (companyLink && current.company_url) companyLink.href = current.company_url;
-  const companyLogo = document.getElementById("currentPositionLogo");
-  if (companyLogo && current.logo_image) companyLogo.src = current.logo_image;
-
-  const profile = personalData.sections.profile?.[0] || {};
-  const profileImage = document.getElementById("profileImage");
-  if (profileImage && profile.profile_image) profileImage.src = profile.profile_image;
-
-  const expBox = document.getElementById("professionalExperienceTimeline");
-  if (expBox) {
-    expBox.innerHTML = (personalData.sections.professional_experience || []).map(item => `
-      <div class="timeline-item">
-        <div class="timeline-period">${escapePersonal(personalPeriod(item.period))}</div>
-        <div>
-          <span class="timeline-type">${escapePersonal(item.position || "")}</span>
-          <h4 class="institution-ko">${escapePersonal(item.institution_ko || item.institution_en || "")}</h4>
-          <p class="institution-en">${escapePersonal(item.institution_en || item.institution_ko || "")}</p>
-        </div>
-      </div>`).join("");
-  }
-
-  const eduBox = document.getElementById("educationTimeline");
-  if (eduBox) {
-    eduBox.innerHTML = (personalData.sections.education || []).map(item => `
-      <div class="timeline-item">
-        <div class="timeline-period">${escapePersonal(personalPeriod(item.period))}</div>
-        <div class="education-content">
-          <span class="timeline-type">${escapePersonal(item.degree || "")}</span>
-          ${personalLocalized(item, "degree_detail") ? `<p class="degree-detail">${escapePersonal(personalLocalized(item, "degree_detail"))}</p>` : ""}
-          <h4 class="institution-ko">${escapePersonal(item.school_department_ko || item.school_department_en || "")}</h4>
-          <p class="institution-en">${escapePersonal(item.school_department_en || item.school_department_ko || "")}</p>
-        </div>
-      </div>`).join("");
-  }
-
-  const contact = personalData.sections.contact?.[0] || {};
-  const email = document.getElementById("contactEmail");
-  if (email && contact.email) { email.textContent = contact.email; email.href = `mailto:${contact.email}`; }
-  const phone = document.getElementById("contactPhone");
-  if (phone && contact.office_phone) {
-    phone.textContent = currentLang === "en" && contact.office_phone_en ? contact.office_phone_en : contact.office_phone;
-    phone.href = `tel:${(contact.office_phone_tel || contact.office_phone).replace(/[^+\d]/g, "")}`;
-  }
-  const rg = document.getElementById("contactResearchGate");
-  if (rg && contact.researchgate_url) {
-    rg.href = contact.researchgate_url;
-    rg.textContent = `${contact.researchgate_label || "ResearchGate"} ↗`;
-  }
-  const gs = document.getElementById("contactGoogleScholar");
-  if (gs && contact.google_scholar_url) {
-    gs.href = contact.google_scholar_url;
-    gs.textContent = `${contact.google_scholar_label || "Google Scholar"} ↗`;
-  }
-}
-
-async function loadPersonalData() {
-  try {
-    const response = await fetch(`${PERSONAL_DATA_FILE}?_=${Date.now()}`, { cache: "no-store" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    personalData = parsePersonalData(await response.text());
-    applyGoogleSheetsPersonalData();
-    renderPersonalData();
-  } catch (error) {
-    console.warn(`${PERSONAL_DATA_FILE}을 불러오지 못해 HTML/JavaScript 기본값을 사용합니다.`, error);
-  }
-}
 
 function normalizeText(value) {
   return String(value ?? "")
@@ -1203,13 +1036,6 @@ async function loadAwards() {
   }
 }
 
-async function initializeGoogleSheetsData() {
-  await loadPersonalData();
-  await Promise.all([
-    loadPublications(),
-    loadProjects(),
-    loadAwards()
-  ]);
-}
-
-initializeGoogleSheetsData();
+loadPublications();
+loadProjects();
+loadAwards();

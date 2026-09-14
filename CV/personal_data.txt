@@ -6,6 +6,10 @@
 
 [profile]
 profile_image=images/profile.png
+researchgate_url=https://www.researchgate.net/profile/Youngjae-Yoo-4
+researchgate_label=ResearchGate
+google_scholar_url=https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko
+google_scholar_label=Google Scholar
 
 [current_position]
 company_url=https://kric.re.kr/
@@ -48,10 +52,6 @@ email=giftedyoo@kric.re.kr
 office_phone=033-259-0127
 office_phone_en=+82-33-259-0127
 office_phone_tel=+82332590127
-researchgate_url=https://www.researchgate.net/profile/Youngjae-Yoo-4
-researchgate_label=Youngjae Yoo
-google_scholar_url=https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko
-google_scholar_label=Google Scholar
 
 # =========================================================
 # Google Sheets 연동

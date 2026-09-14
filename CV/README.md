@@ -86,7 +86,7 @@ Youngjae Yoo의 연구 경력, 연구 관심 분야, 논문, 연구과제, 수�
 ## 파일 구조
 
 ```text
-CV/
+giftedyoo-kr.github.io-main/
 ├─ index.html      # 페이지 구조 및 정적 콘텐츠
 ├─ style.css       # 전체 디자인 및 반응형 스타일
 ├─ script.js       # 언어 전환, Sheets 연동, 동적 목록·그래프 렌더링
@@ -112,14 +112,4 @@ CV/
 
 ## 배포
 
-이 버전은 GitHub의 `CV` 저장소에서 Project Pages로 배포하는 것을 기준으로 합니다.
-
-1. GitHub 계정 `giftedyoo-kr`에 이름이 정확히 `CV`인 저장소를 생성합니다.
-2. 이 폴더 안의 `index.html`, `style.css`, `script.js`, `images/`, `README.md`를 `CV` 저장소 루트에 업로드합니다.
-3. `Settings → Pages → Build and deployment`에서 `Deploy from a branch`를 선택합니다.
-4. Branch는 `main`, 폴더는 `/(root)`를 선택합니다.
-5. 배포 주소는 `https://giftedyoo-kr.github.io/CV/`가 됩니다.
-
-현재 CSS, JavaScript, 이미지 경로는 상대경로를 사용하므로 `/CV/` 하위에서 그대로 동작합니다.
-
-기존 `https://giftedyoo-kr.github.io/` 접속자를 새 주소로 자동 이동시키려면 이 배포 패키지의 `root-redirect/index.html` 내용을 기존 `giftedyoo-kr.github.io` 저장소의 `index.html`로 사용하면 됩니다.
+저장소 루트에 파일을 배치한 뒤 GitHub Pages의 배포 소스를 해당 브랜치의 루트로 설정하면 사용할 수 있습니다. 별도의 빌드 과정이나 서버 측 코드가 필요하지 않습니다.
