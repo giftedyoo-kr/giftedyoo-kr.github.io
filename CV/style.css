@@ -120,6 +120,15 @@ svg text {
 }
 
 
+
+/*
+   [자간 설정]
+   이 버전에서는 letter-spacing을 별도로 지정하지 않습니다.
+   모든 텍스트는 사용 중인 폰트(Noto Sans KR)의 기본 자간(normal)을 사용합니다.
+   따라서 PROFILE, PROFESSIONAL EXPERIENCE, CURRENT POSITION 등
+   영문 대문자 라벨도 폰트 자체의 기본 간격으로 표시됩니다.
+*/
+
 /* =========================================================
    3. 나머지 스타일
    =========================================================
@@ -193,12 +202,10 @@ a {
 .logo-main {
   font-size: 26px;
   font-weight: 700;
-  letter-spacing: -1px;
 }
 
 .logo-sub {
   font-size: 11px;
-  letter-spacing: .08em;
   opacity: .75;
 }
 
@@ -211,7 +218,6 @@ a {
 .nav a {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: .12em;
   position: relative;
 }
 
@@ -299,7 +305,6 @@ a {
 .project-category,
 .timeline-type {
   font-size: 11px;
-  letter-spacing: .18em;
   font-weight: 600;
 }
 
@@ -335,7 +340,6 @@ a {
   padding: 0 20px;
   border: 1px solid white;
   font-size: 10px;
-  letter-spacing: .14em;
   font-weight: 600;
   transition: .25s ease;
 }
@@ -363,7 +367,6 @@ a {
   display: flex;
   justify-content: space-between;
   font-size: 9px;
-  letter-spacing: .16em;
   opacity: .65;
 }
 
@@ -377,7 +380,6 @@ a {
   gap: 15px;
   transform: translateY(-50%);
   font-size: 9px;
-  letter-spacing: .15em;
 }
 
 .scroll-indicator span:first-child {
@@ -413,7 +415,6 @@ a {
   margin-top: 25px;
   font-size: clamp(40px, 5.2vw, 78px);
   line-height: 1.04;
-  letter-spacing: -.055em;
   font-weight: 500;
 }
 
@@ -422,7 +423,6 @@ a {
 }
 
 .profile-copy .lead {
-  letter-spacing: -.02em;
 }
 
 .profile-copy > p:not(.lead) {
@@ -443,7 +443,6 @@ a {
 
 .profile-facts span {
   font-size: 10px;
-  letter-spacing: .14em;
   color: var(--gray);
 }
 
@@ -460,7 +459,6 @@ a {
 .research-intro h3 {
   font-size: clamp(32px, 4vw, 58px);
   font-weight: 500;
-  letter-spacing: -.045em;
 }
 
 .research-intro p {
@@ -495,7 +493,6 @@ a {
 }
 
 .research-card h4 {
-  letter-spacing: -.04em;
   font-weight: 500;
 }
 
@@ -543,7 +540,6 @@ a {
 }
 
 .project-main h3 {
-  letter-spacing: -.025em;
   font-weight: 500;
 }
 
@@ -571,7 +567,6 @@ a {
 .publications-top h3 {
   font-size: clamp(38px, 4.6vw, 70px);
   line-height: 1;
-  letter-spacing: -.05em;
   font-weight: 400;
 }
 
@@ -604,7 +599,6 @@ a {
 .pub-year,
 .pub-type {
   font-size: 10px;
-  letter-spacing: .12em;
   color: #888;
 }
 
@@ -676,7 +670,6 @@ a {
   margin-top: 25px;
   font-size: clamp(50px, 6vw, 90px);
   line-height: .98;
-  letter-spacing: -.06em;
   font-weight: 500;
 }
 
@@ -693,7 +686,6 @@ a {
   display: block;
   margin-bottom: 7px;
   font-size: 9px;
-  letter-spacing: .15em;
   color: var(--gray);
 }
 
@@ -711,7 +703,6 @@ footer {
   justify-content: space-between;
   gap: 30px;
   font-size: 9px;
-  letter-spacing: .12em;
 }
 
 footer a {
@@ -768,7 +759,6 @@ footer a {
 
   .mobile-nav a {
     font-size: 12px;
-    letter-spacing: .14em;
     font-weight: 600;
   }
 
@@ -855,7 +845,6 @@ footer a {
   font: inherit;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: .11em;
   cursor: pointer;
   transition: .2s ease;
 }
@@ -920,12 +909,10 @@ footer a {
   color: #aaa;
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: .1em;
 }
 
 .pub-doi {
   color: #aaa;
-  letter-spacing: .1em;
   transition: color .2s ease;
 }
 
@@ -956,7 +943,6 @@ footer a {
 .projects-top h3 {
   font-size: clamp(38px, 4.6vw, 70px);
   line-height: 1;
-  letter-spacing: -.05em;
   font-weight: 500;
 }
 
@@ -981,7 +967,6 @@ footer a {
   border-radius: 999px;
   padding: 9px 14px;
   font-size: 9px;
-  letter-spacing: .12em;
   cursor: pointer;
   transition: .2s ease;
 }
@@ -1034,7 +1019,6 @@ footer a {
 
 .pub-isbn {
   font-size: 9px;
-  letter-spacing: .1em;
   color: #777;
 }
 
@@ -1046,7 +1030,6 @@ footer a {
   margin-top: 25px;
   font-size: clamp(40px, 5.2vw, 78px);
   line-height: 1.04;
-  letter-spacing: -.055em;
   font-weight: 500;
 }
 
@@ -1075,7 +1058,6 @@ footer a {
 .award-item h4 {
   font-size: 20px;
   font-weight: 500;
-  letter-spacing: -.02em;
 }
 
 .award-item p {
@@ -1149,7 +1131,6 @@ footer a {
 }
 
 .hero h1 {
-  letter-spacing: -.055em;
 }
 .projects-section,
 .publications-section {
@@ -1219,7 +1200,6 @@ footer a {
 }
 .pub-indexing {
   max-width: 92px;
-  letter-spacing: .07em;
   text-align: right;
   overflow-wrap: anywhere;
 }
@@ -1234,7 +1214,6 @@ footer a {
 
 .pub-book-role span {
   font-size: 8px;
-  letter-spacing: .14em;
   color: #666;
 }
 
@@ -1383,13 +1362,11 @@ footer a {
 .contact-grid h3 {
   margin-top: 14px;
   line-height: 1.05;
-  letter-spacing: -.045em;
   font-weight: 500;
 }
 .pub-class-badge {
   width: auto;
   border-radius: 999px;
-  letter-spacing: .08em;
   border: 1px solid currentColor;
   background: transparent;
 }
@@ -1419,7 +1396,6 @@ footer a {
   border: 1px solid currentColor;
   border-radius: 999px;
   font-weight: 700;
-  letter-spacing: .08em;
   white-space: nowrap;
 }
 
@@ -1554,7 +1530,6 @@ footer a {
 
 .filter-caption {
   font-weight: 700;
-  letter-spacing: .13em;
   color: #999;
 }
 
@@ -1572,7 +1547,6 @@ footer a {
   border-radius: 999px;
   padding: 9px 14px;
   font-size: 9px;
-  letter-spacing: .08em;
   cursor: pointer;
   transition: .2s ease;
 }
@@ -1597,7 +1571,6 @@ footer a {
   color: #bbb;
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: .03em;
   vertical-align: 1px;
 }
 .award-title-line {
@@ -1633,7 +1606,6 @@ footer a {
   color: #999;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: .08em;
 }
 .optional-image-slot[hidden] {
   display: none !important;
@@ -1754,7 +1726,6 @@ footer a {
 .timeline-period {
   font-size: 17px;
   font-weight: 600;
-  letter-spacing: -.02em;
   color: #555;
 }
 .project-item {
@@ -1794,7 +1765,6 @@ footer a {
   border-radius: 999px;
   font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: .03em;
   white-space: nowrap;
 }
 .project-role-pi {
@@ -1945,7 +1915,6 @@ footer a {
   font-size: 12.5px;
   font-weight: 600;
   white-space: nowrap;
-  letter-spacing: -.015em;
 }
 .profile-section .career-group + .career-group {
   margin-top: 16px !important;
@@ -2350,7 +2319,6 @@ section[id] {
 
 .section-heading h2 {
   font-size: clamp(18px, 1.55vw, 24px) !important;
-  letter-spacing: .16em !important;
   font-weight: 700 !important;
 }
 .contact-photo-slot {
@@ -2489,7 +2457,6 @@ body.lang-en .education-content .institution-en {
 }
 .emphasis-label {
   font-weight: 700 !important;
-  letter-spacing: .16em;
   color: #222;
 }
 
@@ -2651,7 +2618,6 @@ body.lang-en .profile-section .education-content > .timeline-type {
   justify-content: space-between;
   margin-bottom: 14px;
   font-size: var(--fs-overview-title);
-  letter-spacing: .18em;
   font-weight: 700;
 }
 
@@ -2695,7 +2661,6 @@ body.lang-en .profile-section .education-content > .timeline-type {
   font-size: var(--fs-overview-big-number);
   line-height: 1;
   font-weight: 500;
-  letter-spacing: -.04em;
 }
 
 .overview-stat span {
@@ -2711,7 +2676,6 @@ body.lang-en .profile-section .education-content > .timeline-type {
   justify-content: flex-end;
   gap: 13px;
   font-size: var(--fs-chart-legend);
-  letter-spacing: .08em;
   color: rgba(255,255,255,.68);
 }
 
@@ -2845,7 +2809,6 @@ body.lang-en .profile-section .education-content > .timeline-type {
 .research-card .card-number {
   font-size: 13px !important;
   font-weight: 600;
-  letter-spacing: .04em;
   :root {
     --content-indent: 14px;
   }
@@ -2957,7 +2920,6 @@ a {
   margin: 0 0 24px;
   font-size: clamp(30px, 3.5vw, 54px);
   line-height: 1.05;
-  letter-spacing: -.045em;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -3169,7 +3131,6 @@ footer > div:first-child {
 .language-switch {
   gap: 7px !important;
   font-size: 12px !important;
-  letter-spacing: .04em !important;
 }
 
 .language-switch > span {
@@ -3285,7 +3246,6 @@ footer > div:first-child {
   font-size: 10px;
   font-weight: 800;
   line-height: 1.2;
-  letter-spacing: .02em;
   vertical-align: 1px;
   white-space: nowrap;
 }
@@ -3350,7 +3310,6 @@ footer > div:first-child {
   font-size: 10.5px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: .04em;
   text-decoration: none;
   transition: background .2s ease, color .2s ease, opacity .2s ease;
 }
