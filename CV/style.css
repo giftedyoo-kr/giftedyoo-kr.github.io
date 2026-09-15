@@ -1,8 +1,131 @@
-/* 
-  Youngjae Yoo Academic Website
-  Main stylesheet for layout, responsive behavior, section styling,
-  language states, dashboard, filters, and publication/project components.
-   */
+/*
+============================================================
+ YOUNGJAE YOO ACADEMIC WEBSITE — STYLE SETTINGS
+============================================================
+
+이 파일은 크게 세 부분으로 나뉩니다.
+
+  1. 폰트 설정
+     - 사이트 전체에서 사용하는 글꼴 종류를 설정합니다.
+     - 기본적으로 아래 --font-main 값 하나만 바꾸면 전체 페이지 폰트가 바뀝니다.
+
+  2. 폰트 크기 설정
+     - 자주 조정할 수 있는 주요 글씨 크기를 한곳에서 관리합니다.
+     - 특히 HOME의 PUBLICATIONS / PROJECTS 요약 그래프 글씨 크기를
+       별도 변수로 분리해두었습니다.
+
+  3. 나머지 스타일
+     - 색상, 여백, 배치, 테두리, 반응형 구조 등 실제 디자인 규칙입니다.
+============================================================
+*/
+
+
+/* =========================================================
+   1. 폰트 설정
+   =========================================================
+
+   [전체 기본 폰트]
+   --font-main
+   → 페이지의 한글·영문·숫자 전체에 사용됩니다.
+   → 현재는 Noto Sans KR 하나로 통일되어 있습니다.
+
+   폰트를 바꾸고 싶다면 아래 한 줄만 수정하면 됩니다.
+   예: --font-main: "Pretendard", sans-serif;
+
+   --font-ui
+   → 버튼, 필터, 메뉴, 소제목 등 UI 요소용입니다.
+   → 현재는 --font-main과 동일하게 연결되어 있습니다.
+
+   --font-chart
+   → HOME의 PUBLICATIONS 그래프 및 요약 숫자용입니다.
+   → 현재는 --font-main과 동일하게 연결되어 있습니다.
+========================================================= */
+
+:root {
+  --font-main: "Noto Sans KR", sans-serif;
+  --font-ui: var(--font-main);
+  --font-chart: var(--font-main);
+}
+
+/* 본문 및 일반 텍스트 */
+html,
+body {
+  font-family: var(--font-main);
+}
+
+/* 버튼·입력요소는 브라우저 기본 폰트 대신 사이트 폰트를 그대로 사용 */
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-ui);
+}
+
+/* SVG 그래프 안의 연도·논문 건수도 같은 폰트를 사용 */
+svg text {
+  font-family: var(--font-chart);
+}
+
+
+/* =========================================================
+   2. 폰트 크기 설정
+   =========================================================
+
+   아래 값은 자주 조절할 가능성이 높은 글씨 크기입니다.
+   특히 그래프 관련 값은 이 구역만 수정하면 됩니다.
+
+   [HOME 요약 패널 / 그래프]
+   --fs-overview-title
+   → PUBLICATIONS / PROJECTS 제목
+
+   --fs-overview-arrow
+   → PUBLICATIONS / PROJECTS 오른쪽의 ↗ 아이콘
+
+   --fs-overview-label
+   → 총 논문수 / SCI 논문수 / KCI 논문수 /
+      총 참여과제수 / R&D 과제수 / 용역과제수
+
+   --fs-overview-note
+   → PROJECTS 아래의 R&D 연속과제 집계 안내문
+
+   --fs-chart-legend
+   → 그래프의 SCI / KCI / TOTAL 범례
+
+   --fs-chart-number
+   → 그래프 내부 숫자:
+      연도(예: 2023, 2024)와 연도별 총 논문 건수
+
+   --fs-overview-big-number
+   → HOME 요약 패널의 큰 숫자
+      (총 논문수, SCI, KCI, 총 과제수 등)
+
+   --fs-overview-big-number-mobile
+   → 모바일에서 위 큰 숫자 크기
+========================================================= */
+
+:root {
+  /* HOME 요약 패널의 문자 크기 — 기존보다 크게 조정 */
+  --fs-overview-title: 12px;
+  --fs-overview-arrow: 13px;
+  --fs-overview-label: 11.5px;
+  --fs-overview-note: 10.5px;
+
+  /* PUBLICATIONS 그래프의 문자 크기 */
+  --fs-chart-legend: 10px;
+  --fs-chart-number: 9.5px;
+
+  /* HOME 요약 패널의 큰 숫자 */
+  --fs-overview-big-number: clamp(25px, 2.1vw, 35px);
+  --fs-overview-big-number-mobile: 27px;
+}
+
+
+/* =========================================================
+   3. 나머지 스타일
+   =========================================================
+   아래부터는 레이아웃, 색상, 여백, 반응형 디자인 등입니다.
+   글꼴 종류는 위 '1. 폰트 설정'에서 통합 관리합니다.
+========================================================= */
 
 * {
   margin: 0;
@@ -28,7 +151,6 @@ html {
 }
 
 body {
-  font-family: "Inter", "Noto Sans KR", sans-serif;
   color: var(--black);
   background: var(--white);
   line-height: 1.6;
@@ -858,7 +980,6 @@ footer a {
   color: inherit;
   border-radius: 999px;
   padding: 9px 14px;
-  font-family: inherit;
   font-size: 9px;
   letter-spacing: .12em;
   cursor: pointer;
@@ -1450,7 +1571,6 @@ footer a {
   color: inherit;
   border-radius: 999px;
   padding: 9px 14px;
-  font-family: inherit;
   font-size: 9px;
   letter-spacing: .08em;
   cursor: pointer;
@@ -1700,7 +1820,6 @@ footer a {
   border-radius: 999px;
   background: transparent;
   color: #333;
-  font-family: inherit;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
@@ -2531,7 +2650,7 @@ body.lang-en .profile-section .education-content > .timeline-type {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 14px;
-  font-size: 10px;
+  font-size: var(--fs-overview-title);
   letter-spacing: .18em;
   font-weight: 700;
 }
@@ -2544,7 +2663,7 @@ body.lang-en .profile-section .education-content > .timeline-type {
   justify-content: center;
   border: 1px solid rgba(255,255,255,.25);
   border-radius: 50%;
-  font-size: 12px;
+  font-size: var(--fs-overview-arrow);
   transition: .2s ease;
 }
 
@@ -2573,8 +2692,7 @@ body.lang-en .profile-section .education-content > .timeline-type {
 .overview-stat strong {
   display: block;
   margin-bottom: 3px;
-  font-family: "Inter", sans-serif;
-  font-size: clamp(25px, 2.1vw, 35px);
+  font-size: var(--fs-overview-big-number);
   line-height: 1;
   font-weight: 500;
   letter-spacing: -.04em;
@@ -2582,7 +2700,7 @@ body.lang-en .profile-section .education-content > .timeline-type {
 
 .overview-stat span {
   display: block;
-  font-size: 10px;
+  font-size: var(--fs-overview-label);
   line-height: 1.35;
   color: rgba(255,255,255,.68);
 }
@@ -2592,7 +2710,7 @@ body.lang-en .profile-section .education-content > .timeline-type {
   display: flex;
   justify-content: flex-end;
   gap: 13px;
-  font-size: 8px;
+  font-size: var(--fs-chart-legend);
   letter-spacing: .08em;
   color: rgba(255,255,255,.68);
 }
@@ -2650,13 +2768,11 @@ body.lang-en .profile-section .education-content > .timeline-type {
 .overview-total-dot { fill: #fff; }
 .overview-year-label {
   fill: rgba(255,255,255,.55);
-  font-size: 8px;
-  font-family: "Inter", sans-serif;
+  font-size: var(--fs-chart-number);
 }
 .overview-total-label {
   fill: rgba(255,255,255,.9);
-  font-size: 8px;
-  font-family: "Inter", sans-serif;
+  font-size: var(--fs-chart-number);
   font-weight: 600;
 }
 
@@ -2666,7 +2782,7 @@ body.lang-en .profile-section .education-content > .timeline-type {
 
 .overview-note {
   margin-top: 13px;
-  font-size: 9px;
+  font-size: var(--fs-overview-note);
   line-height: 1.55;
   color: rgba(255,255,255,.58);
 }
@@ -2720,7 +2836,7 @@ body.lang-en .profile-section .education-content > .timeline-type {
     padding: 17px 16px 15px;
   }
   .overview-stat strong {
-    font-size: 27px;
+    font-size: var(--fs-overview-big-number-mobile);
   }
   .overview-chart-scroll {
     margin-right: -6px;
