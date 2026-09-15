@@ -74,6 +74,23 @@ svg text {
    아래 값은 자주 조절할 가능성이 높은 글씨 크기입니다.
    특히 그래프 관련 값은 이 구역만 수정하면 됩니다.
 
+   [페이지 주요 제목]
+   --fs-section-title
+   → PROFILE / RESEARCH / PUBLICATIONS / PROJECTS / AWARDS / CONTACT
+
+   --fs-section-title-mobile
+   → 모바일 화면의 위 섹션명 크기
+
+   --fs-subsection-title
+   → CURRENT POSITION / PROFESSIONAL EXPERIENCE /
+      EDUCATION / GET IN TOUCH
+
+   --fs-contact-title
+   → EMAIL / OFFICE PHONE / ADDRESS
+
+   --fs-contact-value
+   → 실제 이메일 주소 / 전화번호 / 주소 내용
+
    [HOME 요약 패널 / 그래프]
    --fs-overview-title
    → PUBLICATIONS / PROJECTS 제목
@@ -104,14 +121,54 @@ svg text {
 ========================================================= */
 
 :root {
-  /* HOME 요약 패널의 문자 크기 — 기존보다 크게 조정 */
+  /* ---------------------------------------------------------
+     페이지 주요 제목 크기
+     ---------------------------------------------------------
+
+     --fs-section-title
+     → PROFILE / RESEARCH / PUBLICATIONS / PROJECTS /
+        AWARDS / CONTACT 같은 각 섹션의 큰 제목
+
+     --fs-section-title-mobile
+     → 모바일 화면에서 위 섹션 제목의 크기
+
+     --fs-subsection-title
+     → CURRENT POSITION / PROFESSIONAL EXPERIENCE /
+        EDUCATION / GET IN TOUCH 같은 소제목
+
+     --fs-contact-title
+     → EMAIL / OFFICE PHONE / ADDRESS 같은 CONTACT 항목 제목
+
+     --fs-contact-value
+     → 실제 이메일 주소 / 전화번호 / 주소 내용
+  --------------------------------------------------------- */
+  --fs-section-title: clamp(18px, 1.55vw, 24px);
+  --fs-section-title-mobile: 18px;
+  --fs-subsection-title: 11px;
+  --fs-contact-title: 9px;
+  --fs-contact-value: 16px;
+
+  /* ---------------------------------------------------------
+     HOME 요약 패널 / 그래프
+  --------------------------------------------------------- */
+
+  /* PUBLICATIONS / PROJECTS 제목 */
   --fs-overview-title: 12px;
+
+  /* 요약 패널 오른쪽 ↗ 아이콘 */
   --fs-overview-arrow: 13px;
+
+  /* 총 논문수 / SCI 논문수 / KCI 논문수 /
+     총 참여과제수 / R&D 과제수 / 용역과제수 */
   --fs-overview-label: 11.5px;
+
+  /* PROJECTS 아래 R&D 연속과제 집계 안내문 */
   --fs-overview-note: 10.5px;
 
-  /* PUBLICATIONS 그래프의 문자 크기 */
+  /* 그래프의 SCI / KCI / TOTAL 범례 */
   --fs-chart-legend: 10px;
+
+  /* 그래프의 연도 및 연도별 총 논문 건수 */
   --fs-chart-number: 9.5px;
 
   /* HOME 요약 패널의 큰 숫자 */
@@ -306,6 +363,12 @@ a {
 .timeline-type {
   font-size: 11px;
   font-weight: 600;
+}
+
+/* PROFILE/CONTACT 소제목 크기
+   → CSS 상단의 --fs-subsection-title 값으로 조정 */
+.mini-label {
+  font-size: var(--fs-subsection-title);
 }
 
 .eyebrow {
@@ -685,7 +748,7 @@ a {
 .contact-info span {
   display: block;
   margin-bottom: 7px;
-  font-size: 9px;
+  font-size: var(--fs-contact-title);
   color: var(--gray);
 }
 
@@ -1513,7 +1576,7 @@ footer a {
 
 .contact-info a,
 .contact-info p {
-  font-size: 16px;
+  font-size: var(--fs-contact-value);
 }
 .project-filter-panel {
   display: flex;
@@ -2318,7 +2381,7 @@ section[id] {
 }
 
 .section-heading h2 {
-  font-size: clamp(18px, 1.55vw, 24px) !important;
+  font-size: var(--fs-section-title) !important;
   font-weight: 700 !important;
 }
 .contact-photo-slot {
@@ -2344,7 +2407,7 @@ section[id] {
 
 @media (max-width: 820px) {
   .section-heading h2 {
-    font-size: 18px !important;
+    font-size: var(--fs-section-title-mobile) !important;
   }
 
   .contact-photo.landscape {
@@ -3336,4 +3399,43 @@ footer > div:first-child {
   margin: 0;
   color: #111;
   line-height: 1.45;
+}
+
+
+/* =========================================================
+   모바일 PROJECTS 필터 알약 보정
+   =========================================================
+   영문 "Research Contract"처럼 긴 필터명이 모바일에서
+   알약 테두리 밖으로 삐져나오지 않도록 합니다.
+
+   - inline-flex : 내용 폭에 맞춰 알약이 자연스럽게 늘어남
+   - white-space: nowrap : Research Contract가 두 줄로 꺾이지 않음
+   - width/max-width : 고정 폭 제한 없이 내용에 맞춤
+   - gap : 제목과 건수 숫자 사이 간격을 안정적으로 유지
+========================================================= */
+@media (max-width: 820px) {
+  .project-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    white-space: nowrap;
+    line-height: 1.2;
+    gap: 5px;
+  }
+
+  /* 기존 공통 span margin 대신 flex gap을 사용 */
+  .project-filter span {
+    margin-left: 0;
+  }
+
+  /* 영문 Research Contract 필터는 내용 길이에 맞춰 폭을 확보 */
+  html[lang="en"] .project-filter[data-filter="SERVICE"] {
+    width: max-content;
+    max-width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
