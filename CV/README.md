@@ -125,11 +125,14 @@ url=tel:0332590127
 --fs-section-title-mobile: 18px;
 --fs-subsection-title: 12px;
 --fs-profile-institution: 15px;
---fs-contact-title: 11px;
+--fs-contact-title: 13px;
 --fs-contact-value: 16px;
+--fs-award-organizer-label: 13px;
 ```
 
 `--fs-profile-institution`은 **PROFESSIONAL EXPERIENCE의 Kor/Eng 기관명과 EDUCATION의 학교·학과명에 함께 적용**됩니다..  
+
+`--fs-award-organizer-label`은 AWARDS의 `주최 / Organizer` 라벨 크기를 조정합니다.
 EDUCATION의 학교·학과명에는 적용되지 않습니다.
 
 CSS의 각 선택자 블록에는 어떤 영역을 조정하는 코드인지 확인할 수 있도록 주석을 추가했습니다.
