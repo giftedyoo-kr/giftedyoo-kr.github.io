@@ -21,15 +21,10 @@ position_ko=선임연구원
 position_en=Senior Researcher
 logo_image=images/current_position_logo.png
 
+
 # [professional_experience] 블록을 반복하면 경력이 그 수만큼 표시됩니다.
 # 기존 키(period, institution_ko/en, position)를 그대로 사용할 수 있습니다.
 # 필요하면 period_k/e, institution_k/e, position_k/e 형식도 사용할 수 있습니다.
-[professional_experience]
-period=2026.08.–현재
-institution_ko=한국기후변화연구원22
-institution_en=Korea Research Institute on Climate Change (KRIC)
-position=SENIOR RESEARCHER
-
 
 [professional_experience]
 period=2026.08.–현재
@@ -60,13 +55,6 @@ degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Land
 school_department_ko=고려대학교 일반대학원 환경생태공학과
 school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
 
-[education]
-period=2019.09.–2023.02.
-degree=Ph.D.22
-degree_detail_ko=이학박사 · 환경계획및조경학
-degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
-school_department_ko=고려대학교 일반대학원 환경생태공학과
-school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
 
 # =========================================================
 # CONTACT
