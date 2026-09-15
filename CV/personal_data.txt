@@ -27,7 +27,8 @@ logo_image=images/current_position_logo.png
 # 필요하면 period_k/e, institution_k/e, position_k/e 형식도 사용할 수 있습니다.
 
 [professional_experience]
-period=2026.08.–현재
+period_k=2026.08.–현재
+period_e=2026.08.–Present
 institution_ko=한국기후변화연구원
 institution_en=Korea Research Institute on Climate Change (KRIC)
 position_k=선임연구원
