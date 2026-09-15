@@ -144,7 +144,7 @@ svg text {
   --------------------------------------------------------- */
   --fs-section-title: clamp(18px, 1.55vw, 24px);
   --fs-section-title-mobile: 18px;
-  --fs-subsection-title: 11px;
+  --fs-subsection-title: 12px;
   --fs-contact-title: 9px;
   --fs-contact-value: 16px;
 
@@ -3459,5 +3459,96 @@ footer > div:first-child {
   html[lang="en"] .project-type-badge.project-type-service {
     width: fit-content;
     max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   PROFILE 언어별 표시 정리
+   =========================================================
+
+   Kor
+   - PROFESSIONAL EXPERIENCE / EDUCATION에서 한글 정보만 표시
+   - 기관명, 학위 세부정보, 학교/학과 아래의 영문 보조줄은 숨김
+
+   Eng
+   - 기존처럼 영문 정보만 표시
+========================================================= */
+
+body.lang-ko .profile-section .institution-en,
+body.lang-ko .profile-section .education-en {
+  display: none !important;
+}
+
+body.lang-ko .profile-section .institution-ko,
+body.lang-ko .profile-section .education-ko {
+  display: block !important;
+}
+
+body.lang-en .profile-section .institution-ko,
+body.lang-en .profile-section .education-ko {
+  display: none !important;
+}
+
+body.lang-en .profile-section .institution-en,
+body.lang-en .profile-section .education-en {
+  display: block !important;
+}
+
+
+/* =========================================================
+   CURRENT POSITION 언어별 구성
+   =========================================================
+   Kor: 소속 / 부서 / 직위
+   Eng: AFFILIATION / DEPARTMENT / POSITION
+
+   언어 전환 시 해당 언어 블록만 표시합니다.
+========================================================= */
+
+.current-position-ko,
+.current-position-en {
+  display: none;
+}
+
+body.lang-ko .current-position-ko {
+  display: block;
+}
+
+body.lang-en .current-position-en {
+  display: block;
+}
+
+.current-position-row {
+  grid-template-columns: 72px minmax(0, 1fr) !important;
+  column-gap: 14px !important;
+  align-items: baseline;
+}
+
+.current-position-field {
+  font-size: 10px !important;
+  font-weight: 600;
+  color: #777 !important;
+}
+
+.current-position-value {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #222;
+  min-width: 0;
+}
+
+/* 모바일에서도 '항목명 + 값' 구조를 유지하되 첫 열만 조금 좁힘 */
+@media (max-width: 820px) {
+  .current-position-row {
+    grid-template-columns: 58px minmax(0, 1fr) !important;
+    column-gap: 10px !important;
+  }
+
+  .current-position-field {
+    font-size: 9.5px !important;
+  }
+
+  .current-position-value {
+    font-size: 14px !important;
   }
 }
