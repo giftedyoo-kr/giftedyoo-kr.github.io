@@ -1,26 +1,64 @@
 # Youngjae Yoo — Academic Research Website
 
-Youngjae Yoo의 연구 경력, 연구 관심 분야, 논문, 연구과제, 수상 내역 및 연락처를 소개하는 개인 연구자 웹사이트입니다. 정적 HTML/CSS/JavaScript로 구성되어 GitHub Pages에서 바로 배포할 수 있으며, 주요 연구 실적 데이터는 Google Sheets에서 불러옵니다.
+개인 연구자 홈페이지 소스입니다.  
+프로필·경력·학력·연락처는 `personal_data.txt`, 연구실적·과제·수상 내역은 Google Sheets와 연동해 관리합니다.
 
 ## 주요 기능
 
-- **반응형 단일 페이지 구성**: 데스크톱, 태블릿, 모바일 화면 폭에 맞춰 레이아웃과 그래프가 자동 조정됩니다.
-- **Kor / Eng 언어 전환**: 한국어와 영어 화면을 전환할 수 있으며 선택한 언어는 브라우저에 저장됩니다.
-- **언어별 명함 이미지**: `Kor`에서는 `namecard_kor.png`, `Eng`에서는 `namecard_eng.png`를 표시합니다.
-- **홈 대시보드**: SCI/KCI 논문 수, 연도별 논문 추이, R&D 및 Research Contract 과제 수를 요약해서 보여줍니다.
-- **Publications**: SCI/KCI/BOOK 필터, 최신 항목 우선 표시, 더보기/접기, DOI 링크, 저자 강조 및 `1저자 / 공동1저자 / 교신저자` 역할 표시를 지원합니다.
-- **Projects**: R&D와 Research Contract를 통합 표시하며 유형 및 역할 필터를 제공합니다. 홈 화면의 연속 R&D 과제는 연구명 기준으로 하나의 과제로 집계합니다.
-- **Awards**: Google Sheets의 수상 데이터를 불러와 연도, 수상명, 결과 및 주최기관을 표시합니다.
-- **Profile / Research / Contact**: 경력, 학력, 연구 분야·방법·관심 주제와 ResearchGate, Google Scholar 등의 외부 링크를 제공합니다.
+- Kor / Eng 언어 전환
+- PROFILE, RESEARCH, PUBLICATIONS, PROJECTS, AWARDS, CONTACT 구성
+- `personal_data.txt` 기반 연락처·경력·학력 반복 블록
+- Google Sheets 기반 논문·과제·수상 데이터 연동
+- PUBLICATIONS 유형 필터: ALL / SCI / KCI / BOOK
+- PROJECTS 유형·역할 필터
+- HOME 요약 카드 및 연도별 SCI/KCI 논문 그래프
+- PC / 모바일 반응형 레이아웃
 
-## `personal_data.txt` 설정
+## 파일 구조
 
-개인 정보와 CONTACT 항목은 `personal_data.txt`에서 관리할 수 있습니다. `[professional_experience]`, `[education]`, `[contact]`처럼 같은 이름의 블록을 여러 번 작성할 수 있으며, 각 반복 블록은 파일에 작성한 순서대로 홈페이지에 실제 항목으로 생성됩니다.
+```text
+giftedyoo-kr.github.io-main/
+├─ index.html          # 페이지 구조와 정적 fallback 내용
+├─ style.css           # 폰트, 글자 크기, 레이아웃, 반응형 스타일
+├─ script.js           # 언어 전환 및 데이터 연동
+├─ personal_data.txt   # 개인 정보·경력·학력·연락처 설정
+├─ README.md           # 프로젝트 설명
+└─ images/
+   ├─ profile.png
+   ├─ current_position_logo.png
+   ├─ namecard_kor.png
+   └─ namecard_eng.png
+```
 
+## `personal_data.txt`
 
-### 경력과 학력 반복 블록
+`personal_data.txt`는 INI와 유사한 블록 구조를 사용합니다.  
+같은 블록을 반복하면 작성 순서대로 홈페이지에 표시됩니다.
 
-`[professional_experience]` 블록을 하나 추가하면 PROFESSIONAL EXPERIENCE에 항목이 하나 추가되고, `[education]` 블록을 하나 추가하면 EDUCATION에 항목이 하나 추가됩니다.
+### PROFILE / CURRENT POSITION
+
+```text
+[profile]
+profile_image=images/profile.png
+researchgate_url=...
+researchgate_label=ResearchGate
+google_scholar_url=...
+google_scholar_label=Google Scholar
+
+[current_position]
+company_url=...
+company_name_ko=...
+company_name_en=...
+department_name_ko=...
+department_name_en=...
+position_ko=...
+position_en=...
+logo_image=images/current_position_logo.png
+```
+
+### PROFESSIONAL EXPERIENCE
+
+`[professional_experience]` 블록을 반복해 경력을 추가합니다.
 
 ```text
 [professional_experience]
@@ -30,146 +68,178 @@ institution_en=Korea Research Institute on Climate Change (KRIC)
 position=SENIOR RESEARCHER
 ```
 
-기존 키인 `period`, `institution_ko`, `institution_en`, `position`을 그대로 사용할 수 있습니다. 필요하면 `period_k` / `period_e`, `institution_k` / `institution_e`, `position_k` / `position_e`처럼 언어별 값을 별도로 지정할 수도 있습니다.
+필요하면 `period_k/e`, `institution_k/e`, `position_k/e` 형식도 사용할 수 있습니다.
+
+### EDUCATION
+
+`[education]` 블록을 반복해 학력을 추가합니다.
 
 ```text
 [education]
 period=2019.09.–2023.02.
 degree=Ph.D.
-degree_detail_ko=이학박사 · 환경계획및조경학
-degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
-school_department_ko=고려대학교 일반대학원 환경생태공학과
-school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
+degree_detail_ko=...
+degree_detail_en=...
+school_department_ko=...
+school_department_en=...
 ```
 
-동일한 블록을 여러 번 작성하면 작성한 개수와 순서대로 모두 표시됩니다.
+### CONTACT
 
-CONTACT는 다음 구조를 사용합니다.
+`[contact]` 블록을 반복하면 작성 순서대로 표시됩니다.
 
 ```text
 [contact]
-title_k=EMAIL
-value_k=giftedyoo@kric.re.kr
-url=mailto:giftedyoo@kric.re.kr
-
-[contact]
-title_k=OFFICE PHONE
+title_k=연락처(사무실)
 title_e=OFFICE PHONE
 value_k=033-259-0127
 value_e=+82-33-259-0127
-url=tel:+82332590127
+url=tel:0332590127
 ```
 
-CONTACT에서 사용하는 기본 코드는 `title`, `value`, `url`입니다.
+- `title_k`, `value_k`: Kor에서 사용
+- `title_e`, `value_e`: Eng에서 사용
+- `url`: Kor / Eng 공통 링크
+- `url_e`: Eng 전용 링크가 필요할 때 사용
+- `url`이 없으면 일반 텍스트로 표시
+- 허용 링크: `http`, `https`, `mailto`, `tel`
 
-- `title_k`, `value_k`: `Kor` 화면에서 사용하는 값
-- `title_e`, `value_e`: `Eng` 화면에서 사용하는 값
-- `title_e` 또는 `value_e`가 없거나 비어 있으면 `Eng`에서도 대응하는 `_k` 값을 사용
-- `url`: `Kor`와 `Eng`에서 공통으로 사용하는 링크
-- `url_e`: `Eng`에서만 다른 링크가 필요할 때 사용하며, 없으면 `url`을 그대로 사용
-- `url`이 없으면 `value`가 일반 텍스트로 표시
-- `http://`, `https://`, `mailto:`, `tel:` 링크를 지원
-- `[contact]` 블록을 추가·삭제하면 CONTACT 목록도 같은 순서로 추가·삭제
+## CSS 관리
 
-예를 들어 한국어와 영어에서 동일한 제목을 사용할 경우 `title_k`만 작성해도 됩니다. 영어 전화번호처럼 언어에 따라 값이 달라질 때만 `value_e`를 추가하면 됩니다. 링크도 언어별로 달라야 하는 경우에만 `url_e`를 추가합니다.
+`style.css` 상단은 아래 순서로 구성되어 있습니다.
 
-## 데이터 연동
+1. **폰트 설정**
+2. **폰트 크기 설정**
+3. **나머지 스타일**
 
-`script.js`에서 Google Visualization JSONP 방식으로 Google Sheets의 각 탭을 읽습니다.
+전체 기본 폰트는 `--font-main`에서 변경합니다.
 
-| 구분 | 시트 탭 |
-| --- | --- |
-| 국제학술논문 | SCI |
-| 국내학술논문 | KCI |
-| 연구개발과제 | R&D |
-| 연구용역 | 용역 |
-| 수상 | 수상 |
-| 저서 | 저서 |
+```css
+--font-main: "Noto Sans KR", sans-serif;
+```
 
-### 탭별 권장 열제목
+자주 조정하는 글씨 크기는 상단 변수로 관리합니다.
 
-아래 열제목을 사용하면 현재 스크립트와 가장 단순하고 안정적으로 연동할 수 있습니다. 한국어 화면에서는 기본 열을, 영어 화면에서는 `_영문` 열을 우선 사용합니다.
+```css
+--fs-section-title: clamp(18px, 1.55vw, 24px);
+--fs-section-title-mobile: 18px;
+--fs-subsection-title: 12px;
+--fs-profile-institution: 15px;
+--fs-contact-title: 9px;
+--fs-contact-value: 16px;
+```
 
-| 시트 탭 | 권장 열제목 | 활용 |
-| --- | --- | --- |
-| `SCI` | `제목`, `제목_영문`, `저자`, `저자_영문`, `학술지명`, `학술지명_영문`, `게재연도`, `권호명`, `페이지`, `학술지 등급`, `DOI`, `구분` | 논문 제목·저자·학술지·연도·권호·페이지·색인정보·DOI·저자 역할 표시 |
-| `KCI` | `제목`, `제목_영문`, `저자`, `저자_영문`, `학술지명`, `학술지명_영문`, `게재연도`, `권호명`, `페이지`, `학술지 등급`, `DOI`, `구분` | 논문 제목·저자·학술지·연도·권호·페이지·색인정보·DOI·저자 역할 표시 |
-| `R&D` | `연구명`, `연구명_영문`, `지원기관`, `지원기관_영문`, `역할`, `연구기간`, `차년도` | 과제명·지원기관·역할·기간·연차 표시 및 유형/역할 필터 |
-| `용역` | `연구명`, `연구명_영문`, `지원기관`, `지원기관_영문`, `역할`, `연구기간` | 연구용역명·지원기관·역할·기간 표시 및 역할 필터 |
-| `수상` | `수상일`, `명칭`, `명칭_영문`, `결과`, `결과_영문`, `주최자`, `주최자_영문` | 수상연도·명칭·결과·주최기관 표시 |
-| `저서` | `저서명`, `저서명_영문`, `집필자`, `집필자_영문`, `출판사`, `출판사_영문`, `발행연도`, `ISBN`, `역할` | 저서명·집필자·출판사·발행연도·ISBN·집필 역할 표시 |
+`--fs-profile-institution`은 **PROFESSIONAL EXPERIENCE의 Kor/Eng 기관명과 EDUCATION의 학교·학과명에 함께 적용**됩니다..  
+EDUCATION의 학교·학과명에는 적용되지 않습니다.
 
-`SCI`와 `KCI`의 `구분` 열은 `1저자`, `공동1저자`, `교신저자` 등의 값을 인식하여 Publications의 저자명 앞에 역할 알약을 표시합니다. 한 셀에 복수 역할이 함께 들어 있어도 해당 문자열이 포함되어 있으면 함께 표시할 수 있습니다.
+CSS의 각 선택자 블록에는 어떤 영역을 조정하는 코드인지 확인할 수 있도록 주석을 추가했습니다.
 
-`R&D`의 `차년도` 열은 `1차년도`, `2차년도` 등의 값을 사용하며, 영문 화면에서는 `Year 1`, `Year 2` 형식으로 변환됩니다. 홈 화면의 R&D 과제 수는 연차가 달라도 동일한 연구명으로 판단되는 연속과제를 하나의 과제로 집계합니다.
+## Google Sheets 연동
 
-### 인식 가능한 대체 열제목
-
-기존 시트 구조를 그대로 사용할 수 있도록 스크립트는 아래와 같은 대체 열제목도 인식합니다. 같은 의미의 열이 여러 개 있으면 목록에서 앞에 있는 열을 우선 사용합니다.
-
-| 데이터 항목 | 인식 가능한 열제목 |
-| --- | --- |
-| 논문·저서 제목(국문) | `제목`, `논문명`, `논문제목`, `저서명`, `도서명`, `책제목`, `Title` |
-| 논문·저서 제목(영문) | `영문제목`, `제목_영문`, `제목(영문)`, `논문명_영문`, `논문제목_영문`, `저서명_영문`, `도서명_영문`, `English Title`, `Title` |
-| 저자·집필자(국문) | `저자`, `저자명`, `집필자`, `Authors`, `Author` |
-| 저자·집필자(영문) | `저자_영문`, `저자명_영문`, `집필자_영문`, `Authors`, `Author`, `Authors (EN)`, `English Authors` |
-| 학술지(국문) | `학술지명`, `저널명`, `Journal` |
-| 학술지(영문) | `학술지명_영문`, `저널명_영문`, `Journal`, `Journal (EN)`, `English Journal` |
-| 권·호 | `권호명`, `권호`, `Volume` |
-| 페이지 | `페이지`, `Pages` |
-| 색인·학술지 등급 | `학술지 등급`, `학술지등급`, `등급`, `색인`, `Indexing` |
-| DOI | `DOI`, `doi` |
-| ISBN | `ISBN`, `isbn` |
-| 저자 역할/구분 | `구분`, `저자구분`, `저자 구분`, `Author Type`, `Author Role`, `저자역할` |
-| 저서 집필 역할 | `역할`, `Role`, `role`, `참여역할`, `저자역할`, `집필역할`, `구분` |
-| 과제명(국문) | `과제명`, `연구과제명`, `사업명`, `용역명`, `프로젝트명`, `과업명`, `연구명`, `제목`, `Project` |
-| 과제명(영문) | `연구명_영문`, `과제명_영문`, `연구과제명_영문`, `사업명_영문`, `용역명_영문`, `프로젝트명_영문`, `과업명_영문`, `제목_영문`, `영문과제명`, `영문연구명`, `영문명`, `Project Title`, `Title (EN)`, `English Title` |
-| 지원·발주기관(국문) | `발주기관`, `발주처`, `지원기관`, `주관기관`, `연구기관`, `수행기관`, `기관명`, `부처`, `Funding Agency` |
-| 지원·발주기관(영문) | `지원기관_영문`, `발주기관_영문`, `발주처_영문`, `주관기관_영문`, `연구기관_영문`, `수행기관_영문`, `기관명_영문`, `부처_영문`, `Funding Agency`, `Organization` |
-| 과제 역할 | `역할`, `참여구분`, `연구역할`, `책임구분`, `직책`, `구분`, `참여형태` |
-| 과제 기간 | `연구기간`, `과제기간`, `사업기간`, `수행기간`, `기간` |
-| 과제 시작 | `시작일`, `연구시작일`, `과제시작일`, `시작연도` |
-| 과제 종료 | `종료일`, `연구종료일`, `과제종료일`, `종료연도` |
-| R&D 연차 | `차년도`, `연차`, `차수`, `연구차년도`, `과제차년도`, `사업차년도`, `연구연차`, `과제연차`, `Year No.`, `Year` |
-| 수상 명칭(국문) | `명칭`, `대회명`, `Award`, `Title` |
-| 수상 명칭(영문) | `명칭_영문`, `대회명_영문`, `영문명칭`, `영문대회명`, `Award`, `Title`, `English Title` |
-| 수상 결과(국문) | `결과`, `수상명`, `상훈`, `Award Result` |
-| 수상 결과(영문) | `결과_영문`, `수상명_영문`, `상훈_영문`, `Award Result`, `Result (EN)` |
-| 수상 주최기관(국문) | `주최자`, `주최기관`, `Organizer` |
-| 수상 주최기관(영문) | `주최자_영문`, `주최기관_영문`, `Organizer`, `Organizer (EN)` |
-| 수상일 | `수상일`, `수상일자`, `Date`, `날짜`, `일자` |
-| 출판사(국문) | `출판사`, `발행기관명`, `발행처`, `출판기관` |
-| 출판사(영문) | `출판사_영문`, `발행기관명_영문`, `발행처_영문`, `출판기관_영문`, `Publisher`, `Publisher (EN)` |
-
-연도 표시와 최신순 정렬에는 `Date`, `날짜`, `일자`, `게재일자`, `수상일`, `수상일자`, `발행일`, `출판일`, `종료일`, `과제종료일`, `연구종료일` 등의 날짜 열을 사용할 수 있습니다. 날짜 열이 없으면 `연도`, `년도`, `게재연도`, `발행연도`, `수상연도`, `종료연도`, `시작연도` 등을 사용합니다.
-
-## 파일 구조
+`personal_data.txt`의 `[google_sheets]` 블록에서 스프레드시트 ID와 각 탭 GID를 관리합니다.
 
 ```text
-giftedyoo-kr.github.io-main/
-├─ index.html      # 페이지 구조 및 정적 콘텐츠
-├─ style.css       # 전체 디자인 및 반응형 스타일
-├─ script.js       # 언어 전환, Sheets 연동, 동적 목록·그래프 렌더링
-├─ README.md       # 프로젝트 설명
-└─ images/
-   ├─ profile.png
-   ├─ current_position_logo.png
-   ├─ namecard_kor.png
-   ├─ namecard_eng.png
-   └─ README.txt
+[google_sheets]
+spreadsheet_id=...
+publication_sci_gid=...
+publication_kci_gid=...
+publication_book_gid=...
+project_rnd_gid=...
+project_service_gid=...
+award_gid=...
 ```
+
+### SCI / KCI 권장 열제목
+
+```text
+제목
+제목_영문
+저자
+저자_영문
+학술지명
+학술지명_영문
+게재연도
+권호명
+페이지
+학술지 등급
+DOI
+구분
+```
+
+### BOOK 권장 열제목
+
+```text
+저서명
+저서명_영문
+집필자
+집필자_영문
+출판사
+출판사_영문
+발행연도
+ISBN
+역할
+```
+
+### R&D 권장 열제목
+
+```text
+연구명
+연구명_영문
+지원기관
+지원기관_영문
+역할
+연구기간
+차년도
+```
+
+### Research Contract 권장 열제목
+
+```text
+연구명
+연구명_영문
+지원기관
+지원기관_영문
+역할
+연구기간
+```
+
+### AWARDS 권장 열제목
+
+```text
+수상일
+명칭
+명칭_영문
+결과
+결과_영문
+주최자
+주최자_영문
+```
+
+`script.js`에는 일부 대체 열제목을 인식하는 alias도 포함되어 있습니다.
 
 ## 이미지 파일
 
-`images` 폴더에는 다음 파일을 사용합니다.
+- `images/profile.png`: PROFILE 사진
+- `images/current_position_logo.png`: 현재 소속기관 로고
+- `images/namecard_kor.png`: Kor CONTACT 이미지
+- `images/namecard_eng.png`: Eng CONTACT 이미지
 
-- `profile.png`: PROFILE의 프로필 이미지
-- `current_position_logo.png`: 현재 소속기관 로고
-- `namecard_kor.png`: 한국어 CONTACT 명함
-- `namecard_eng.png`: 영어 CONTACT 명함
+파일명이나 경로를 바꾸면 `index.html` 또는 `personal_data.txt`의 대응 경로도 함께 수정해야 합니다.
 
-이미지 파일이 없는 경우 해당 이미지 영역은 자동으로 숨겨집니다.
+## 로컬 확인
 
-## 배포
+`personal_data.txt`는 `fetch()`로 읽기 때문에 `index.html`을 `file://` 방식으로 직접 열면 브라우저 보안 정책상 반영되지 않을 수 있습니다.
 
-저장소 루트에 파일을 배치한 뒤 GitHub Pages의 배포 소스를 해당 브랜치의 루트로 설정하면 사용할 수 있습니다. 별도의 빌드 과정이나 서버 측 코드가 필요하지 않습니다.
+홈페이지 폴더에서 다음 명령을 실행합니다.
+
+```bash
+python -m http.server 8000
+```
+
+Windows에서 `python` 명령이 동작하지 않으면:
+
+```bash
+py -m http.server 8000
+```
+
+그다음 브라우저에서 `http://localhost:8000`으로 접속합니다.

@@ -269,8 +269,8 @@ function renderProfessionalExperience() {
         <div class="timeline-period">${escapeHtml(period)}</div>
         <div>
           ${position ? `<span class="timeline-type">${escapeHtml(position)}</span>` : ""}
-          ${institutionKo ? `<h4 class="institution-ko">${escapeHtml(institutionKo)}</h4>` : ""}
-          ${institutionEn ? `<p class="institution-en">${escapeHtml(institutionEn)}</p>` : ""}
+          ${institutionKo ? `<h4 class="institution-ko experience-institution-ko">${escapeHtml(institutionKo)}</h4>` : ""}
+          ${institutionEn ? `<p class="institution-en experience-institution-en">${escapeHtml(institutionEn)}</p>` : ""}
         </div>
       </div>`;
   }).filter(Boolean).join("");
