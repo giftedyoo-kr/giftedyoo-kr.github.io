@@ -1,7 +1,7 @@
 # =========================================================
 # PERSONAL DATA
 # 값만 수정하면 홈페이지의 개인 정보가 바뀝니다.
-# 같은 [professional_experience], [education] 블록을 필요한 만큼 추가/삭제할 수 있습니다.
+# 같은 [professional_experience], [education], [contact] 블록을 필요한 만큼 추가/삭제할 수 있습니다.
 # =========================================================
 
 [profile]
@@ -20,6 +20,12 @@ department_name_en=Climate Disaster Research Department
 position_ko=선임연구원
 position_en=Senior Researcher
 logo_image=images/current_position_logo.png
+
+[professional_experience]
+period=2026.08.–현재
+institution_ko=한국기후변화연구원
+institution_en=Korea Research Institute on Climate Change (KRIC)
+position=SENIOR RESEARCHER
 
 [professional_experience]
 period=2026.08.–현재
@@ -47,11 +53,43 @@ degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Land
 school_department_ko=고려대학교 일반대학원 환경생태공학과
 school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
 
+[education]
+period=2019.09.–2023.02.
+degree=Ph.D.
+degree_detail_ko=이학박사 · 환경계획및조경학
+degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
+school_department_ko=고려대학교 일반대학원 환경생태공학과
+school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
+
+
+# =========================================================
+# CONTACT
+# [contact] 블록은 필요한 만큼 반복할 수 있으며, 작성 순서대로 표시됩니다.
+# title_k/value_k : Kor에서 사용
+# title_e/value_e : Eng에서 사용
+# title_e/value_e가 없으면 Eng에서도 해당 *_k 값을 사용합니다.
+# url : Kor/Eng 공통 링크
+# url_e : Eng에서만 별도 링크가 필요할 때 사용하며, 없으면 url을 사용합니다.
+# url은 선택사항이며, 없으면 일반 텍스트로 표시됩니다.
+# =========================================================
+
 [contact]
-email=giftedyoo@kric.re.kr
-office_phone=033-259-0127
-office_phone_en=+82-33-259-0127
-office_phone_tel=+82332590127
+title_k=EMAIL
+value_k=giftedyoo@kric.re.kr
+url=mailto:giftedyoo@kric.re.kr
+
+[contact]
+title_k=연락처(사무실)
+title_e=OFFICE PHONE
+value_k=033-259-0127
+value_e=+82-33-259-0127
+url=tel:+82332590127
+
+[contact]
+title_k=주소
+title_e=ADDRESS
+value_k=(24399) 강원특별자치도 춘천시 동내면 순환대로 812(기후변화대응 복합센터)
+value_e=812, Sunhwan-daero, Dongnae-myeon, Chuncheon-si, Gangwon-do 24399, Republic of Korea
 
 # =========================================================
 # Google Sheets 연동

@@ -27,6 +27,9 @@ document.querySelectorAll(".mobile-nav a").forEach((link) => {
 
 let currentLang = localStorage.getItem("siteLang") || "ko";
 
+let personalDataSections = {};
+let personalContactBlocks = [];
+
 const I18N = {
   ko: {
     "hero.description": "기후위기에 따른 적응, 재난·재해 대응, 생태계 보전 등과 관련된 계획 및 정책을 연구합니다.<br>과학적 근거를 정책과 계획으로 연결해 더 회복력 있는 미래를 만드는 연구를 지향합니다.",
@@ -150,6 +153,7 @@ function applyStaticLanguage() {
 }
 
 function refreshDynamicLanguage() {
+  if (personalContactBlocks.length) renderPersonalContacts();
   if (publications.length) renderPublications(currentPublicationFilter);
   if (projects.length) renderProjects();
   if (typeof renderAwardsFromCache === "function") renderAwardsFromCache();
@@ -168,6 +172,131 @@ document.querySelectorAll(".language-button").forEach(button => {
 });
 
 applyStaticLanguage();
+
+
+/* =========================================================
+   PERSONAL DATA
+   Repeated [contact] blocks in personal_data.txt are rendered
+   in file order. For localized fields, *_k is Korean and *_e
+   is English. English falls back to *_k when *_e is omitted.
+========================================================= */
+
+function parsePersonalData(text) {
+  const sections = {};
+  let currentSection = null;
+
+  String(text || "").split(/\r?\n/).forEach(rawLine => {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#") || line.startsWith(";")) return;
+
+    const sectionMatch = line.match(/^\[([^\]]+)\]$/);
+    if (sectionMatch) {
+      const sectionName = sectionMatch[1].trim().toLowerCase();
+      const block = {};
+      if (!sections[sectionName]) sections[sectionName] = [];
+      sections[sectionName].push(block);
+      currentSection = block;
+      return;
+    }
+
+    if (!currentSection) return;
+
+    const equalsIndex = line.indexOf("=");
+    if (equalsIndex < 0) return;
+
+    const key = line.slice(0, equalsIndex).trim();
+    const value = line.slice(equalsIndex + 1).trim();
+    if (key) currentSection[key] = value;
+  });
+
+  return sections;
+}
+
+function personalLocalizedValue(block, code) {
+  if (!block) return "";
+
+  const korean = String(
+    block[`${code}_k`] ??
+    block[`${code}_ko`] ??
+    block[code] ??
+    ""
+  ).trim();
+
+  const english = String(
+    block[`${code}_e`] ??
+    block[`${code}_en`] ??
+    ""
+  ).trim();
+
+  if (currentLang === "en") return english || korean;
+  return korean || english;
+}
+
+function safeContactHref(value) {
+  const href = String(value || "").trim();
+  if (!href) return "";
+
+  if (/^(https?:|mailto:|tel:)/i.test(href)) return href;
+  return "";
+}
+
+function personalContactUrl(block) {
+  if (!block) return "";
+
+  // url is shared by Kor/Eng. url_e overrides it only in Eng.
+  // url_k remains accepted for backward compatibility with earlier files.
+  const shared = String(block.url ?? block.url_k ?? "").trim();
+  const english = String(block.url_e ?? "").trim();
+
+  return currentLang === "en" ? (english || shared) : shared;
+}
+
+function renderPersonalContacts() {
+  const container = document.getElementById("contactInfo");
+  if (!container || !personalContactBlocks.length) return;
+
+  const items = personalContactBlocks.map(block => {
+    const title = personalLocalizedValue(block, "title");
+    const value = personalLocalizedValue(block, "value");
+    const href = safeContactHref(personalContactUrl(block));
+
+    if (!title && !value) return "";
+
+    const labelHtml = title
+      ? `<span>${escapeHtml(title)}</span>`
+      : "";
+
+    let valueHtml = "";
+    if (value) {
+      if (href) {
+        const external = /^https?:/i.test(href);
+        valueHtml = `<a href="${escapeHtml(href)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}>${escapeHtml(value)}</a>`;
+      } else {
+        valueHtml = `<p class="contact-value">${escapeHtml(value)}</p>`;
+      }
+    }
+
+    return `<div>${labelHtml}${valueHtml}</div>`;
+  }).filter(Boolean);
+
+  if (items.length) container.innerHTML = items.join("");
+}
+
+async function loadPersonalData() {
+  try {
+    const response = await fetch(`personal_data.txt?_=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const text = await response.text();
+    personalDataSections = parsePersonalData(text);
+    personalContactBlocks = personalDataSections.contact || [];
+    renderPersonalContacts();
+  } catch (error) {
+    console.warn("personal_data.txt could not be loaded; using HTML fallback.", error);
+  }
+}
+
+loadPersonalData();
 
 
 /* OPTIONAL IMAGES — hide missing assets and adapt image orientation. */

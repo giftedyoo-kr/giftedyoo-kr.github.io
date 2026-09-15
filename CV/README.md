@@ -13,6 +13,39 @@ Youngjae Yoo의 연구 경력, 연구 관심 분야, 논문, 연구과제, 수�
 - **Awards**: Google Sheets의 수상 데이터를 불러와 연도, 수상명, 결과 및 주최기관을 표시합니다.
 - **Profile / Research / Contact**: 경력, 학력, 연구 분야·방법·관심 주제와 ResearchGate, Google Scholar 등의 외부 링크를 제공합니다.
 
+## `personal_data.txt` 설정
+
+개인 정보와 CONTACT 항목은 `personal_data.txt`에서 관리할 수 있습니다. `[professional_experience]`, `[education]`, `[contact]`처럼 같은 이름의 블록을 여러 번 작성할 수 있으며 반복 블록은 파일에 작성한 순서대로 처리됩니다.
+
+CONTACT는 다음 구조를 사용합니다.
+
+```text
+[contact]
+title_k=EMAIL
+value_k=giftedyoo@kric.re.kr
+url=mailto:giftedyoo@kric.re.kr
+
+[contact]
+title_k=OFFICE PHONE
+title_e=OFFICE PHONE
+value_k=033-259-0127
+value_e=+82-33-259-0127
+url=tel:+82332590127
+```
+
+CONTACT에서 사용하는 기본 코드는 `title`, `value`, `url`입니다.
+
+- `title_k`, `value_k`: `Kor` 화면에서 사용하는 값
+- `title_e`, `value_e`: `Eng` 화면에서 사용하는 값
+- `title_e` 또는 `value_e`가 없거나 비어 있으면 `Eng`에서도 대응하는 `_k` 값을 사용
+- `url`: `Kor`와 `Eng`에서 공통으로 사용하는 링크
+- `url_e`: `Eng`에서만 다른 링크가 필요할 때 사용하며, 없으면 `url`을 그대로 사용
+- `url`이 없으면 `value`가 일반 텍스트로 표시
+- `http://`, `https://`, `mailto:`, `tel:` 링크를 지원
+- `[contact]` 블록을 추가·삭제하면 CONTACT 목록도 같은 순서로 추가·삭제
+
+예를 들어 한국어와 영어에서 동일한 제목을 사용할 경우 `title_k`만 작성해도 됩니다. 영어 전화번호처럼 언어에 따라 값이 달라질 때만 `value_e`를 추가하면 됩니다. 링크도 언어별로 달라야 하는 경우에만 `url_e`를 추가합니다.
+
 ## 데이터 연동
 
 `script.js`에서 Google Visualization JSONP 방식으로 Google Sheets의 각 탭을 읽습니다.
