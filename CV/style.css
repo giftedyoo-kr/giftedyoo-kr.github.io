@@ -179,7 +179,7 @@ svg text {
   --fs-chart-legend: 10px;
 
   /* 그래프의 연도 및 연도별 총 논문 건수 */
-  --fs-chart-number: 9.5px;
+  --fs-chart-number: 10px;
 
   /* HOME 요약 패널의 큰 숫자 */
   --fs-overview-big-number: clamp(25px, 2.1vw, 35px);
