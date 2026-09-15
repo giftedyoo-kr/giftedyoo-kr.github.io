@@ -23,7 +23,7 @@ logo_image=images/current_position_logo.png
 
 [professional_experience]
 period=2026.08.–현재
-institution_ko=한국기후변화연구원
+institution_ko=한국기후변화연구원ㅇ
 institution_en=Korea Research Institute on Climate Change (KRIC)
 position=SENIOR RESEARCHER
 
