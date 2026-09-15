@@ -125,7 +125,7 @@ url=tel:0332590127
 --fs-section-title-mobile: 18px;
 --fs-subsection-title: 12px;
 --fs-profile-institution: 15px;
---fs-contact-title: 9px;
+--fs-contact-title: 11px;
 --fs-contact-value: 16px;
 ```
 

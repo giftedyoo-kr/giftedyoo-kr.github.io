@@ -152,7 +152,7 @@ svg text {
      PROFESSIONAL EXPERIENCE 기관명과 EDUCATION 학교·학과명에 함께 적용됩니다. */
   --fs-profile-institution: 15px;
 
-  --fs-contact-title: 9px;
+  --fs-contact-title: 11px;
   --fs-contact-value: 16px;
 
   /* ---------------------------------------------------------
@@ -4208,5 +4208,36 @@ body.lang-en .profile-section #educationList .institution-ko {
 
 body.lang-en .profile-section .experience-institution-en,
 body.lang-en .profile-section #educationList .institution-en {
+  display: block !important;
+}
+
+
+/* =========================================================
+   CURRENT POSITION 언어별 표시 최종 고정
+   =========================================================
+   Kor:
+   - current-position-ko만 표시
+   - current-position-en 숨김
+
+   Eng:
+   - current-position-en만 표시
+   - current-position-ko 숨김
+
+   파일 마지막에 배치하여 다른 규칙보다 우선 적용합니다.
+========================================================= */
+
+body.lang-ko .profile-section .current-position-ko {
+  display: block !important;
+}
+
+body.lang-ko .profile-section .current-position-en {
+  display: none !important;
+}
+
+body.lang-en .profile-section .current-position-ko {
+  display: none !important;
+}
+
+body.lang-en .profile-section .current-position-en {
   display: block !important;
 }
