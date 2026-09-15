@@ -3402,40 +3402,37 @@ footer > div:first-child {
 }
 
 
-/* =========================================================
-   모바일 PROJECTS 필터 알약 보정
-   =========================================================
-   영문 "Research Contract"처럼 긴 필터명이 모바일에서
-   알약 테두리 밖으로 삐져나오지 않도록 합니다.
 
-   - inline-flex : 내용 폭에 맞춰 알약이 자연스럽게 늘어남
-   - white-space: nowrap : Research Contract가 두 줄로 꺾이지 않음
-   - width/max-width : 고정 폭 제한 없이 내용에 맞춤
-   - gap : 제목과 건수 숫자 사이 간격을 안정적으로 유지
+
+/* =========================================================
+   모바일 PROJECTS 목록의 유형 알약 보정
+   =========================================================
+   대상:
+   - 프로젝트 목록 각 항목에 표시되는 R&D / Research Contract 유형 배지
+   - 선택자: .project-type-badge
+
+   목적:
+   - 모바일 영문에서 "Research Contract"가 알약 바깥으로 넘치는 현상 방지
+   - 필터 버튼은 변경하지 않음
+
+   조정 방식:
+   - 고정 높이 대신 내용에 맞는 최소 높이 사용
+   - 내용 길이에 따라 배지 폭이 자연스럽게 늘어나도록 설정
+   - 영문 Research Contract는 줄바꿈하지 않음
 ========================================================= */
 @media (max-width: 820px) {
-  .project-filter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .project-type-badge {
     width: max-content;
     max-width: 100%;
-    min-width: 0;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 27px;
+    padding: 5px 11px !important;
+    line-height: 1.15;
+  }
+
+  html[lang="en"] .project-type-badge.project-type-service {
     white-space: nowrap;
-    line-height: 1.2;
-    gap: 5px;
-  }
-
-  /* 기존 공통 span margin 대신 flex gap을 사용 */
-  .project-filter span {
-    margin-left: 0;
-  }
-
-  /* 영문 Research Contract 필터는 내용 길이에 맞춰 폭을 확보 */
-  html[lang="en"] .project-filter[data-filter="SERVICE"] {
-    width: max-content;
-    max-width: 100%;
-    padding-left: 12px;
-    padding-right: 12px;
+    justify-self: start;
   }
 }
