@@ -1,7 +1,7 @@
 # =========================================================
 # PERSONAL DATA
 # 값만 수정하면 홈페이지의 개인 정보가 바뀝니다.
-# 같은 [professional_experience], [education], [contact] 블록을 필요한 만큼 추가/삭제할 수 있습니다.
+# 같은 [professional_experience], [education], [contact] 블록을 필요한 만큼 추가/삭제할 수 있으며, 작성 순서대로 홈페이지에 표시됩니다.
 # =========================================================
 
 [profile]
@@ -21,11 +21,15 @@ position_ko=선임연구원
 position_en=Senior Researcher
 logo_image=images/current_position_logo.png
 
+# [professional_experience] 블록을 반복하면 경력이 그 수만큼 표시됩니다.
+# 기존 키(period, institution_ko/en, position)를 그대로 사용할 수 있습니다.
+# 필요하면 period_k/e, institution_k/e, position_k/e 형식도 사용할 수 있습니다.
 [professional_experience]
 period=2026.08.–현재
-institution_ko=한국기후변화연구원ㅇ
+institution_ko=한국기후변화연구원22
 institution_en=Korea Research Institute on Climate Change (KRIC)
 position=SENIOR RESEARCHER
+
 
 [professional_experience]
 period=2026.08.–현재
@@ -45,6 +49,9 @@ institution_ko=고려대학교 환경 GIS/RS센터
 institution_en=Environmental GIS/RS Center, Korea University
 position=RESEARCHER
 
+# [education] 블록을 반복하면 학력이 그 수만큼 표시됩니다.
+# 기존 키(period, degree, degree_detail_ko/en, school_department_ko/en)를 그대로 사용할 수 있습니다.
+# 필요하면 각 항목에 _k / _e 형식도 사용할 수 있습니다.
 [education]
 period=2019.09.–2023.02.
 degree=Ph.D.
@@ -55,12 +62,11 @@ school_department_en=Department of Environmental Science and Ecological Engineer
 
 [education]
 period=2019.09.–2023.02.
-degree=Ph.D.
+degree=Ph.D.22
 degree_detail_ko=이학박사 · 환경계획및조경학
 degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
 school_department_ko=고려대학교 일반대학원 환경생태공학과
 school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
-
 
 # =========================================================
 # CONTACT
@@ -83,7 +89,7 @@ title_k=연락처(사무실)
 title_e=OFFICE PHONE
 value_k=033-259-0127
 value_e=+82-33-259-0127
-url=tel:+82332590127
+url=tel:0332590127
 
 [contact]
 title_k=주소

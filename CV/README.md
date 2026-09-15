@@ -15,7 +15,34 @@ Youngjae Yoo의 연구 경력, 연구 관심 분야, 논문, 연구과제, 수�
 
 ## `personal_data.txt` 설정
 
-개인 정보와 CONTACT 항목은 `personal_data.txt`에서 관리할 수 있습니다. `[professional_experience]`, `[education]`, `[contact]`처럼 같은 이름의 블록을 여러 번 작성할 수 있으며 반복 블록은 파일에 작성한 순서대로 처리됩니다.
+개인 정보와 CONTACT 항목은 `personal_data.txt`에서 관리할 수 있습니다. `[professional_experience]`, `[education]`, `[contact]`처럼 같은 이름의 블록을 여러 번 작성할 수 있으며, 각 반복 블록은 파일에 작성한 순서대로 홈페이지에 실제 항목으로 생성됩니다.
+
+
+### 경력과 학력 반복 블록
+
+`[professional_experience]` 블록을 하나 추가하면 PROFESSIONAL EXPERIENCE에 항목이 하나 추가되고, `[education]` 블록을 하나 추가하면 EDUCATION에 항목이 하나 추가됩니다.
+
+```text
+[professional_experience]
+period=2026.08.–현재
+institution_ko=한국기후변화연구원
+institution_en=Korea Research Institute on Climate Change (KRIC)
+position=SENIOR RESEARCHER
+```
+
+기존 키인 `period`, `institution_ko`, `institution_en`, `position`을 그대로 사용할 수 있습니다. 필요하면 `period_k` / `period_e`, `institution_k` / `institution_e`, `position_k` / `position_e`처럼 언어별 값을 별도로 지정할 수도 있습니다.
+
+```text
+[education]
+period=2019.09.–2023.02.
+degree=Ph.D.
+degree_detail_ko=이학박사 · 환경계획및조경학
+degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
+school_department_ko=고려대학교 일반대학원 환경생태공학과
+school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
+```
+
+동일한 블록을 여러 번 작성하면 작성한 개수와 순서대로 모두 표시됩니다.
 
 CONTACT는 다음 구조를 사용합니다.
 

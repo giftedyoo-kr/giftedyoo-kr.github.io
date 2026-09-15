@@ -29,6 +29,8 @@ let currentLang = localStorage.getItem("siteLang") || "ko";
 
 let personalDataSections = {};
 let personalContactBlocks = [];
+let personalExperienceBlocks = [];
+let personalEducationBlocks = [];
 
 const I18N = {
   ko: {
@@ -153,6 +155,8 @@ function applyStaticLanguage() {
 }
 
 function refreshDynamicLanguage() {
+  if (personalExperienceBlocks.length) renderProfessionalExperience();
+  if (personalEducationBlocks.length) renderEducation();
   if (personalContactBlocks.length) renderPersonalContacts();
   if (publications.length) renderPublications(currentPublicationFilter);
   if (projects.length) renderProjects();
@@ -176,9 +180,9 @@ applyStaticLanguage();
 
 /* =========================================================
    PERSONAL DATA
-   Repeated [contact] blocks in personal_data.txt are rendered
-   in file order. For localized fields, *_k is Korean and *_e
-   is English. English falls back to *_k when *_e is omitted.
+   Repeated [professional_experience], [education], and [contact]
+   blocks in personal_data.txt are rendered in file order.
+   Localized *_e values fall back to their Korean/default value.
 ========================================================= */
 
 function parsePersonalData(text) {
@@ -230,6 +234,94 @@ function personalLocalizedValue(block, code) {
 
   if (currentLang === "en") return english || korean;
   return korean || english;
+}
+
+
+function personalField(block, ...keys) {
+  if (!block) return "";
+  for (const key of keys) {
+    const value = String(block[key] ?? "").trim();
+    if (value) return value;
+  }
+  return "";
+}
+
+function renderProfessionalExperience() {
+  const container = document.getElementById("professionalExperienceList");
+  if (!container || !personalExperienceBlocks.length) return;
+
+  container.innerHTML = personalExperienceBlocks.map(block => {
+    const period = currentLang === "en"
+      ? personalField(block, "period_e", "period_en", "period")
+      : personalField(block, "period_k", "period_ko", "period");
+
+    const institutionKo = personalField(block, "institution_k", "institution_ko");
+    const institutionEn = personalField(block, "institution_e", "institution_en") || institutionKo;
+
+    const position = currentLang === "en"
+      ? personalField(block, "position_e", "position_en", "position")
+      : personalField(block, "position_k", "position_ko", "position");
+
+    if (!period && !institutionKo && !institutionEn && !position) return "";
+
+    return `
+      <div class="timeline-item">
+        <div class="timeline-period">${escapeHtml(period)}</div>
+        <div>
+          ${position ? `<span class="timeline-type">${escapeHtml(position)}</span>` : ""}
+          ${institutionKo ? `<h4 class="institution-ko">${escapeHtml(institutionKo)}</h4>` : ""}
+          ${institutionEn ? `<p class="institution-en">${escapeHtml(institutionEn)}</p>` : ""}
+        </div>
+      </div>`;
+  }).filter(Boolean).join("");
+}
+
+function renderEducation() {
+  const container = document.getElementById("educationList");
+  if (!container || !personalEducationBlocks.length) return;
+
+  container.innerHTML = personalEducationBlocks.map(block => {
+    const period = currentLang === "en"
+      ? personalField(block, "period_e", "period_en", "period")
+      : personalField(block, "period_k", "period_ko", "period");
+
+    const degree = currentLang === "en"
+      ? personalField(block, "degree_e", "degree_en", "degree")
+      : personalField(block, "degree_k", "degree_ko", "degree");
+
+    const degreeKo = personalField(block, "degree_detail_k", "degree_detail_ko");
+    const degreeEn = personalField(block, "degree_detail_e", "degree_detail_en") || degreeKo;
+
+    const schoolKo = personalField(
+      block,
+      "school_department_k",
+      "school_department_ko",
+      "institution_k",
+      "institution_ko"
+    );
+
+    const schoolEn = personalField(
+      block,
+      "school_department_e",
+      "school_department_en",
+      "institution_e",
+      "institution_en"
+    ) || schoolKo;
+
+    if (!period && !degree && !degreeKo && !degreeEn && !schoolKo && !schoolEn) return "";
+
+    return `
+      <div class="timeline-item">
+        <div class="timeline-period">${escapeHtml(period)}</div>
+        <div class="education-content">
+          ${degree ? `<span class="timeline-type">${escapeHtml(degree)}</span>` : ""}
+          ${degreeKo ? `<p class="degree-detail education-ko">${escapeHtml(degreeKo)}</p>` : ""}
+          ${degreeEn ? `<p class="degree-detail education-en">${escapeHtml(degreeEn)}</p>` : ""}
+          ${schoolKo ? `<h4 class="institution-ko">${escapeHtml(schoolKo)}</h4>` : ""}
+          ${schoolEn ? `<p class="institution-en">${escapeHtml(schoolEn)}</p>` : ""}
+        </div>
+      </div>`;
+  }).filter(Boolean).join("");
 }
 
 function safeContactHref(value) {
@@ -289,7 +381,12 @@ async function loadPersonalData() {
 
     const text = await response.text();
     personalDataSections = parsePersonalData(text);
+    personalExperienceBlocks = personalDataSections.professional_experience || [];
+    personalEducationBlocks = personalDataSections.education || [];
     personalContactBlocks = personalDataSections.contact || [];
+
+    renderProfessionalExperience();
+    renderEducation();
     renderPersonalContacts();
   } catch (error) {
     console.warn("personal_data.txt could not be loaded; using HTML fallback.", error);
