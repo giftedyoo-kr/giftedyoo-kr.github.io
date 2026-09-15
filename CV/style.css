@@ -4171,3 +4171,42 @@ body.lang-en .current-position-en {
 #educationList .institution-en {
   font-size: var(--fs-profile-institution) !important;
 }
+
+
+/* =========================================================
+   PROFILE 언어별 기관/학교명 표시 최종 고정
+   =========================================================
+   Kor:
+   - PROFESSIONAL EXPERIENCE의 영문 기관명 숨김
+   - EDUCATION의 영문 학교·학과명 숨김
+   - 한글 기관/학교명만 표시
+
+   Eng:
+   - PROFESSIONAL EXPERIENCE의 한글 기관명 숨김
+   - EDUCATION의 한글 학교·학과명 숨김
+   - 영문 기관/학교명만 표시
+
+   아래 규칙은 파일 맨 마지막에 두어 다른 스타일보다 우선 적용합니다.
+========================================================= */
+
+/* Kor에서는 한글만 표시 */
+body.lang-ko .profile-section .experience-institution-ko,
+body.lang-ko .profile-section #educationList .institution-ko {
+  display: block !important;
+}
+
+body.lang-ko .profile-section .experience-institution-en,
+body.lang-ko .profile-section #educationList .institution-en {
+  display: none !important;
+}
+
+/* Eng에서는 영문만 표시 */
+body.lang-en .profile-section .experience-institution-ko,
+body.lang-en .profile-section #educationList .institution-ko {
+  display: none !important;
+}
+
+body.lang-en .profile-section .experience-institution-en,
+body.lang-en .profile-section #educationList .institution-en {
+  display: block !important;
+}
