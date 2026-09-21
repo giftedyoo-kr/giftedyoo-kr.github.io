@@ -771,7 +771,27 @@ function publicationIndexing(pub) {
 }
 
 function publicationRole(pub) {
-  return pick(pub, ["역할", "Role", "role", "참여역할", "저자역할", "집필역할", "구분"]);
+  const roleKo = pick(pub, [
+    "역할",
+    "Role",
+    "role",
+    "참여역할",
+    "저자역할",
+    "집필역할",
+    "구분"
+  ]);
+
+  const roleEn = pick(pub, [
+    "역할_영문",
+    "역할(영문)",
+    "Role (EN)",
+    "English Role",
+    "Role_EN",
+    "role_en"
+  ]);
+
+  if (currentLang === "en") return normalizeText(roleEn || roleKo);
+  return normalizeText(roleKo || roleEn);
 }
 
 function publicationAuthorCategory(pub) {
