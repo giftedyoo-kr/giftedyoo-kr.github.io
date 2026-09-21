@@ -981,8 +981,15 @@ function projectRole(row) {
 function projectRoleCategory(row) {
   const role = normalizeText(projectRole(row)).replace(/\s+/g, "");
 
+  // 책임연구원과 동일한 PI 범주
+  // '공동책임' / '세부책임'처럼 짧게 입력해도 PI로 분류합니다.
   if (
     role.includes("책임연구원") ||
+    role === "책임" ||
+    role.includes("공동책임연구원") ||
+    role === "공동책임" ||
+    role.includes("세부책임연구원") ||
+    role === "세부책임" ||
     role.includes("연구책임자") ||
     role.includes("과제책임자") ||
     role.includes("책임자")
@@ -990,7 +997,7 @@ function projectRoleCategory(row) {
     return "PI";
   }
 
-  // 사용자가 지정한 규칙: 연구원, 연구보조원은 모두 참여연구원으로 분류
+  // 연구원, 연구보조원은 참여연구원 범주
   if (
     role.includes("참여연구원") ||
     role.includes("연구보조원") ||
@@ -1005,12 +1012,32 @@ function projectRoleCategory(row) {
 
 function projectRoleDisplay(row) {
   const raw = normalizeText(projectRole(row));
+  const compact = raw.replace(/\s+/g, "");
+
   if (currentLang === "ko") {
-    return raw || (projectRoleCategory(row) === "PI" ? t("role.pi") : projectRoleCategory(row) === "PARTICIPANT" ? t("role.participant") : "");
+    // 짧게 입력한 역할명은 목록 알약에서 정식 명칭으로 표시
+    if (compact === "공동책임") return "공동책임연구원";
+    if (compact === "세부책임") return "세부책임연구원";
+
+    return raw || (
+      projectRoleCategory(row) === "PI"
+        ? t("role.pi")
+        : projectRoleCategory(row) === "PARTICIPANT"
+          ? t("role.participant")
+          : ""
+    );
   }
 
-  const compact = raw.replace(/\s+/g, "");
-  if (compact.includes("책임연구원") || compact.includes("연구책임자") || compact.includes("과제책임자") || compact.includes("책임자")) return t("role.pi");
+  // 영문 화면: PI 범주는 같지만 역할명은 구분해서 표시
+  if (compact === "공동책임" || compact.includes("공동책임연구원")) return "Co-Principal Investigator";
+  if (compact === "세부책임" || compact.includes("세부책임연구원")) return "Subproject Principal Investigator";
+  if (
+    compact === "책임" ||
+    compact.includes("책임연구원") ||
+    compact.includes("연구책임자") ||
+    compact.includes("과제책임자") ||
+    compact.includes("책임자")
+  ) return "Principal Investigator";
   if (compact.includes("연구보조원")) return t("role.assistant");
   if (compact === "연구원") return t("role.researcher");
   if (compact.includes("참여연구원") || compact.includes("참여")) return t("role.participant");

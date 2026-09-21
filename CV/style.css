@@ -144,6 +144,9 @@ svg text {
      --fs-contact-value
      → 실제 이메일 주소 / 전화번호 / 주소 내용
   --------------------------------------------------------- */
+  /* 상단 내비게이션 메뉴 글씨 크기 */
+  --fs-nav-menu: 13px;
+
   --fs-section-title: clamp(18px, 1.55vw, 24px);
   --fs-section-title-mobile: 18px;
   --fs-subsection-title: 12px;
@@ -294,7 +297,7 @@ a {
 
 /* 상단 내비게이션 */
 .nav a {
-  font-size: 13px;
+  font-size: var(--fs-nav-menu);
   font-weight: 600;
   position: relative;
 }

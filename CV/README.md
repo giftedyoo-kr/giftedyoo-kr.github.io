@@ -121,6 +121,7 @@ url=tel:0332590127
 자주 조정하는 글씨 크기는 상단 변수로 관리합니다.
 
 ```css
+--fs-nav-menu: 13px;
 --fs-section-title: clamp(18px, 1.55vw, 24px);
 --fs-section-title-mobile: 18px;
 --fs-subsection-title: 12px;
@@ -246,3 +247,15 @@ py -m http.server 8000
 ```
 
 그다음 브라우저에서 `http://localhost:8000`으로 접속합니다.
+
+
+## PROJECTS 역할 분류
+
+PROJECTS의 `역할` 값은 목록의 역할 알약과 ROLE 필터에 사용됩니다.
+
+- `책임연구원` → PI / Eng: `Principal Investigator`
+- `공동책임연구원`, `공동책임` → PI / Eng: `Co-Principal Investigator`
+- `세부책임연구원`, `세부책임` → PI / Eng: `Subproject Principal Investigator`
+- `공동책임`으로 입력해도 Kor 목록에는 `공동책임연구원`으로 표시
+- `세부책임`으로 입력해도 Kor 목록에는 `세부책임연구원`으로 표시
+- 위 역할들은 모두 책임연구원과 동일하게 PI 필터에 포함됩니다.
