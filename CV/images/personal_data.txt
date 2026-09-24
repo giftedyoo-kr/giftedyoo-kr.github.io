@@ -1,0 +1,105 @@
+# =========================================================
+# PERSONAL DATA
+# 값만 수정하면 홈페이지의 개인 정보가 바뀝니다.
+# 같은 [professional_experience], [education], [contact] 블록을 필요한 만큼 추가/삭제할 수 있으며, 작성 순서대로 홈페이지에 표시됩니다.
+# =========================================================
+
+[profile]
+profile_image=images/profile.png
+researchgate_url=https://www.researchgate.net/profile/Youngjae-Yoo-4
+researchgate_label=ResearchGate
+google_scholar_url=https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko
+google_scholar_label=Google Scholar
+
+[current_position]
+company_url=https://kric.re.kr/
+company_name_ko=한국기후변화연구원
+company_name_en=Korea Research Institute on Climate Change
+department_name_ko=기후재난연구실
+department_name_en=Climate Disaster Research Department
+position_ko=선임연구원
+position_en=Senior Researcher
+logo_image=images/current_position_logo.png
+
+
+# [professional_experience] 블록을 반복하면 경력이 그 수만큼 표시됩니다.
+# 기존 키(period, institution_ko/en, position)를 그대로 사용할 수 있습니다.
+# 필요하면 period_k/e, institution_k/e, position_k/e 형식도 사용할 수 있습니다.
+
+[professional_experience]
+period_k=2026.08.–현재
+period_e=2026.08.–Present
+institution_ko=한국기후변화연구원
+institution_en=Korea Research Institute on Climate Change (KRIC)
+position_k=선임연구원
+position_e=SENIOR RESEARCHER
+
+[professional_experience]
+period=2023.03.–2026.08.
+institution_ko=고려대학교 오정리질리언스연구원
+institution_en=OJEong Resilience Institute (OJERI), Korea University
+position_k=연구교수
+position_e=RESEARCH PROFESSOR
+
+[professional_experience]
+period=2019.01.–2019.08.
+institution_ko=고려대학교 환경 GIS/RS센터
+institution_en=Environmental GIS/RS Center, Korea University
+position_k=연구원
+position_e=RESEARCHER
+
+# [education] 블록을 반복하면 학력이 그 수만큼 표시됩니다.
+# 기존 키(period, degree, degree_detail_ko/en, school_department_ko/en)를 그대로 사용할 수 있습니다.
+# 필요하면 각 항목에 _k / _e 형식도 사용할 수 있습니다.
+[education]
+period=2019.09.–2023.02.
+degree=Ph.D.
+degree_detail_ko=이학박사 · 환경계획및조경학
+degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
+school_department_ko=고려대학교 일반대학원 환경생태공학과
+school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
+
+
+# =========================================================
+# CONTACT
+# [contact] 블록은 필요한 만큼 반복할 수 있으며, 작성 순서대로 표시됩니다.
+# title_k/value_k : Kor에서 사용
+# title_e/value_e : Eng에서 사용
+# title_e/value_e가 없으면 Eng에서도 해당 *_k 값을 사용합니다.
+# url : Kor/Eng 공통 링크
+# url_e : Eng에서만 별도 링크가 필요할 때 사용하며, 없으면 url을 사용합니다.
+# url은 선택사항이며, 없으면 일반 텍스트로 표시됩니다.
+# =========================================================
+
+[contact]
+title_k=EMAIL
+value_k=giftedyoo@kric.re.kr
+url=mailto:giftedyoo@kric.re.kr
+
+[contact]
+title_k=연락처(사무실)
+title_e=OFFICE PHONE
+value_k=033-259-0127
+value_e=+82-33-259-0127
+url=tel:0332590127
+
+[contact]
+title_k=주소
+title_e=ADDRESS
+value_k=(24399) 강원특별자치도 춘천시 동내면 순환대로 812(기후변화대응 복합센터)
+value_e=812, Sunhwan-daero, Dongnae-myeon, Chuncheon-si, Gangwon-do 24399, Republic of Korea
+
+# =========================================================
+# Google Sheets 연동
+# Google Sheets의 id와 gid를 수정하면 정보가 연동됩니다. id와 gid를 찾는 방법은 아래를 참고하세요.
+# https://docs.google.com/spreadsheets/d/[spreadsheet_id]/edit?gid=[gid_no]
+# gid는 Google sheet의 각 sheet별로 다르므로, 확인하여 수정해야 합니다.
+# =========================================================
+[google_sheets]
+spreadsheet_id=15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900
+publication_sci_gid=1044637119
+publication_kci_gid=977487788
+publication_book_gid=1750437029
+project_rnd_gid=445426444
+project_service_gid=2133901227
+award_gid=1362262409

@@ -1,0 +1,4315 @@
+/*
+============================================================
+ YOUNGJAE YOO ACADEMIC WEBSITE — STYLE SETTINGS
+============================================================
+
+이 파일은 크게 세 부분으로 나뉩니다.
+
+  1. 폰트 설정
+     - 사이트 전체에서 사용하는 글꼴 종류를 설정합니다.
+     - 기본적으로 아래 --font-main 값 하나만 바꾸면 전체 페이지 폰트가 바뀝니다.
+
+  2. 폰트 크기 설정
+     - 자주 조정할 수 있는 주요 글씨 크기를 한곳에서 관리합니다.
+     - 특히 HOME의 PUBLICATIONS / PROJECTS 요약 그래프 글씨 크기를
+       별도 변수로 분리해두었습니다.
+
+  3. 나머지 스타일
+     - 색상, 여백, 배치, 테두리, 반응형 구조 등 실제 디자인 규칙입니다.
+============================================================
+*/
+
+
+/* =========================================================
+   1. 폰트 설정
+   =========================================================
+
+   [전체 기본 폰트]
+   --font-main
+   → 페이지의 한글·영문·숫자 전체에 사용됩니다.
+   → 현재는 Noto Sans KR 하나로 통일되어 있습니다.
+
+   폰트를 바꾸고 싶다면 아래 한 줄만 수정하면 됩니다.
+   예: --font-main: "Pretendard", sans-serif;
+
+   --font-ui
+   → 버튼, 필터, 메뉴, 소제목 등 UI 요소용입니다.
+   → 현재는 --font-main과 동일하게 연결되어 있습니다.
+
+   --font-chart
+   → HOME의 PUBLICATIONS 그래프 및 요약 숫자용입니다.
+   → 현재는 --font-main과 동일하게 연결되어 있습니다.
+========================================================= */
+
+:root {
+  --font-main: "Noto Sans KR", sans-serif;
+  --font-ui: var(--font-main);
+  --font-chart: var(--font-main);
+}
+
+/* 본문 및 일반 텍스트 */
+/* HTML 기본 동작 */
+html,
+body {
+  font-family: var(--font-main);
+}
+
+/* 버튼·입력요소는 브라우저 기본 폰트 대신 사이트 폰트를 그대로 사용 */
+/* 폼·버튼 공통 스타일 */
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-ui);
+}
+
+/* SVG 그래프 안의 연도·논문 건수도 같은 폰트를 사용 */
+svg text {
+  font-family: var(--font-chart);
+}
+
+
+/* =========================================================
+   2. 폰트 크기 설정
+   =========================================================
+
+   아래 값은 자주 조절할 가능성이 높은 글씨 크기입니다.
+   특히 그래프 관련 값은 이 구역만 수정하면 됩니다.
+
+   [페이지 주요 제목]
+   --fs-section-title
+   → PROFILE / RESEARCH / PUBLICATIONS / PROJECTS / AWARDS / CONTACT
+
+   --fs-section-title-mobile
+   → 모바일 화면의 위 섹션명 크기
+
+   --fs-subsection-title
+   → CURRENT POSITION / PROFESSIONAL EXPERIENCE /
+      EDUCATION / GET IN TOUCH
+
+   --fs-contact-title
+   → EMAIL / OFFICE PHONE / ADDRESS
+
+   --fs-contact-value
+   → 실제 이메일 주소 / 전화번호 / 주소 내용
+
+   [HOME 요약 패널 / 그래프]
+   --fs-overview-title
+   → PUBLICATIONS / PROJECTS 제목
+
+   --fs-overview-arrow
+   → PUBLICATIONS / PROJECTS 오른쪽의 ↗ 아이콘
+
+   --fs-overview-label
+   → 총 논문수 / SCI 논문수 / KCI 논문수 /
+      총 참여과제수 / R&D 과제수 / 용역과제수
+
+   --fs-overview-note
+   → PROJECTS 아래의 R&D 연속과제 집계 안내문
+
+   --fs-chart-legend
+   → 그래프의 SCI / KCI / TOTAL 범례
+
+   --fs-chart-number
+   → 그래프 내부 숫자:
+      연도(예: 2023, 2024)와 연도별 총 논문 건수
+
+   --fs-overview-big-number
+   → HOME 요약 패널의 큰 숫자
+      (총 논문수, SCI, KCI, 총 과제수 등)
+
+   --fs-overview-big-number-mobile
+   → 모바일에서 위 큰 숫자 크기
+========================================================= */
+
+:root {
+  /* ---------------------------------------------------------
+     페이지 주요 제목 크기
+     ---------------------------------------------------------
+
+     --fs-section-title
+     → PROFILE / RESEARCH / PUBLICATIONS / PROJECTS /
+        AWARDS / CONTACT 같은 각 섹션의 큰 제목
+
+     --fs-section-title-mobile
+     → 모바일 화면에서 위 섹션 제목의 크기
+
+     --fs-subsection-title
+     → CURRENT POSITION / PROFESSIONAL EXPERIENCE /
+        EDUCATION / GET IN TOUCH 같은 소제목
+
+     --fs-contact-title
+     → EMAIL / OFFICE PHONE / ADDRESS 같은 CONTACT 항목 제목
+
+     --fs-contact-value
+     → 실제 이메일 주소 / 전화번호 / 주소 내용
+  --------------------------------------------------------- */
+  /* 상단 내비게이션 메뉴 글씨 크기 */
+  --fs-nav-menu: 13px;
+
+  --fs-section-title: clamp(18px, 1.55vw, 24px);
+  --fs-section-title-mobile: 18px;
+  --fs-subsection-title: 12px;
+
+  /* PROFILE의 기관/학교명 크기
+     PROFESSIONAL EXPERIENCE 기관명과 EDUCATION 학교·학과명에 함께 적용됩니다. */
+  --fs-profile-institution: 15px;
+
+  --fs-contact-title: 13px;
+  --fs-contact-value: 16px;
+
+  /* AWARDS의 '주최 / Organizer' 라벨 크기 */
+  --fs-award-organizer-label: 13px;
+
+  /* ---------------------------------------------------------
+     HOME 요약 패널 / 그래프
+  --------------------------------------------------------- */
+
+  /* PUBLICATIONS / PROJECTS 제목 */
+  --fs-overview-title: 12px;
+
+  /* 요약 패널 오른쪽 ↗ 아이콘 */
+  --fs-overview-arrow: 13px;
+
+  /* 총 논문수 / SCI 논문수 / KCI 논문수 /
+     총 참여과제수 / R&D 과제수 / 용역과제수 */
+  --fs-overview-label: 11.5px;
+
+  /* PROJECTS 아래 R&D 연속과제 집계 안내문 */
+  --fs-overview-note: 10.5px;
+
+  /* 그래프의 SCI / KCI / TOTAL 범례 */
+  --fs-chart-legend: 10px;
+
+  /* 그래프의 연도 및 연도별 총 논문 건수 */
+  --fs-chart-number: 10px;
+
+  /* HOME 요약 패널의 큰 숫자 */
+  --fs-overview-big-number: clamp(25px, 2.1vw, 35px);
+  --fs-overview-big-number-mobile: 27px;
+}
+
+
+
+/*
+   [자간 설정]
+   이 버전에서는 letter-spacing을 별도로 지정하지 않습니다.
+   모든 텍스트는 사용 중인 폰트(Noto Sans KR)의 기본 자간(normal)을 사용합니다.
+   따라서 PROFILE, PROFESSIONAL EXPERIENCE, CURRENT POSITION 등
+   영문 대문자 라벨도 폰트 자체의 기본 간격으로 표시됩니다.
+*/
+
+/* =========================================================
+   3. 나머지 스타일
+   =========================================================
+   아래부터는 레이아웃, 색상, 여백, 반응형 디자인 등입니다.
+   글꼴 종류는 위 '1. 폰트 설정'에서 통합 관리합니다.
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 전역 CSS 변수 */
+:root {
+  --black: #111111;
+  --white: #ffffff;
+  --paper: #f4f3ef;
+  --gray: #8d8d89;
+  --line: #d8d7d2;
+  --dark-line: #333333;
+
+  --content-indent: 24px;
+  --filter-label-width: 42px;
+  --filter-gap: 10px;
+}
+
+/* HTML 기본 동작 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 페이지 본문 기본 스타일 */
+body {
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+/* 링크 기본 스타일 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 상단 고정 헤더 */
+.header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88px;
+  padding: 0 4.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  transition: background .35s ease, color .35s ease, height .35s ease;
+}
+
+/* 상단 고정 헤더 */
+.header.scrolled {
+  height: 72px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(12px);
+  color: var(--black);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+/* 사이트 로고 */
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+/* 사이트 로고 */
+.logo-main {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* 사이트 로고 */
+.logo-sub {
+  font-size: 11px;
+  opacity: .75;
+}
+
+/* 상단 내비게이션 */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 29px;
+}
+
+/* 상단 내비게이션 */
+.nav a {
+  font-size: var(--fs-nav-menu);
+  font-weight: 600;
+  position: relative;
+}
+
+/* 상단 내비게이션 */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width .25s ease;
+}
+
+/* 상단 내비게이션 */
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.menu-button {
+  display: none;
+  border: 0;
+  background: transparent;
+  padding: 5px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.menu-button span {
+  display: block;
+  width: 24px;
+  height: 1px;
+  margin: 5px 0;
+  background: currentColor;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.mobile-nav {
+  display: none;
+}
+
+/* 메인 히어로 영역 */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background:
+/* 메인 히어로 영역 */
+    radial-gradient(circle at 75% 30%, rgba(255,255,255,.12), transparent 0 22%),
+    linear-gradient(125deg, #171f1e 0%, #334540 45%, #65776b 100%);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 50%;
+}
+
+/* 메인 히어로 영역 */
+.hero::before {
+  width: 48vw;
+  height: 48vw;
+  right: -6vw;
+  top: 3vh;
+}
+
+/* 메인 히어로 영역 */
+.hero::after {
+  width: 28vw;
+  height: 28vw;
+  right: 7vw;
+  top: 19vh;
+}
+
+/* 메인 히어로 영역 */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.32), rgba(0,0,0,.02) 72%);
+}
+
+/* 메인 히어로 영역 */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 경력·학력 타임라인 */
+.eyebrow,
+.mini-label,
+.project-category,
+.timeline-type {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* PROFILE/CONTACT 소제목 크기
+   → CSS 상단의 --fs-subsection-title 값으로 조정 */
+.mini-label {
+  font-size: var(--fs-subsection-title);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.eyebrow {
+  opacity: .78;
+}
+
+/* 메인 히어로 영역 */
+.hero h1 {
+  font-weight: 500;
+}
+
+/* 메인 히어로 영역 */
+.hero h1 span {
+  font-weight: 300;
+}
+
+/* 메인 히어로 영역 */
+.hero-description {
+  max-width: 720px;
+  font-weight: 300;
+  opacity: .92;
+}
+
+/* 메인 히어로 영역 */
+.hero-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* 공통 버튼 */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 128px;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid white;
+  font-size: 10px;
+  font-weight: 600;
+  transition: .25s ease;
+}
+
+/* 공통 버튼 */
+.button-light {
+  background: white;
+  color: var(--black);
+}
+
+/* 공통 버튼 */
+.button-light:hover {
+  background: transparent;
+  color: white;
+}
+
+/* 공통 버튼 */
+.button-outline:hover {
+  background: white;
+  color: var(--black);
+}
+
+/* 메인 히어로 영역 */
+.hero-meta {
+  position: absolute;
+  z-index: 3;
+  left: 4.5vw;
+  right: 4.5vw;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  opacity: .65;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.scroll-indicator {
+  position: absolute;
+  z-index: 3;
+  right: 4.5vw;
+  top: 50%;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transform: translateY(-50%);
+  font-size: 9px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.scroll-indicator span:first-child {
+  writing-mode: vertical-rl;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.arrow {
+  font-size: 18px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.section {
+  padding: 140px 8vw;
+}
+
+/* 각 섹션 번호와 제목 */
+.section-heading {
+  display: flex;
+  gap: 17px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.section-number {
+  font-size: 10px;
+  color: var(--gray);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: 9vw;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-title h3,
+.career-title h3 {
+  margin-top: 25px;
+  font-size: clamp(40px, 5.2vw, 78px);
+  line-height: 1.04;
+  font-weight: 500;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-copy {
+  max-width: 750px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-copy .lead {
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-copy > p:not(.lead) {
+  font-size: 15px;
+  color: #555;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-facts {
+  border-top: 1px solid var(--line);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-facts > div {
+  display: grid;
+  grid-template-columns: 115px 1fr;
+  gap: 25px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-facts span {
+  font-size: 10px;
+  color: var(--gray);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-facts strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* RESEARCH 세부 요소 */
+.research-intro {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+}
+
+/* RESEARCH 세부 요소 */
+.research-intro h3 {
+  font-size: clamp(32px, 4vw, 58px);
+  font-weight: 500;
+}
+
+/* RESEARCH 세부 요소 */
+.research-intro p {
+  max-width: 650px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* RESEARCH 세부 요소 */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid #bebdb7;
+  border-left: 1px solid #bebdb7;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card {
+  border-right: 1px solid #bebdb7;
+  border-bottom: 1px solid #bebdb7;
+  display: flex;
+  flex-direction: column;
+  transition: background .3s ease, color .3s ease;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card:hover {
+  background: var(--black);
+  color: white;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.card-number {
+  font-size: 10px;
+  opacity: .65;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card h4 {
+  font-weight: 500;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card p {
+  opacity: .7;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.tags {
+  margin-top: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.tags span {
+  padding: 5px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 9px;
+  opacity: .65;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-list {
+  border-top: 1px solid var(--line);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-item {
+  display: grid;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  transition: padding .25s ease, background .25s ease;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-item:hover {
+  background: #fafafa;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-year {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-category {
+  color: var(--gray);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-main h3 {
+  font-weight: 500;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-main p {
+  color: #666;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-arrow {
+  font-weight: 300;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-section {
+  color: white;
+}
+
+/* 각 섹션 번호와 제목 */
+.section-heading.light .section-number {
+  color: #777;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-top h3 {
+  font-size: clamp(38px, 4.6vw, 70px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-top p {
+  max-width: 600px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-list {
+  border-top: 1px solid var(--dark-line);
+}
+
+/* PUBLICATIONS 목록 */
+.publication-item {
+  display: grid;
+  grid-template-columns: 105px 1fr 90px;
+  gap: 35px;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--dark-line);
+  transition: padding .25s ease, background .25s ease;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-item:hover {
+  padding-left: 18px;
+  padding-right: 18px;
+  background: #171717;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-year,
+.pub-type {
+  font-size: 10px;
+  color: #888;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-info h4 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-info p {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-type {
+  text-align: right;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.career-section {
+  background: var(--paper);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.career-layout {
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  gap: 9vw;
+}
+
+/* 경력·학력 타임라인 */
+.timeline {
+  border-top: 1px solid #c6c4bd;
+}
+
+/* 경력·학력 타임라인 */
+.timeline-item {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 25px;
+  padding: 28px 0;
+  border-bottom: 1px solid #c6c4bd;
+}
+
+/* 경력·학력 타임라인 */
+.timeline-period {
+  font-size: 11px;
+  color: #888;
+}
+
+/* 경력·학력 타임라인 */
+.timeline-type {
+  color: #888;
+}
+
+/* 경력·학력 타임라인 */
+.timeline-item h4 {
+  margin-top: 6px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* 경력·학력 타임라인 */
+.timeline-item p {
+  margin-top: 5px;
+  color: #666;
+  font-size: 13px;
+}
+
+/* CONTACT 세부 요소 */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10vw;
+}
+
+/* CONTACT 세부 요소 */
+.contact-grid h3 {
+  margin-top: 25px;
+  font-size: clamp(50px, 6vw, 90px);
+  line-height: .98;
+  font-weight: 500;
+}
+
+/* CONTACT 세부 요소 */
+.contact-info {
+  margin-left: var(--content-indent);
+  border-top: 1px solid var(--line);
+}
+
+/* CONTACT 세부 요소 */
+.contact-info > div {
+  border-bottom: 1px solid var(--line);
+}
+
+/* CONTACT 세부 요소 */
+.contact-info span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: var(--fs-contact-title);
+  color: var(--gray);
+}
+
+/* CONTACT 세부 요소 */
+.contact-info a:hover {
+  opacity: .55;
+}
+
+footer {
+  min-height: 92px;
+  padding: 0 4.5vw;
+  background: var(--black);
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 9px;
+}
+
+footer a {
+  color: white;
+}
+
+@media (max-width: 1100px) {
+/* 상단 내비게이션 */
+  .nav {
+    gap: 18px;
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-card {
+    min-height: 390px;
+  }
+}
+
+@media (max-width: 820px) {
+/* 상단 고정 헤더 */
+  .header {
+    height: 70px;
+    padding: 0 24px;
+  }
+
+/* 사이트 로고 */
+  .logo-sub,
+  .nav {
+    display: none;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .menu-button {
+    display: block;
+    color: inherit;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .mobile-nav {
+    position: fixed;
+    z-index: 999;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,.98);
+    padding: 30px 24px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .mobile-nav.open {
+    display: flex;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .mobile-nav a {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-description {
+    font-size: 14px;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-meta,
+  .scroll-indicator {
+    display: none;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .section {
+    padding: 95px 28px;
+  }
+
+/* RESEARCH 세부 요소 */
+  .profile-grid,
+  .research-intro,
+  .publications-top,
+  .career-layout,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .profile-copy .lead {
+    font-size: 19px;
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-card {
+    min-height: 330px;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .card-number {
+    margin-bottom: 42px;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-arrow {
+    display: none;
+  }
+
+/* PUBLICATIONS 목록 */
+  .publication-item {
+    grid-template-columns: 65px 1fr;
+  }
+
+/* PUBLICATIONS 세부 요소 */
+  .pub-type {
+    display: none;
+  }
+
+/* 경력·학력 타임라인 */
+  .timeline-item {
+    grid-template-columns: 95px 1fr;
+  }
+
+  footer {
+    padding: 28px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* PUBLICATIONS 목록 */
+.publications-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter {
+  min-width: 88px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid #3a3a3a;
+  border-radius: 999px;
+  background: transparent;
+  color: #8d8d8d;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter span {
+  margin-left: 5px;
+  font-size: 9px;
+  opacity: .65;
+}
+
+.pub-filter:hover,
+/* PUBLICATIONS 세부 요소 */
+.pub-filter.active {
+  border-color: #fff;
+  background: #fff;
+  color: #111;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-status {
+  border-top: 1px solid var(--dark-line);
+  color: #777;
+  font-size: 12px;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-status:empty {
+  display: none;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-item-sheet {
+  display: grid;
+  align-items: start;
+  border-bottom: 1px solid var(--dark-line);
+  transition: padding .25s ease, background .25s ease;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-item-sheet:hover {
+  background: #171717;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-main h4 {
+  font-weight: 400;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-authors-sheet {
+  color: #9a9a9a;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-journal-sheet {
+  color: #6f6f6f;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-grade {
+  display: inline-block;
+  padding: 5px 9px;
+  border: 1px solid #555;
+  border-radius: 999px;
+  color: #aaa;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-doi {
+  color: #aaa;
+  transition: color .2s ease;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-doi:hover {
+  color: #fff;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-empty {
+  padding: 35px 0;
+  border-bottom: 1px solid var(--dark-line);
+  color: #777;
+  font-size: 13px;
+}
+
+@media (max-width: 820px) {
+/* PUBLICATIONS 목록 */
+  .publications-summary {
+    gap: 18px;
+  }
+}
+
+/* 해당 선택자의 화면 스타일 */
+.projects-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  align-items: end;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.projects-top h3 {
+  font-size: clamp(38px, 4.6vw, 70px);
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* PUBLICATIONS 목록 */
+.project-filters,
+.publication-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-filters {
+  padding-left: calc(var(--filter-label-width) + var(--filter-gap));
+}
+
+/* PUBLICATIONS 세부 요소 */
+.project-filter,
+.pub-filter {
+  appearance: none;
+  border: 1px solid #c9c8c3;
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 9px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.project-filter:hover,
+/* PROJECTS 필터·목록·배지 */
+.project-filter.active {
+  background: var(--black);
+  color: white;
+  border-color: var(--black);
+}
+
+/* PUBLICATIONS 목록 */
+.publications-section .pub-filter {
+  border-color: #444;
+  color: #aaa;
+}
+
+.publications-section .pub-filter:hover,
+/* PUBLICATIONS 목록 */
+.publications-section .pub-filter.active {
+  background: white;
+  color: var(--black);
+  border-color: white;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.project-filter span,
+.pub-filter span {
+  margin-left: 5px;
+  opacity: .65;
+}
+
+/* PUBLICATIONS 목록 */
+.sheet-status,
+.publication-status {
+  min-height: 30px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* PUBLICATIONS 목록 */
+.sheet-empty,
+.publication-empty {
+  padding: 34px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: #888;
+  font-size: 13px;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-section .publication-empty {
+  border-color: var(--dark-line);
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-isbn {
+  font-size: 9px;
+  color: #777;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.awards-layout {
+  display: grid;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.awards-layout > div:first-child h3 {
+  margin-top: 25px;
+  font-size: clamp(40px, 5.2vw, 78px);
+  line-height: 1.04;
+  font-weight: 500;
+}
+
+/* AWARDS 섹션 */
+.awards-section .sheet-status {
+  margin-left: var(--content-indent);
+}
+
+/* AWARDS 목록 */
+.award-list {
+  margin-left: var(--content-indent);
+  border-top: 1px solid var(--line);
+}
+
+/* AWARDS 목록 */
+.award-item {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 25px;
+  padding: 27px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* AWARDS 목록 */
+.award-date {
+  font-size: 11px;
+  color: var(--gray);
+}
+
+/* AWARDS 목록 */
+.award-item h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* AWARDS 목록 */
+.award-item p {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* AWARDS 목록 */
+.award-item .award-detail {
+  color: #999;
+}
+
+@media (max-width: 820px) {
+/* 해당 선택자의 화면 스타일 */
+  .projects-top,
+  .awards-layout {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+/* PUBLICATIONS 목록 */
+  .project-filters,
+  .publication-filters {
+    margin-top: 20px;
+  }
+
+/* AWARDS 목록 */
+  .award-item {
+    grid-template-columns: 90px 1fr;
+  }
+}
+/* CURRENT POSITION 영역 */
+.current-position {
+  border-top: 1px solid #c6c4bd;
+  max-width: 520px;
+}
+/* CURRENT POSITION 영역 */
+.current-position strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+/* CURRENT POSITION 영역 */
+.current-position strong span,
+.current-position p span {
+  color: #777;
+  font-weight: 400;
+}
+/* CURRENT POSITION 영역 */
+.current-position p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 14px;
+}
+/* 해당 선택자의 화면 스타일 */
+.career-detail {
+  min-width: 0;
+}
+/* 해당 선택자의 화면 스타일 */
+.career-group > .mini-label {
+  margin-bottom: 18px;
+  color: #777;
+}
+/* 경력·학력 타임라인 */
+.education-group .timeline-item p + p {
+  color: #888;
+  margin-top: 3px;
+}
+@media (max-width: 820px) {
+/* CURRENT POSITION 영역 */
+  .current-position { margin-top: 32px; }
+/* 해당 선택자의 화면 스타일 */
+  .career-group + .career-group { margin-top: 45px; }
+}
+/* 해당 선택자의 화면 스타일 */
+.section {
+  padding-top: 105px;
+  padding-bottom: 105px;
+}
+
+/* 각 섹션 번호와 제목 */
+.section-heading {
+  margin-bottom: 58px;
+}
+
+/* 메인 히어로 영역 */
+.hero h1 {
+}
+/* PUBLICATIONS 목록 */
+.projects-section,
+.publications-section {
+  padding-top: 78px;
+  padding-bottom: 78px;
+}
+
+/* 각 섹션 번호와 제목 */
+.projects-section .section-heading,
+.publications-section .section-heading {
+  margin-bottom: 38px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.projects-top {
+  margin-bottom: 24px;
+}
+
+/* PUBLICATIONS 목록 */
+.projects-top h3,
+.publications-top h3 {
+  font-size: clamp(30px, 3.6vw, 52px);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-arrow {
+  font-size: 19px;
+}
+/* PUBLICATIONS 목록 */
+.publications-top {
+  margin-bottom: 28px;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-summary {
+  gap: 14px;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-top p {
+  line-height: 1.6;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-status {
+  min-height: 0;
+  padding: 12px 0;
+  margin-bottom: 0;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-authors-sheet {
+  font-size: 11.5px;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-journal-sheet {
+  font-size: 11px;
+}
+/* 해당 선택자의 화면 스타일 */
+.author-highlight {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+/* PUBLICATIONS 세부 요소 */
+.pub-side {
+  gap: 6px;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-class-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #eee;
+  font-weight: 700;
+}
+/* PUBLICATIONS 세부 요소 */
+.pub-indexing {
+  max-width: 92px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+/* PUBLICATIONS 세부 요소 */
+.pub-book-role {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+  font-size: 11px;
+  color: #929292;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-book-role span {
+  font-size: 11px;
+  color: #666;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-book-role strong {
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+@media (max-width: 820px) {
+
+/* 해당 선택자의 화면 스타일 */
+  .section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+/* 각 섹션 번호와 제목 */
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+/* PUBLICATIONS 목록 */
+  .projects-section,
+  .publications-section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-item {
+    min-height: auto;
+  }
+
+/* PUBLICATIONS 세부 요소 */
+  .pub-side {
+    flex-wrap: wrap;
+  }
+
+/* PUBLICATIONS 세부 요소 */
+  .pub-class-badge {
+    width: 40px;
+    font-size: 8px;
+  }
+
+/* PUBLICATIONS 세부 요소 */
+  .pub-indexing {
+    text-align: left;
+    max-width: none;
+  }
+}
+
+/* 전역 CSS 변수 */
+:root {
+  --sci-color: #4f82c3;
+  --kci-color: #4b9a70;
+  --book-color: #b78535;
+  --rnd-color: #655fb5;
+  --service-color: #b9674d;
+}
+
+/* CONTACT 세부 요소 */
+.profile-grid,
+.career-layout,
+.contact-grid,
+.awards-layout {
+  gap: 6vw;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-copy .lead {
+  margin-bottom: 18px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-copy > p:not(.lead) {
+  line-height: 1.7;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-facts {
+  margin-top: 26px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-facts > div {
+  padding: 12px 0;
+}
+
+/* RESEARCH 세부 요소 */
+.research-intro {
+  margin-bottom: 22px;
+  gap: 6vw;
+}
+
+/* RESEARCH 세부 요소 */
+.research-intro p {
+  line-height: 1.65;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.card-number {
+  margin-bottom: 28px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.tags {
+  padding-top: 18px;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-item:hover {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-main h3 {
+  margin-top: 0;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-top {
+  gap: 6vw;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-item-sheet {
+  grid-template-columns: 62px 1fr 88px;
+  gap: 18px;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-item-sheet:hover {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-authors-sheet {
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-journal-sheet {
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+/* 경력·학력 타임라인 */
+.award-item,
+.timeline-item {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.career-group + .career-group {
+  margin-top: 28px;
+}
+
+/* CONTACT 세부 요소 */
+.contact-info > div {
+  padding: 14px 0;
+}
+/* RESEARCH 세부 요소 */
+.profile-title h3,
+.research-intro h3,
+.projects-top h3,
+.publications-top h3,
+.awards-layout > div:first-child h3,
+.career-title h3,
+.contact-grid h3 {
+  margin-top: 14px;
+  line-height: 1.05;
+  font-weight: 500;
+}
+/* PUBLICATIONS 세부 요소 */
+.pub-class-badge {
+  width: auto;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-class-sci {
+  color: #8db8ee;
+  background: rgba(79, 130, 195, .14);
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-class-kci {
+  color: #81c49e;
+  background: rgba(75, 154, 112, .14);
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-class-book {
+  color: #d9b067;
+  background: rgba(183, 133, 53, .15);
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-indexing {
+  color: #999;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-type-rnd {
+  color: var(--rnd-color);
+  background: rgba(101, 95, 181, .09);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-type-service {
+  color: var(--service-color);
+  background: rgba(185, 103, 77, .09);
+}
+/* PROJECTS 필터·목록·배지 */
+.project-arrow,
+.project-category {
+  display: none !important;
+}
+@media (max-width: 820px) {
+
+/* 각 섹션 번호와 제목 */
+  .section-heading,
+  .projects-section .section-heading,
+  .publications-section .section-heading {
+    margin-bottom: 20px;
+  }
+
+/* RESEARCH 세부 요소 */
+  .profile-grid,
+  .research-intro,
+  .career-layout,
+  .contact-grid,
+  .awards-layout {
+    gap: 28px;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-item {
+    gap: 11px;
+    padding: 11px 0;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-type-badge {
+    min-width: 44px;
+    height: 23px;
+    padding: 0 7px;
+  }
+
+/* PUBLICATIONS 목록 */
+  .publication-item-sheet {
+    grid-template-columns: 45px 1fr;
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+/* PUBLICATIONS 세부 요소 */
+  .pub-side {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+  }
+
+/* PUBLICATIONS 세부 요소 */
+  .pub-class-badge {
+    min-width: 48px;
+    height: 24px;
+    padding: 0 8px;
+  }
+}
+
+/* 전역 CSS 변수 */
+:root {
+  --feature-heading-size: clamp(40px, 4.8vw, 70px);
+}
+
+/* 메인 히어로 영역 */
+.hero h1 {
+  max-width: 920px;
+}
+
+/* 메인 히어로 영역 */
+.hero-description {
+  font-size: 17px;
+}
+
+/* RESEARCH 세부 요소 */
+.profile-title h3,
+.research-intro h3,
+.projects-top h3,
+.publications-top h3,
+.awards-layout > div:first-child h3,
+.career-title h3,
+.contact-grid h3 {
+  font-size: var(--feature-heading-size);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-copy .lead {
+  font-size: 24px;
+  line-height: 1.65;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-main h3 {
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+/* PUBLICATIONS 목록 */
+.publication-item-sheet {
+  padding: 13px 0;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-main h4 {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-authors-sheet,
+.pub-journal-sheet {
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* 경력·학력 타임라인 */
+.award-item h4,
+.timeline-item h4 {
+  font-size: 22px;
+}
+
+/* CONTACT 세부 요소 */
+.contact-info a,
+.contact-info p {
+  font-size: var(--fs-contact-value);
+}
+/* PROJECTS 필터·목록·배지 */
+.project-filter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-filter-row {
+  display: grid;
+  grid-template-columns: var(--filter-label-width) 1fr;
+  gap: var(--filter-gap);
+  align-items: center;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.filter-caption {
+  font-weight: 700;
+  color: #999;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter {
+  appearance: none;
+  border: 1px solid #c9c8c3;
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 9px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.project-role-filter:hover,
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter.active {
+  background: var(--black);
+  color: white;
+  border-color: var(--black);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter span {
+  margin-left: 5px;
+  opacity: .65;
+}
+/* 해당 선택자의 화면 스타일 */
+.cofirst-author-note {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 7px;
+  border: 1px solid #777;
+  border-radius: 999px;
+  color: #bbb;
+  font-size: 9px;
+  font-weight: 600;
+  vertical-align: 1px;
+}
+/* AWARDS 목록 */
+.award-title-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* AWARDS 목록 */
+.award-result-badge {
+  align-items: center;
+  min-height: 25px;
+  padding: 3px 10px;
+  border: 1px solid #b78535;
+  border-radius: 999px;
+  background: rgba(183, 133, 53, .08);
+  color: #9b702a;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* AWARDS 목록 */
+.award-content p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* AWARDS 목록 */
+.award-meta-label {
+  display: inline-block;
+  min-width: 48px;
+  margin-right: 8px;
+  color: #999;
+  font-size: var(--fs-award-organizer-label);
+  font-weight: 700;
+}
+/* 해당 선택자의 화면 스타일 */
+.optional-image-slot[hidden] {
+  display: none !important;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.namecard-slot {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  max-width: 460px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.namecard-image {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+/* 해당 선택자의 화면 스타일 */
+.namecard-image.landscape {
+  width: min(100%, 430px);
+  max-height: 240px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.namecard-image.portrait {
+  width: min(100%, 245px);
+  max-height: 430px;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-logo-slot {
+  margin-top: 18px;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-logo {
+  display: block;
+  width: auto;
+  max-width: 240px;
+  max-height: 78px;
+  object-fit: contain;
+}
+
+/* CONTACT 세부 요소 */
+.contact-photo {
+  max-width: 100%;
+  max-height: 480px;
+}
+/* CONTACT 세부 요소 */
+.contact-photo-column {
+  min-width: 0;
+}
+@media (max-width: 820px) {
+
+/* 메인 히어로 영역 */
+  .hero h1 {
+    font-size: clamp(46px, 13vw, 72px);
+  }
+
+/* PUBLICATIONS 목록 */
+  .section,
+  .projects-section,
+  .publications-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-filter-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+/* PUBLICATIONS 목록 */
+  .publication-filters {
+    padding-left: 0;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-main h3 {
+    font-size: 18px;
+  }
+
+/* PUBLICATIONS 세부 요소 */
+  .pub-main h4 {
+    font-size: 16px;
+  }
+
+/* AWARDS 목록 */
+  .award-title-line {
+    align-items: flex-start;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .namecard-image.landscape {
+    width: min(100%, 390px);
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .namecard-image.portrait {
+    width: min(100%, 230px);
+  }
+}
+/* RESEARCH 세부 요소 */
+.research-profile-grid {
+  margin-bottom: 34px;
+}
+/* PROFILE 섹션 */
+.profile-section .namecard-slot {
+  margin-top: 12px;
+}
+/* CURRENT POSITION 영역 */
+.current-position-row {
+  display: grid;
+  gap: 14px;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-row strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-row span {
+  font-size: 12px;
+  color: #888;
+}
+/* 경력·학력 타임라인 */
+.project-year,
+.pub-year,
+.award-date,
+.timeline-period {
+  font-size: 17px;
+  font-weight: 600;
+  color: #555;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-item {
+  min-height: 0;
+  padding: 9px 4px;
+  grid-template-columns: 76px 1fr auto;
+  gap: 14px;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.project-main h3,
+.pub-main h4 {
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-main p {
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-badge-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-badge {
+  display: inline-flex;
+  min-width: 54px;
+  min-height: 24px;
+  padding: 3px 10px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 8.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-role-pi {
+  color: #a85d91;
+  background: rgba(168, 93, 145, .09);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-participant {
+  color: #467f91;
+  background: rgba(70, 127, 145, .09);
+}
+/* 해당 선택자의 화면 스타일 */
+.list-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 14px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.list-toggle-button {
+  appearance: none;
+  min-width: 160px;
+  padding: 9px 18px;
+  border: 1px solid #bbb;
+  border-radius: 999px;
+  background: transparent;
+  color: #333;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.list-toggle-button:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.dark-toggle {
+  color: #ddd;
+  border-color: #555;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.dark-toggle:hover {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+/* CONTACT 세부 요소 */
+.awards-right-label,
+.contact-right-label {
+  margin-bottom: 14px;
+}
+
+/* CONTACT 세부 요소 */
+.contact-photo-column .mini-label {
+  display: none;
+}
+/* CONTACT 세부 요소 */
+.contact-photo-slot {
+  margin-top: 0;
+}
+/* PUBLICATIONS 목록 */
+.section,
+.projects-section,
+.publications-section {
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+
+/* 각 섹션 번호와 제목 */
+.section-heading,
+.projects-section .section-heading,
+.publications-section .section-heading {
+  margin-bottom: 16px;
+}
+
+/* PUBLICATIONS 목록 */
+.projects-top,
+.publications-top {
+  margin-bottom: 12px;
+}
+
+/* 경력·학력 타임라인 */
+.award-item,
+.timeline-item,
+.publication-item-sheet {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 820px) {
+/* 경력·학력 타임라인 */
+  .project-year,
+  .pub-year,
+  .award-date,
+  .timeline-period {
+    font-size: 15px;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-item {
+    grid-template-columns: 52px 1fr;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-badge-stack {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2px;
+  }
+
+/* CURRENT POSITION 영역 */
+  .current-position-row {
+    gap: 2px;
+  }
+}
+/* PROFILE 섹션 */
+.profile-section {
+  background: #ffffff !important;
+}
+
+/* RESEARCH 섹션 */
+.research-section {
+  background: #f4f3ef !important;
+}
+
+/* PROJECTS 섹션 */
+.projects-section {
+  background: #ffffff !important;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-section {
+  background: #111111 !important;
+}
+
+/* AWARDS 섹션 */
+.awards-section {
+  background: #f4f3ef !important;
+}
+
+/* CONTACT 섹션 */
+.contact-section {
+  background: #ffffff !important;
+}
+/* CURRENT POSITION 영역 */
+.current-position {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/* PROFILE 섹션 */
+.profile-section .timeline-item {
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+/* PROFILE 섹션 */
+.profile-section .timeline-period {
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+/* PROFILE 섹션 */
+.profile-section .career-group + .career-group {
+  margin-top: 16px !important;
+}
+
+/* PROFILE 섹션 */
+.profile-section .career-group > .mini-label {
+  margin-bottom: 8px !important;
+}
+
+/* PROFILE 섹션 */
+.profile-section .timeline {
+  margin-top: 0;
+  margin-left: var(--content-indent);
+}
+
+/* PROFILE 섹션 */
+.profile-section .timeline-item p {
+  margin-top: 2px;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-logo-link {
+  display: inline-block;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-logo-link:hover {
+  opacity: .72;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-organization {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-inline {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  line-height: 1;
+  font-weight: 700;
+  white-space: nowrap;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-role-inline.project-role-participant {
+  color: #467f91;
+  background: rgba(70, 127, 145, .09);
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-inline.project-role-pi {
+  color: #a85d91;
+  background: rgba(168, 93, 145, .09);
+}
+/* PROJECTS 필터·목록·배지 */
+.project-badge-stack,
+.project-role-badge {
+  display: none !important;
+}
+/* AWARDS 목록 */
+.award-item-plain {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) 100px;
+  gap: 18px;
+  align-items: start;
+}
+
+/* AWARDS 목록 */
+.award-main h4 {
+  margin: 0;
+}
+
+/* AWARDS 목록 */
+.award-main p {
+  margin-top: 4px;
+}
+
+/* AWARDS 목록 */
+.award-result-text {
+  padding-top: 1px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6f5324;
+  text-align: left;
+  white-space: nowrap;
+}
+/* AWARDS 목록 */
+.award-result-badge {
+  display: none !important;
+}
+/* CONTACT 세부 요소 */
+.contact-info > div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 820px) {
+/* PROFILE 섹션 */
+  .profile-section .timeline-item {
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+  }
+
+/* PROFILE 섹션 */
+  .profile-section .timeline-period {
+    font-size: 11.5px;
+  }
+
+/* AWARDS 목록 */
+  .award-item-plain {
+    grid-template-columns: 52px 1fr;
+    gap: 12px;
+  }
+
+/* AWARDS 목록 */
+  .award-result-text {
+    grid-column: 2;
+    font-size: 14px;
+    padding-top: 0;
+  }
+}
+/* CURRENT POSITION 영역 */
+.current-position-row {
+  grid-template-columns: 190px minmax(0, 1fr) !important;
+  column-gap: 18px !important;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-row strong,
+.current-position-row span {
+  margin: 0;
+}
+/* PROFILE 섹션 */
+.profile-section .timeline-item h4 {
+  margin-top: 2px !important;
+  margin-bottom: 0 !important;
+  line-height: 1.3;
+}
+
+/* PROFILE 섹션 */
+.profile-section .timeline-item .institution-en {
+  margin-top: 0 !important;
+  line-height: 1.28;
+}
+/* 경력·학력 타임라인 */
+.education-content .timeline-type {
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* EDUCATION 표시 */
+.education-content .degree-detail {
+  margin: 0 0 3px 0 !important;
+  font-size: 13px;
+  line-height: 1.3;
+  color: #666;
+}
+
+/* EDUCATION 표시 */
+.education-content h4 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 기관명 표시 */
+.education-content .institution-en {
+  margin-top: 0 !important;
+}
+/* 해당 선택자의 화면 스타일 */
+.filter-caption {
+  font-size: 11px !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-filter,
+.project-role-filter {
+  font-size: 10.5px !important;
+  padding: 9px 15px !important;
+}
+
+.project-role-filter[data-role-filter="PI"]:hover,
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter[data-role-filter="PI"].active {
+  background: #a85d91;
+  border-color: #a85d91;
+  color: #fff;
+}
+
+.project-role-filter[data-role-filter="PARTICIPANT"]:hover,
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter[data-role-filter="PARTICIPANT"].active {
+  background: #467f91;
+  border-color: #467f91;
+  color: #fff;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter[data-role-filter="ALL"].active,
+.project-role-filter[data-role-filter="ALL"]:hover {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-type-badge {
+  font-size: 10px !important;
+  min-width: 58px !important;
+  height: 27px !important;
+  padding: 0 11px !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-inline {
+  font-size: 9.5px !important;
+  min-height: 22px !important;
+  padding: 3px 9px !important;
+}
+/* PUBLICATIONS 목록 */
+.publication-filters .pub-filter {
+  font-size: 10.5px !important;
+  padding: 9px 15px !important;
+}
+/* PUBLICATIONS 세부 요소 */
+.pub-class-badge {
+  font-size: 10px !important;
+  min-width: 58px !important;
+  height: 27px !important;
+  padding: 0 11px !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-indexing {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  margin-top: 2px !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-doi {
+  font-size: 10.5px !important;
+  margin-top: 3px !important;
+}
+@media (max-width: 820px) {
+
+/* CURRENT POSITION 영역 */
+  .current-position-row {
+    grid-template-columns: 1fr !important;
+    row-gap: 1px !important;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .filter-caption {
+    font-size: 10px !important;
+  }
+
+/* PUBLICATIONS 목록 */
+  .project-filter,
+  .project-role-filter,
+  .publication-filters .pub-filter {
+    font-size: 10px !important;
+  }
+}
+/* 메인 히어로 영역 */
+.hero {
+  height: 56vh !important;
+  min-height: 420px !important;
+}
+
+/* 메인 히어로 영역 */
+.hero-inner {
+  padding-top: 54px !important;
+  padding-bottom: 16px !important;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.eyebrow {
+  margin-bottom: 13px !important;
+}
+
+/* 메인 히어로 영역 */
+.hero h1 {
+  font-size: clamp(48px, 5.9vw, 92px) !important;
+  line-height: .92 !important;
+}
+
+/* 메인 히어로 영역 */
+.hero-description {
+  margin-top: 14px !important;
+  line-height: 1.62 !important;
+}
+
+/* 메인 히어로 영역 */
+.hero-buttons {
+  margin-top: 13px !important;
+}
+
+/* 메인 히어로 영역 */
+.hero-meta {
+  bottom: 16px !important;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-filter[data-filter="RND"] {
+  color: #655fb5 !important;
+  border-color: rgba(101, 95, 181, .58) !important;
+  background: rgba(101, 95, 181, .10) !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-filter[data-filter="SERVICE"] {
+  color: #b9674d !important;
+  border-color: rgba(185, 103, 77, .58) !important;
+  background: rgba(185, 103, 77, .10) !important;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-filter[data-filter="RND"].active,
+.project-filter[data-filter="RND"]:hover {
+  color: #fff !important;
+  border-color: #655fb5 !important;
+  background: #655fb5 !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-filter[data-filter="SERVICE"].active,
+.project-filter[data-filter="SERVICE"]:hover {
+  color: #fff !important;
+  border-color: #b9674d !important;
+  background: #b9674d !important;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter[data-role-filter="PI"] {
+  color: #a85d91 !important;
+  border-color: rgba(168, 93, 145, .62) !important;
+  background: rgba(168, 93, 145, .10) !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter[data-role-filter="PARTICIPANT"] {
+  color: #467f91 !important;
+  border-color: rgba(70, 127, 145, .62) !important;
+  background: rgba(70, 127, 145, .10) !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter[data-role-filter="PI"].active,
+.project-role-filter[data-role-filter="PI"]:hover {
+  color: #fff !important;
+  border-color: #a85d91 !important;
+  background: #a85d91 !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-role-filter[data-role-filter="PARTICIPANT"].active,
+.project-role-filter[data-role-filter="PARTICIPANT"]:hover {
+  color: #fff !important;
+  border-color: #467f91 !important;
+  background: #467f91 !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="SCI"] {
+  color: #9fc7f6 !important;
+  border-color: rgba(141, 184, 238, .62) !important;
+  background: rgba(79, 130, 195, .18) !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="KCI"] {
+  color: #91cfaa !important;
+  border-color: rgba(129, 196, 158, .62) !important;
+  background: rgba(75, 154, 112, .18) !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="BOOK"] {
+  color: #e0bb79 !important;
+  border-color: rgba(217, 176, 103, .62) !important;
+  background: rgba(183, 133, 53, .18) !important;
+}
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="SCI"].active,
+.pub-filter[data-filter="SCI"]:hover {
+  color: #fff !important;
+  border-color: #4f82c3 !important;
+  background: #4f82c3 !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="KCI"].active,
+.pub-filter[data-filter="KCI"]:hover {
+  color: #fff !important;
+  border-color: #4b9a70 !important;
+  background: #4b9a70 !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="BOOK"].active,
+.pub-filter[data-filter="BOOK"]:hover {
+  color: #fff !important;
+  border-color: #b78535 !important;
+  background: #b78535 !important;
+}
+@media (max-width: 820px) {
+
+/* 메인 히어로 영역 */
+  .hero-inner {
+    padding-top: 50px !important;
+    padding-bottom: 14px !important;
+  }
+}
+/* HTML 기본 동작 */
+html {
+  scroll-padding-top: 72px !important;
+}
+
+section[id] {
+  scroll-margin-top: 0 !important;
+}
+/* PROJECTS 필터·목록·배지 */
+.project-filter[data-filter="ALL"],
+.project-role-filter[data-role-filter="ALL"] {
+  color: #333 !important;
+  border-color: #b9b9b5 !important;
+  background: #ecebe7 !important;
+}
+
+/* PROJECTS 필터·목록·배지 */
+.project-filter[data-filter="ALL"].active,
+.project-filter[data-filter="ALL"]:hover,
+.project-role-filter[data-role-filter="ALL"].active,
+.project-role-filter[data-role-filter="ALL"]:hover {
+  color: #fff !important;
+  border-color: #555 !important;
+  background: #555 !important;
+}
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="ALL"] {
+  color: #e8e8e8 !important;
+  border-color: #6b6b6b !important;
+  background: #353535 !important;
+}
+
+/* PUBLICATIONS 세부 요소 */
+.pub-filter[data-filter="ALL"].active,
+.pub-filter[data-filter="ALL"]:hover {
+  color: #111 !important;
+  border-color: #f1f1f1 !important;
+  background: #f1f1f1 !important;
+}
+@media (max-width: 820px) {
+/* HTML 기본 동작 */
+  html {
+    scroll-padding-top: 70px !important;
+  }
+
+  section[id] {
+    scroll-margin-top: 0 !important;
+  }
+}
+/* 각 섹션 번호와 제목 */
+.section-heading {
+  align-items: center;
+}
+
+/* 각 섹션 번호와 제목 */
+.section-heading h2 {
+  font-size: var(--fs-section-title) !important;
+  font-weight: 700 !important;
+}
+/* CONTACT 세부 요소 */
+.contact-photo-slot {
+  max-width: 520px;
+}
+
+/* CONTACT 세부 요소 */
+.contact-photo {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* CONTACT 세부 요소 */
+.contact-photo.landscape {
+  width: min(100%, 500px);
+  max-height: 320px;
+}
+
+/* CONTACT 세부 요소 */
+.contact-photo.portrait {
+  width: min(100%, 300px);
+  max-height: 500px;
+}
+
+@media (max-width: 820px) {
+/* 각 섹션 번호와 제목 */
+  .section-heading h2 {
+    font-size: var(--fs-section-title-mobile) !important;
+  }
+
+/* CONTACT 세부 요소 */
+  .contact-photo.landscape {
+    width: min(100%, 420px);
+    max-height: 280px;
+  }
+
+/* CONTACT 세부 요소 */
+  .contact-photo.portrait {
+    width: min(100%, 260px);
+    max-height: 430px;
+  }
+}
+/* 각 섹션 번호와 제목 */
+.section-heading .section-number {
+  font-size: clamp(15px, 1.15vw, 19px) !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  color: #8a8a86;
+}
+
+/* 각 섹션 번호와 제목 */
+.publications-section .section-heading .section-number {
+  color: #8f8f8f;
+}
+
+@media (max-width: 820px) {
+/* 각 섹션 번호와 제목 */
+  .section-heading .section-number {
+    font-size: 15px !important;
+  }
+}
+
+/* Kor / Eng 언어 전환 */
+.language-switch {
+  display: flex;
+  align-items: center;
+  margin-right: 18px;
+}
+
+/* Kor / Eng 언어 전환 */
+.language-switch > span {
+  opacity: .35;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.language-button {
+  appearance: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.language-button:hover,
+/* 해당 선택자의 화면 스타일 */
+.language-button.active {
+  opacity: 1;
+}
+/* CURRENT POSITION 영역 */
+body.lang-en .current-position-row {
+  grid-template-columns: 1fr !important;
+}
+
+/* PROFILE 섹션 */
+body.lang-en .current-position-row .current-ko,
+body.lang-en .profile-section .institution-ko,
+body.lang-en .profile-section .education-ko {
+  display: none !important;
+}
+
+/* CURRENT POSITION 영역 */
+body.lang-en .current-position-row .current-en {
+  font-size: 15px;
+  color: #222;
+  font-weight: 600;
+}
+
+/* PROFILE 섹션 */
+body.lang-en .profile-section .institution-en {
+  color: #222;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* 기관명 표시 */
+body.lang-en .education-content .institution-en {
+  margin-top: 2px !important;
+}
+[data-i18n] {
+  transition: opacity .15s ease;
+}
+@media (max-width: 1040px) {
+/* Kor / Eng 언어 전환 */
+  .language-switch {
+    margin-left: auto;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 820px) {
+/* Kor / Eng 언어 전환 */
+  .language-switch {
+    margin-right: 8px;
+  }
+
+/* CURRENT POSITION 영역 */
+  body.lang-en .current-position-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* 상단 고정 헤더 */
+.header {
+  column-gap: 34px;
+}
+
+/* 사이트 로고 */
+.logo {
+  flex-shrink: 0;
+  margin-right: 28px;
+}
+
+/* 상단 내비게이션 */
+.nav {
+  margin-right: auto;
+}
+/* Kor / Eng 언어 전환 */
+.language-switch {
+  margin-left: 22px;
+}
+/* 해당 선택자의 화면 스타일 */
+.emphasis-label {
+  font-weight: 700 !important;
+  color: #222;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-section .emphasis-label {
+  color: #111 !important;
+}
+/* CURRENT POSITION 영역 */
+.current-position-label {
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+
+/* PROFILE 섹션 */
+.profile-section .current-position-logo-slot {
+  margin-top: 0;
+  margin-bottom: 14px;
+  margin-left: var(--content-indent);
+}
+
+/* PROFILE 섹션 */
+.profile-section .current-position {
+  margin-top: 0;
+  margin-left: var(--content-indent);
+  padding-top: 0;
+}
+/* PROFILE 섹션 */
+.profile-section .current-position-logo {
+  max-width: 240px;
+  max-height: 78px;
+}
+/* CONTACT 세부 요소 */
+.contact-photo {
+  border: 1px solid #d7d7d3;
+  box-sizing: border-box;
+}
+/* CONTACT 세부 요소 */
+.contact-photo.landscape,
+.contact-photo.portrait {
+  border: 1px solid #d7d7d3;
+}
+@media (max-width: 1100px) {
+/* 상단 고정 헤더 */
+  .header {
+    column-gap: 20px;
+  }
+
+/* 사이트 로고 */
+  .logo {
+    margin-right: 14px;
+  }
+
+/* Kor / Eng 언어 전환 */
+  .language-switch {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 820px) {
+/* 사이트 로고 */
+  .logo {
+    margin-right: 0;
+  }
+
+/* Kor / Eng 언어 전환 */
+  .language-switch {
+    margin-left: auto;
+  }
+}
+/* PROFILE 섹션 */
+body.lang-ko .profile-section .current-ko,
+body.lang-ko .profile-section .institution-ko,
+body.lang-ko .profile-section .education-ko {
+  display: block;
+}
+
+/* PROFILE 섹션 */
+body.lang-ko .profile-section .current-en,
+body.lang-ko .profile-section .institution-en {
+  display: block;
+}
+
+/* PROFILE 섹션 */
+body.lang-ko .profile-section .education-en {
+  display: none;
+}
+/* PROFILE 섹션 */
+body.lang-en .profile-section .current-ko,
+body.lang-en .profile-section .institution-ko,
+body.lang-en .profile-section .education-ko {
+  display: none !important;
+}
+
+/* PROFILE 섹션 */
+body.lang-en .profile-section .current-en,
+body.lang-en .profile-section .institution-en,
+body.lang-en .profile-section .education-en {
+  display: block !important;
+}
+/* PROFILE 섹션 */
+body.lang-en .profile-section .current-position-row {
+  grid-template-columns: 1fr !important;
+}
+
+/* PROFILE 섹션 */
+body.lang-en .profile-section .current-position-row .current-en {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+/* PROFILE 섹션 */
+body.lang-en .profile-section .timeline-item .institution-en {
+  margin-top: 0 !important;
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+  line-height: 1.35;
+}
+/* PROFILE 섹션 */
+.profile-section .education-en {
+  display: none;
+}
+
+/* PROFILE 섹션 */
+body.lang-en .profile-section .education-en {
+  margin: 0 0 3px 0 !important;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #666;
+}
+/* PROFILE 섹션 */
+body.lang-en .profile-section .education-content > .timeline-type {
+  margin-bottom: 2px;
+}
+/* 메인 히어로 영역 */
+.hero-inner {
+  padding: 0 5.5vw 7vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(390px, .65fr);
+  align-items: center;
+  gap: clamp(34px, 4vw, 78px);
+}
+
+/* 메인 히어로 영역 */
+.hero-copy {
+  min-width: 0;
+}
+
+/* 메인 히어로 영역 */
+.hero-copy h1 {
+  max-width: none;
+  font-size: clamp(58px, 6.4vw, 112px);
+}
+
+/* 메인 히어로 영역 */
+.hero-copy .hero-description {
+  max-width: 690px;
+}
+
+/* 메인 히어로 영역 */
+.hero-buttons .button {
+  min-width: 124px;
+}
+
+/* 메인 히어로 영역 */
+.hero-overview {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 610px;
+  justify-self: end;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-card {
+  background: rgba(17, 24, 22, .62);
+  border: 1px solid rgba(255, 255, 255, .18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 18px 20px 16px;
+  color: #fff;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: var(--fs-overview-title);
+  font-weight: 700;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-card-head a {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 50%;
+  font-size: var(--fs-overview-arrow);
+  transition: .2s ease;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-card-head a:hover {
+  background: #fff;
+  color: #17201e;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-stat {
+  min-width: 0;
+  padding-right: 10px;
+  border-right: 1px solid rgba(255,255,255,.16);
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-stat:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-stat strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: var(--fs-overview-big-number);
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-stat span {
+  display: block;
+  font-size: var(--fs-overview-label);
+  line-height: 1.35;
+  color: rgba(255,255,255,.68);
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-chart-legend {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 13px;
+  font-size: var(--fs-chart-legend);
+  color: rgba(255,255,255,.68);
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.legend-swatch {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.legend-sci { background: rgba(128, 181, 255, .95); }
+/* 해당 선택자의 화면 스타일 */
+.legend-kci { background: rgba(134, 213, 172, .95); }
+/* 해당 선택자의 화면 스타일 */
+.legend-line {
+  display: inline-block;
+  width: 12px;
+  height: 0;
+  border-top: 1.5px solid rgba(255,255,255,.92);
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-chart-scroll {
+  margin-top: 2px;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.28) transparent;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-chart {
+  min-height: 142px;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-chart-svg {
+  min-width: 100%;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-grid-line {
+  stroke: rgba(255,255,255,.09);
+  stroke-width: 1;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-bar-sci { fill: rgba(128, 181, 255, .92); }
+/* HOME 요약 카드 및 그래프 */
+.overview-bar-kci { fill: rgba(134, 213, 172, .92); }
+/* HOME 요약 카드 및 그래프 */
+.overview-total-line {
+  fill: none;
+  stroke: rgba(255,255,255,.95);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* HOME 요약 카드 및 그래프 */
+.overview-total-dot { fill: #fff; }
+/* HOME 요약 카드 및 그래프 */
+.overview-year-label {
+  fill: rgba(255,255,255,.55);
+  font-size: var(--fs-chart-number);
+}
+/* HOME 요약 카드 및 그래프 */
+.overview-total-label {
+  fill: rgba(255,255,255,.9);
+  font-size: var(--fs-chart-number);
+  font-weight: 600;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-projects {
+  padding-bottom: 15px;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-note {
+  margin-top: 13px;
+  font-size: var(--fs-overview-note);
+  line-height: 1.55;
+  color: rgba(255,255,255,.58);
+}
+/* CONTACT 세부 요소 */
+.contact-info a[data-i18n="contact.phone"] {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1180px) {
+/* 메인 히어로 영역 */
+  .hero-inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+    gap: 28px;
+  }
+/* 메인 히어로 영역 */
+  .hero-copy h1 {
+    font-size: clamp(52px, 6vw, 84px);
+  }
+}
+
+@media (max-width: 980px) {
+/* 메인 히어로 영역 */
+  .hero-copy h1 {
+    font-size: clamp(54px, 10vw, 94px);
+  }
+/* 메인 히어로 영역 */
+  .hero-overview {
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+  }
+/* 메인 히어로 영역 */
+  .hero-meta,
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+/* 메인 히어로 영역 */
+  .hero-inner {
+    gap: 34px;
+  }
+/* 메인 히어로 영역 */
+  .hero-copy h1 {
+    font-size: clamp(45px, 13vw, 72px);
+  }
+/* 메인 히어로 영역 */
+  .hero-description {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+/* 메인 히어로 영역 */
+  .hero-buttons {
+    flex-wrap: wrap;
+  }
+/* 메인 히어로 영역 */
+  .hero-buttons .button {
+    min-width: 0;
+    flex: 1 1 30%;
+    padding: 0 10px;
+  }
+/* HOME 요약 카드 및 그래프 */
+  .overview-card {
+    padding: 17px 16px 15px;
+  }
+/* HOME 요약 카드 및 그래프 */
+  .overview-stat strong {
+    font-size: var(--fs-overview-big-number-mobile);
+  }
+/* HOME 요약 카드 및 그래프 */
+  .overview-chart-scroll {
+    margin-right: -6px;
+  }
+}
+/* RESEARCH 세부 요소 */
+.research-card .card-number {
+  font-size: 13px !important;
+  font-weight: 600;
+/* 전역 CSS 변수 */
+  :root {
+    --content-indent: 14px;
+  }
+
+}
+/* RESEARCH 세부 요소 */
+.research-card .tags span {
+  line-height: 1.15;
+}
+/* RESEARCH 섹션 */
+.research-section .profile-facts strong {
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+/* 메인 히어로 영역 */
+  .hero {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-inner {
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 112px 7vw 68px !important;
+    grid-template-columns: 1fr !important;
+    align-content: start !important;
+    gap: 38px !important;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-overview {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    justify-self: stretch !important;
+  }
+}
+
+@media (max-width: 820px) {
+/* 메인 히어로 영역 */
+  .hero {
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-inner {
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 96px 6vw 56px !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 700px) {
+/* 메인 히어로 영역 */
+  .hero-inner {
+    padding: 92px 6vw 50px !important;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-overview {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* 해당 선택자의 화면 스타일 */
+.scroll-indicator {
+  display: none !important;
+}
+/* HTML 기본 동작 */
+html,
+body,
+button,
+input,
+textarea,
+select {
+  word-break: keep-all;
+}
+
+/* 페이지 본문 기본 스타일 */
+body {
+  overflow-wrap: break-word;
+}
+/* 링크 기본 스타일 */
+a {
+  overflow-wrap: anywhere;
+}
+/* RESEARCH 세부 요소 */
+.research-interests-heading h3 {
+  font-size: clamp(27px, 3.2vw, 46px) !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card h4 {
+  font-size: clamp(20px, 1.75vw, 28px) !important;
+  line-height: 1.08 !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card p {
+  font-size: 13px !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card .tags span {
+  font-size: 10.5px !important;
+}
+
+@media (max-width: 700px) {
+
+/* RESEARCH 세부 요소 */
+  .research-card .card-number {
+    margin-bottom: 14px !important;
+  }
+}
+
+/* RESEARCH 세부 요소 */
+.research-profile-summary {
+  margin-bottom: 34px;
+}
+
+/* RESEARCH 세부 요소 */
+.research-profile-summary h3 {
+  margin: 0 0 24px;
+  font-size: clamp(30px, 3.5vw, 54px);
+  line-height: 1.05;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* RESEARCH 세부 요소 */
+.research-profile-facts {
+  margin-top: 0 !important;
+}
+@media (max-width: 980px) {
+/* RESEARCH 세부 요소 */
+  .research-profile-summary h3 {
+    white-space: normal;
+    font-size: clamp(28px, 5.5vw, 46px);
+  }
+}
+
+@media (max-width: 700px) {
+/* RESEARCH 세부 요소 */
+  .research-profile-summary {
+    margin-bottom: 26px;
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-profile-summary h3 {
+    margin-bottom: 18px;
+  }
+}
+footer > div:first-child {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+/* PUBLICATIONS 목록 */
+.publications-top h3,
+.projects-top h3,
+.awards-layout > div:first-child h3 {
+  font-size: clamp(30px, 3.5vw, 54px) !important;
+}
+
+@media (max-width: 980px) {
+/* PUBLICATIONS 목록 */
+  .publications-top h3,
+  .projects-top h3,
+  .awards-layout > div:first-child h3 {
+    font-size: clamp(28px, 5.5vw, 46px) !important;
+  }
+}
+
+/* RESEARCH 세부 요소 */
+.research-profile-facts > div {
+  grid-template-columns: 74px minmax(0, 1fr) !important;
+  gap: 18px !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-profile-facts span {
+  color: var(--black) !important;
+  font-weight: 700;
+}
+
+/* RESEARCH 세부 요소 */
+.research-profile-facts strong {
+  color: var(--gray) !important;
+  font-weight: 500;
+}
+/* RESEARCH 세부 요소 */
+.research-interests-heading {
+  grid-template-columns: minmax(260px, .58fr) minmax(0, 1.42fr) !important;
+  gap: 4vw !important;
+}
+
+@media (min-width: 1100px) {
+/* RESEARCH 세부 요소 */
+  .research-interests-heading p {
+    white-space: nowrap;
+  }
+}
+/* RESEARCH 세부 요소 */
+.research-card {
+  min-height: 220px !important;
+  padding: 13px 16px 12px !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card .card-number {
+  margin-bottom: 11px !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card h4 {
+  margin: 0 !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card p {
+  margin-top: 8px !important;
+  line-height: 1.55 !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card .tags {
+  padding-top: 8px !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-card .tags span {
+  padding: 4px 9px !important;
+}
+@media (min-width: 981px) {
+/* PUBLICATIONS 목록 */
+  .publications-top,
+  .projects-top,
+  .awards-layout,
+  .contact-grid {
+    grid-template-columns: minmax(380px, .95fr) minmax(0, 1.05fr) !important;
+    gap: 4vw !important;
+  }
+}
+
+/* 해당 선택자의 화면 스타일 */
+.awards-layout > div:first-child h3 {
+  white-space: nowrap;
+}
+
+@media (max-width: 980px) {
+
+/* RESEARCH 세부 요소 */
+  .research-interests-heading p {
+    white-space: normal;
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-card {
+    min-height: 205px !important;
+  }
+
+/* CONTACT 세부 요소 */
+  .awards-layout,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .awards-layout > div:first-child h3 {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 700px) {
+
+/* RESEARCH 세부 요소 */
+  .research-profile-facts > div {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-card {
+    min-height: 0 !important;
+    padding: 13px 15px 12px !important;
+  }
+}
+/* RESEARCH 세부 요소 */
+.research-profile-facts {
+  padding-left: 46px !important;
+}
+/* RESEARCH 세부 요소 */
+.research-interests-heading {
+  align-items: end !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-interests-heading h3,
+.research-interests-heading p {
+  margin-bottom: 0 !important;
+}
+/* RESEARCH 세부 요소 */
+.research-card h4 {
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  text-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+/* RESEARCH 세부 요소 */
+  .research-profile-facts {
+    padding-left: 28px !important;
+  }
+}
+
+@media (max-width: 700px) {
+/* RESEARCH 세부 요소 */
+  .research-profile-facts {
+    padding-left: 0 !important;
+  }
+
+/* RESEARCH 세부 요소 */
+  .research-interests-heading {
+    align-items: start !important;
+  }
+}
+/* RESEARCH 세부 요소 */
+.research-profile-facts {
+  border-top: 0 !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-profile-facts > div:first-child {
+  border-top: 1px solid var(--line);
+}
+/* RESEARCH 세부 요소 */
+.research-interests-heading {
+  padding-top: 0 !important;
+  display: block !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-interests-heading h3 {
+  margin: 0 !important;
+}
+
+/* RESEARCH 세부 요소 */
+.research-interests-heading p {
+  margin: 12px 0 0 !important;
+  max-width: none !important;
+  white-space: normal !important;
+}
+/* RESEARCH 세부 요소 */
+.research-interests-heading {
+  margin-bottom: 18px !important;
+}
+
+@media (max-width: 700px) {
+/* RESEARCH 세부 요소 */
+  .research-interests-heading p {
+    margin-top: 10px !important;
+  }
+}
+/* RESEARCH 세부 요소 */
+.research-profile-facts > div:last-child {
+  border-bottom: 1px solid var(--line) !important;
+}
+/* RESEARCH 세부 요소 */
+.research-interests-heading {
+  border-top: 0 !important;
+}
+
+/* Kor / Eng 언어 전환 */
+.language-switch {
+  gap: 7px !important;
+  font-size: 12px !important;
+}
+
+/* Kor / Eng 언어 전환 */
+.language-switch > span {
+  display: none !important;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.language-button {
+  min-width: 42px;
+  padding: 6px 9px !important;
+  border: 1px solid currentColor !important;
+  border-radius: 999px;
+  background: transparent !important;
+  font-size: 12px !important;
+  line-height: 1;
+  font-weight: 700 !important;
+  opacity: .48;
+  transition:
+/* 해당 선택자의 화면 스타일 */
+    opacity .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.language-button:hover {
+  opacity: .78;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.language-button.active {
+  opacity: 1 !important;
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+@media (max-width: 820px) {
+/* Kor / Eng 언어 전환 */
+  .language-switch {
+    gap: 5px !important;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .language-button {
+    min-width: 39px;
+    padding: 6px 8px !important;
+    font-size: 11.5px !important;
+  }
+}
+/* Kor / Eng 언어 전환 */
+.language-switch {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 820px) {
+/* Kor / Eng 언어 전환 */
+  .language-switch {
+    transform: translateY(-3px);
+  }
+}
+/* PUBLICATIONS 목록 */
+.publications-section .pub-year {
+  color: #a8a8a8 !important;
+}
+/* PUBLICATIONS 목록 */
+.publications-section .cofirst-author-note {
+  background: #fff !important;
+  border-color: #fff !important;
+  color: #111 !important;
+}
+/* 메인 히어로 영역 */
+.hero-description,
+.hero-copy p,
+.hero-text p,
+[data-i18n="hero.description"] {
+  max-width: 980px !important;
+  width: min(980px, 100%) !important;
+}
+
+@media (max-width: 1100px) {
+/* 메인 히어로 영역 */
+  .hero-description,
+  .hero-copy p,
+  .hero-text p,
+  [data-i18n="hero.description"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+/* HOME 요약 카드 및 그래프 */
+.overview-chart-scroll {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-chart {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* HOME 요약 카드 및 그래프 */
+.overview-chart-svg {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+@media (max-width: 980px) {
+/* HOME 요약 카드 및 그래프 */
+  .overview-chart-scroll,
+  .overview-chart {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+/* PUBLICATIONS 목록 */
+.publications-section .cofirst-author-note {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+}
+/* PUBLICATIONS 목록 */
+.publications-section .author-role-note {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 2px 7px;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+/* PUBLICATIONS 목록 */
+.publications-section .author-role-note {
+  background: #f2c14e !important;
+  border-color: #f2c14e !important;
+  color: #111 !important;
+  box-shadow: 0 0 0 1px rgba(242, 193, 78, .18);
+}
+@media (min-width: 981px) {
+/* 메인 히어로 영역 */
+  .hero {
+    height: auto !important;
+    min-height: max(580px, 62vh) !important;
+    overflow: hidden !important;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-inner {
+    height: auto !important;
+    min-height: max(580px, 62vh) !important;
+    padding-top: 82px !important;
+    padding-bottom: 38px !important;
+    box-sizing: border-box;
+  }
+
+/* 메인 히어로 영역 */
+  .hero-overview {
+    align-self: center;
+    padding-bottom: 2px;
+  }
+}
+/* PROFILE 섹션 */
+.profile-section .education-label {
+  margin-top: 28px !important;
+}
+
+
+/* Profile subsection labels */
+/* PROFILE 섹션 */
+.profile-section .career-detail .career-group > .mini-label,
+.profile-section .career-detail .career-group > .education-label {
+  color: #000 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+
+/* 해당 선택자의 화면 스타일 */
+.profile-external-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 2px 0 18px;
+  max-width: 460px;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-external-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 31px;
+  padding: 7px 13px;
+  border: 1px solid #111;
+  border-radius: 999px;
+  color: #111;
+  background: transparent;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease, opacity .2s ease;
+}
+
+/* 해당 선택자의 화면 스타일 */
+.profile-external-links a:hover {
+  background: #111;
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+/* 해당 선택자의 화면 스타일 */
+  .profile-external-links {
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+
+/* 해당 선택자의 화면 스타일 */
+  .profile-external-links a {
+    padding: 7px 11px;
+    font-size: 10px;
+  }
+}
+
+
+/* CONTACT 세부 요소 */
+.contact-info .contact-value {
+  margin: 0;
+  color: #111;
+  line-height: 1.45;
+}
+
+
+
+
+
+
+/* =========================================================
+   모바일 PROJECTS 목록의 유형 알약 보정
+   =========================================================
+   대상:
+   - 프로젝트 목록 안의 R&D / Research Contract 유형 알약
+   - 선택자: .project-type-badge
+
+   핵심 원인:
+   - 모바일에서는 .project-item이 2열(연도 + 내용) 구조로 바뀌지만,
+     유형 알약은 별도 위치 지정이 없어 자동 배치되면서 폭 계산이 불안정할 수 있음.
+
+   해결:
+   1) 유형 알약을 모바일에서 명시적으로 두 번째 열에 배치
+   2) 알약 폭은 내용에 맞추고, 부모 폭을 넘지 않게 제한
+   3) Research Contract는 한 줄 유지
+   4) 알약 텍스트가 부모 밖으로 넘치지 않도록 box-sizing과 overflow 처리
+========================================================= */
+@media (max-width: 820px) {
+/* PROJECTS 필터·목록·배지 */
+  .project-item {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-main {
+    min-width: 0;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  .project-type-badge {
+    grid-column: 2;
+    grid-row: auto;
+    justify-self: start;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    max-width: 100%;
+    min-width: 0 !important;
+
+    height: auto !important;
+    min-height: 27px;
+
+    padding: 5px 10px !important;
+    box-sizing: border-box;
+
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+/* PROJECTS 필터·목록·배지 */
+  html[lang="en"] .project-type-badge.project-type-service {
+    width: fit-content;
+    max-width: 100%;
+  }
+}
+
+
+
+/* PROFESSIONAL EXPERIENCE 기관명: Kor/Eng 동일 크기
+/* PROFESSIONAL EXPERIENCE 기관명 */
+   EDUCATION의 학교/학과명에는 적용되지 않습니다. */
+.experience-institution-ko,
+.experience-institution-en {
+  font-size: var(--fs-profile-institution) !important;
+}
+
+/* =========================================================
+/* PROFILE 섹션 */
+   PROFILE 언어별 표시 정리
+   =========================================================
+
+   Kor
+   - PROFESSIONAL EXPERIENCE / EDUCATION에서 한글 정보만 표시
+   - 기관명, 학위 세부정보, 학교/학과 아래의 영문 보조줄은 숨김
+
+   Eng
+   - 기존처럼 영문 정보만 표시
+========================================================= */
+
+body.lang-ko .profile-section .institution-en,
+body.lang-ko .profile-section .education-en {
+  display: none !important;
+}
+
+/* PROFILE 섹션 */
+body.lang-ko .profile-section .institution-ko,
+body.lang-ko .profile-section .education-ko {
+  display: block !important;
+}
+
+/* PROFILE 섹션 */
+body.lang-en .profile-section .institution-ko,
+body.lang-en .profile-section .education-ko {
+  display: none !important;
+}
+
+/* PROFILE 섹션 */
+body.lang-en .profile-section .institution-en,
+body.lang-en .profile-section .education-en {
+  display: block !important;
+}
+
+
+/* =========================================================
+/* CURRENT POSITION 영역 */
+   CURRENT POSITION 언어별 구성
+   =========================================================
+   Kor: 소속 / 부서 / 직위
+   Eng: AFFILIATION / DEPARTMENT / POSITION
+
+   언어 전환 시 해당 언어 블록만 표시합니다.
+========================================================= */
+
+.current-position-ko,
+.current-position-en {
+  display: none;
+}
+
+/* CURRENT POSITION 영역 */
+body.lang-ko .current-position-ko {
+  display: block;
+}
+
+/* CURRENT POSITION 영역 */
+body.lang-en .current-position-en {
+  display: block;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-row {
+  grid-template-columns: 72px minmax(0, 1fr) !important;
+  column-gap: 14px !important;
+  align-items: baseline;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-field {
+  font-size: 11px !important;
+  font-weight: 600;
+  color: #777 !important;
+}
+
+/* CURRENT POSITION 영역 */
+.current-position-value {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #222;
+  min-width: 0;
+}
+
+/* 모바일에서도 '항목명 + 값' 구조를 유지하되 첫 열만 조금 좁힘 */
+@media (max-width: 820px) {
+/* CURRENT POSITION 영역 */
+  .current-position-row {
+    grid-template-columns: 58px minmax(0, 1fr) !important;
+    column-gap: 10px !important;
+  }
+
+/* CURRENT POSITION 영역 */
+  .current-position-field {
+    font-size: 9.5px !important;
+  }
+
+/* CURRENT POSITION 영역 */
+  .current-position-value {
+    font-size: 14px !important;
+  }
+}
+
+
+/* PROFILE 기관/학교명 크기 통합
+   PROFESSIONAL EXPERIENCE 기관명과 EDUCATION 학교·학과명에 동일하게 적용 */
+.experience-institution-ko,
+.experience-institution-en,
+#educationList .institution-ko,
+#educationList .institution-en {
+  font-size: var(--fs-profile-institution) !important;
+}
+
+
+/* =========================================================
+   PROFILE 언어별 기관/학교명 표시 최종 고정
+   =========================================================
+   Kor:
+   - PROFESSIONAL EXPERIENCE의 영문 기관명 숨김
+   - EDUCATION의 영문 학교·학과명 숨김
+   - 한글 기관/학교명만 표시
+
+   Eng:
+   - PROFESSIONAL EXPERIENCE의 한글 기관명 숨김
+   - EDUCATION의 한글 학교·학과명 숨김
+   - 영문 기관/학교명만 표시
+
+   아래 규칙은 파일 맨 마지막에 두어 다른 스타일보다 우선 적용합니다.
+========================================================= */
+
+/* Kor에서는 한글만 표시 */
+body.lang-ko .profile-section .experience-institution-ko,
+body.lang-ko .profile-section #educationList .institution-ko {
+  display: block !important;
+}
+
+body.lang-ko .profile-section .experience-institution-en,
+body.lang-ko .profile-section #educationList .institution-en {
+  display: none !important;
+}
+
+/* Eng에서는 영문만 표시 */
+body.lang-en .profile-section .experience-institution-ko,
+body.lang-en .profile-section #educationList .institution-ko {
+  display: none !important;
+}
+
+body.lang-en .profile-section .experience-institution-en,
+body.lang-en .profile-section #educationList .institution-en {
+  display: block !important;
+}
+
+
+/* =========================================================
+   CURRENT POSITION 언어별 표시 최종 고정
+   =========================================================
+   Kor:
+   - current-position-ko만 표시
+   - current-position-en 숨김
+
+   Eng:
+   - current-position-en만 표시
+   - current-position-ko 숨김
+
+   파일 마지막에 배치하여 다른 규칙보다 우선 적용합니다.
+========================================================= */
+
+body.lang-ko .profile-section .current-position-ko {
+  display: block !important;
+}
+
+body.lang-ko .profile-section .current-position-en {
+  display: none !important;
+}
+
+body.lang-en .profile-section .current-position-ko {
+  display: none !important;
+}
+
+body.lang-en .profile-section .current-position-en {
+  display: block !important;
+}
+
+/* =========================================================
+   모바일 가로 넘침 방지
+   ---------------------------------------------------------
+   세로형/좁은 모바일 화면에서 긴 텍스트·배지·그리드 때문에
+   문서 전체 폭이 viewport보다 넓어져 오른쪽에 흰 여백이
+   생기는 현상을 방지합니다.
+   ========================================================= */
+
+/* 문서 자체가 viewport보다 넓어지지 않도록 제한 */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 이미지·SVG 등 미디어가 부모 폭을 넘지 않도록 제한 */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+/* 주요 페이지 컨테이너가 자식 콘텐츠 때문에 확장되지 않도록 제한 */
+.header,
+.mobile-nav,
+.hero,
+.hero-inner,
+.section {
+  max-width: 100%;
+}
+
+/* 좁은 모바일 화면에서 grid/flex 자식의 기본 min-width:auto로 인한
+   가로 확장을 방지 */
+@media (max-width: 820px) {
+  .hero-inner,
+  .hero-overview,
+  .profile-grid,
+  .research-grid,
+  .research-profile-grid,
+  .publications-section,
+  .projects-section,
+  .publication-list,
+  .project-list,
+  .award-list,
+  .contact-grid,
+  .project-item,
+  .project-main,
+  .pub-item,
+  .pub-main,
+  .award-item,
+  .award-content {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* 긴 프로젝트 역할명이 문서 폭 자체를 늘리지 않도록 제한 */
+  .project-role-badge,
+  .project-type-badge {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
