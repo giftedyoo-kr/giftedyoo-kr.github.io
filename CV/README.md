@@ -142,6 +142,8 @@ CSS의 각 선택자 블록에는 어떤 영역을 조정하는 코드인지 확
 
 `personal_data.txt`의 `[google_sheets]` 블록에서 스프레드시트 ID와 각 탭 GID를 관리합니다.
 
+**실제 spreadsheet ID와 gid 값은 `personal_data.txt`에만 입력합니다.** `script.js`에는 특정 Google Sheet의 ID/gid를 하드코딩하지 않으므로, 다른 Google Sheet에 적용할 때는 아래 블록의 값만 변경하면 됩니다.
+
 ```text
 [google_sheets]
 spreadsheet_id=...
@@ -283,3 +285,26 @@ PROJECTS의 `역할` 값은 목록의 역할 알약과 ROLE 필터에 사용됩�
 - 모바일/태블릿 `.hero`: `overflow: hidden/clip`
 - `html/body`: `overflow-x: hidden` + `overflow-x: clip`
 - 최상위 레이아웃 박스: `width/max-width: 100%`
+
+
+### CURRENT POSITION
+
+`CURRENT POSITION`의 값은 `index.html`이나 `script.js`에서 직접 수정하지 않습니다.
+`personal_data.txt`의 `[current_position]`만 수정하면 화면에 반영됩니다.
+
+```text
+[current_position]
+company_url=https://...
+company_name_ko=...
+company_name_en=...
+department_name_ko=...
+department_name_en=...
+position_ko=...
+position_en=...
+logo_image=images/current_position_logo.png
+```
+
+- Kor 화면: `_ko` 값
+- Eng 화면: `_en` 값
+- `company_url`: CURRENT POSITION 로고 클릭 링크
+- `logo_image`: 로고 이미지 경로
