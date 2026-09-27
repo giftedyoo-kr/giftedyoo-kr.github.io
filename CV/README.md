@@ -308,3 +308,16 @@ logo_image=images/current_position_logo.png
 - Eng 화면: `_en` 값
 - `company_url`: CURRENT POSITION 로고 클릭 링크
 - `logo_image`: 로고 이미지 경로
+
+
+### PROFILE 데이터 단일 관리
+
+PROFILE의 실제 데이터는 `index.html`이나 `script.js`에 중복 저장하지 않습니다.
+다음 항목은 모두 `personal_data.txt`에서만 수정합니다.
+
+- `[profile]`: ResearchGate / Google Scholar 링크 및 라벨
+- `[current_position]`: 소속, 부서, 직위, 기관 URL, 로고
+- `[professional_experience]`: 경력
+- `[education]`: 학력
+
+`index.html`에는 표시용 구조와 빈 컨테이너만 유지합니다.

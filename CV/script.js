@@ -374,6 +374,36 @@ function renderPersonalContacts() {
   if (items.length) container.innerHTML = items.join("");
 }
 
+function renderProfileLinks() {
+  const block = personalDataSections.profile || {};
+  const container = document.querySelector("[data-profile-links]");
+  if (!container) return;
+
+  const links = [
+    {
+      url: normalizeText(block.researchgate_url || ""),
+      label: normalizeText(block.researchgate_label || "ResearchGate")
+    },
+    {
+      url: normalizeText(block.google_scholar_url || ""),
+      label: normalizeText(block.google_scholar_label || "Google Scholar")
+    }
+  ];
+
+  container.innerHTML = "";
+
+  links.forEach(({ url, label }) => {
+    if (!url || !/^https?:\/\//i.test(url)) return;
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = `${label} ↗`;
+    container.appendChild(a);
+  });
+}
+
 function renderCurrentPosition() {
   const block = personalDataSections.current_position || {};
 
@@ -388,7 +418,7 @@ function renderCurrentPosition() {
 
   const setText = (selector, value) => {
     const el = document.querySelector(selector);
-    if (el && value) el.textContent = value;
+    if (el) el.textContent = value;
   };
 
   setText("[data-current-company-ko]", companyKo);
@@ -399,7 +429,19 @@ function renderCurrentPosition() {
   setText("[data-current-position-en]", positionEn);
 
   const logo = document.querySelector("[data-current-logo]");
-  if (logo && logoImage) logo.src = logoImage;
+  const logoSlot = document.querySelector(".current-position-logo-slot");
+
+  if (logo) {
+    if (logoImage) {
+      logo.src = logoImage;
+      logo.alt = companyEn ? `${companyEn} logo` : "Current position logo";
+      if (logoSlot) logoSlot.hidden = false;
+    } else {
+      logo.removeAttribute("src");
+      logo.alt = "";
+      if (logoSlot) logoSlot.hidden = true;
+    }
+  }
 
   const link = document.querySelector("[data-current-company-link]");
   if (link) {
@@ -407,6 +449,7 @@ function renderCurrentPosition() {
       link.href = companyUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
+      link.setAttribute("aria-label", companyEn ? `${companyEn} homepage` : "Current position homepage");
     } else {
       link.removeAttribute("href");
       link.removeAttribute("target");
@@ -422,6 +465,7 @@ async function loadPersonalData() {
 
     const text = await response.text();
     personalDataSections = parsePersonalData(text);
+    renderProfileLinks();
     renderCurrentPosition();
     personalExperienceBlocks = personalDataSections.professional_experience || [];
     personalEducationBlocks = personalDataSections.education || [];
