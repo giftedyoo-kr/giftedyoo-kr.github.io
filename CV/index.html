@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="유영재 | 이력서" />
-  <title>Youngjae Yoo | Curriculum Vitae</title>
+  <meta name="description" content="" data-profile-meta-description />
+  <title data-profile-title></title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,8 +16,8 @@
 
 <header class="header" id="header">
   <a class="logo" href="#main">
-    <span class="logo-main">YJ.</span>
-    <span class="logo-sub">Youngjae Yoo</span>
+    <span class="logo-main" data-profile-name-init></span>
+    <span class="logo-sub" data-profile-name-eng></span>
   </a>
 
   <nav class="nav" aria-label="주요 메뉴">
@@ -150,7 +150,7 @@
         <div class="optional-image-slot namecard-slot">
           <img class="adaptive-image namecard-image"
                src="images/profile.png"
-               alt="Youngjae Yoo profile">
+               alt="" data-profile-image-alt>
         </div>
 
         <div class="profile-external-links" aria-label="Research profiles" data-profile-links></div>
@@ -386,23 +386,13 @@
                src="images/namecard_kor.png"
                data-src-ko="images/namecard_kor.png"
                data-src-en="images/namecard_eng.png"
-               alt="Youngjae Yoo name card">
+               alt="" data-profile-namecard-alt>
         </div>
       </div>
 
       <div>
         <p class="mini-label emphasis-label contact-right-label">GET IN TOUCH</p>
-        <div class="contact-info" id="contactInfo">
-          <div>
-            <span>EMAIL</span>
-            <a href="mailto:giftedyoo@kric.re.kr">giftedyoo@kric.re.kr</a>
-          </div>
-
-          <div>
-            <span data-i18n="contact.phoneLabel">OFFICE PHONE</span>
-            <a href="tel:+82332590127" data-i18n="contact.phone">033-259-0127</a>
-          </div>
-        </div>
+        <div class="contact-info" id="contactInfo"></div>
       </div>
     </div>
   </section>
@@ -410,7 +400,7 @@
 </main>
 
 <footer>
-  <div>© 2026 Youngjae Yoo.</div>
+  <div>© 2026 <span data-profile-footer-name></span>.</div>
   <div>CLIMATE CHANGE ADAPTATION · ECOLOGICAL CONSERVATION · PLANNING AND POLICY</div>
   <a href="#main">BACK TO TOP ↑</a>
 </footer>

@@ -321,3 +321,22 @@ PROFILE의 실제 데이터는 `index.html`이나 `script.js`에 중복 저장�
 - `[education]`: 학력
 
 `index.html`에는 표시용 구조와 빈 컨테이너만 유지합니다.
+
+
+### PROFILE 이름 설정
+
+```text
+[profile]
+name_kor=유영재
+name_eng=Youngjae Yoo
+name_eng_init=YJ
+```
+
+- `name_kor`: meta description 이름
+- `name_eng`: title, 이미지 alt, 푸터, 상단 로고 이름
+- `name_eng_init`: 상단 로고 이니셜
+
+
+### CONTACT 데이터 단일 관리
+
+EMAIL, OFFICE PHONE, ADDRESS 등 실제 연락처 값과 링크는 `personal_data.txt`의 반복 `[contact]` 블록에서만 관리합니다.

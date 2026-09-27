@@ -5,6 +5,9 @@
 # =========================================================
 
 [profile]
+name_eng_init=YJ
+name_eng=Youngjae Yoo
+name_kor=유영재
 profile_image=images/profile.png
 researchgate_url=https://www.researchgate.net/profile/Youngjae-Yoo-4
 researchgate_label=ResearchGate

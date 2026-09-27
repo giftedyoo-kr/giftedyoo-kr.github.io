@@ -69,10 +69,7 @@ const I18N = {
     "home.projects.total": "총 참여과제수",
     "home.projects.rnd": "R&D 과제수",
     "home.projects.service": "용역과제수",
-    "home.projects.note": "※ R&D 과제는 연차와 관계없이 연속과제일 경우 하나의 과제로 집계하였습니다.",
-    "contact.phoneLabel": "OFFICE PHONE",
-    "contact.phone": "033-259-0127",
-    "load.partial": "일부 탭을 불러오지 못했습니다",
+    "home.projects.note": "※ R&D 과제는 연차와 관계없이 연속과제일 경우 하나의 과제로 집계하였습니다.",    "load.partial": "일부 탭을 불러오지 못했습니다",
     "profile.periodCurrent": "2026.08.–현재",
     "profile.periodProfessor": "2023.03.–2026.08.",
     "profile.periodResearcher": "2019.01.–2019.08.",
@@ -114,10 +111,7 @@ const I18N = {
     "home.projects.total": "Total Projects",
     "home.projects.rnd": "R&D Projects",
     "home.projects.service": "Research Contracts",
-    "home.projects.note": "※ Continuous R&D projects are counted as one project regardless of the project year.",
-    "contact.phoneLabel": "OFFICE PHONE",
-    "contact.phone": "+82-33-259-0127",
-    "load.partial": "Some sheets could not be loaded",
+    "home.projects.note": "※ Continuous R&D projects are counted as one project regardless of the project year.",    "load.partial": "Some sheets could not be loaded",
     "profile.periodCurrent": "Aug 2026–Present",
     "profile.periodProfessor": "Mar 2023–Aug 2026",
     "profile.periodResearcher": "Jan 2019–Aug 2019",
@@ -345,7 +339,9 @@ function personalContactUrl(block) {
 
 function renderPersonalContacts() {
   const container = document.getElementById("contactInfo");
-  if (!container || !personalContactBlocks.length) return;
+  if (!container) return;
+
+  container.innerHTML = "";
 
   const items = personalContactBlocks.map(block => {
     const title = personalLocalizedValue(block, "title");
@@ -354,9 +350,7 @@ function renderPersonalContacts() {
 
     if (!title && !value) return "";
 
-    const labelHtml = title
-      ? `<span>${escapeHtml(title)}</span>`
-      : "";
+    const labelHtml = title ? `<span>${escapeHtml(title)}</span>` : "";
 
     let valueHtml = "";
     if (value) {
@@ -371,7 +365,35 @@ function renderPersonalContacts() {
     return `<div>${labelHtml}${valueHtml}</div>`;
   }).filter(Boolean);
 
-  if (items.length) container.innerHTML = items.join("");
+  container.innerHTML = items.join("");
+}
+
+function renderProfileIdentity() {
+  const block = personalDataSections.profile || {};
+  const nameKor = normalizeText(block.name_kor || "");
+  const nameEng = normalizeText(block.name_eng || "");
+  const nameEngInit = normalizeText(block.name_eng_init || "");
+
+  const titleEl = document.querySelector("[data-profile-title]");
+  if (titleEl) titleEl.textContent = `${nameEng} | Curriculum Vitae`;
+
+  const metaDescription = document.querySelector("[data-profile-meta-description]");
+  if (metaDescription) metaDescription.setAttribute("content", `${nameKor} | 이력서`);
+
+  const initEl = document.querySelector("[data-profile-name-init]");
+  if (initEl) initEl.textContent = nameEngInit;
+
+  const nameEl = document.querySelector("[data-profile-name-eng]");
+  if (nameEl) nameEl.textContent = nameEng;
+
+  const footerName = document.querySelector("[data-profile-footer-name]");
+  if (footerName) footerName.textContent = nameEng;
+
+  const profileImage = document.querySelector("[data-profile-image-alt]");
+  if (profileImage) profileImage.alt = nameEng ? `${nameEng} profile` : "Profile";
+
+  const namecard = document.querySelector("[data-profile-namecard-alt]");
+  if (namecard) namecard.alt = nameEng ? `${nameEng} name card` : "Name card";
 }
 
 function renderProfileLinks() {
@@ -465,6 +487,7 @@ async function loadPersonalData() {
 
     const text = await response.text();
     personalDataSections = parsePersonalData(text);
+    renderProfileIdentity();
     renderProfileLinks();
     renderCurrentPosition();
     personalExperienceBlocks = personalDataSections.professional_experience || [];
