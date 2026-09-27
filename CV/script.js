@@ -1056,14 +1056,14 @@ function highlightedAuthors(pub) {
   const authors = publicationAuthors(pub);
   if (!authors) return "";
 
-  let safe = escapeHtml(authors);
   const badges = authorRoleBadges(pub);
 
-  if (pub.__type === "SCI") {
-    safe = highlightPublicationAuthorText(safe);
-  } else if (pub.__type === "KCI") {
-    safe = highlightPublicationAuthorText(raw);
-  }
+  // SCI/KCI 모두 원문 저자명을 동일한 personal_data 기반 강조 함수에 전달합니다.
+  // highlightPublicationAuthorText() 내부에서 escapeHtml()을 수행하므로
+  // 여기서 미리 escape하지 않아 이중 escape를 방지합니다.
+  const safe = (pub.__type === "SCI" || pub.__type === "KCI")
+    ? highlightPublicationAuthorText(authors)
+    : escapeHtml(authors);
 
   return `${badges ? `${badges} ` : ""}${safe}`;
 }

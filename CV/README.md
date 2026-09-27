@@ -392,3 +392,10 @@ SCI, KCI, BOOK은 서로 독립적으로 불러옵니다.
 - 각 시트의 로딩 성공/실패를 개별 처리
 - Google Sheets 요청의 불필요한 매회 cache-busting을 제거하여 재방문 로딩을 개선
 - 한 시트의 응답 제한 시간은 10초
+
+
+### KCI 렌더링 오류 수정
+
+KCI 저자명 강조 분기에서 존재하지 않는 `raw` 변수를 참조하던 오류를 수정했습니다.
+SCI/KCI 모두 `publicationAuthors()`에서 얻은 실제 저자 문자열을
+`personal_data.txt`의 강조 이름 설정에 따라 동일하게 처리합니다.
