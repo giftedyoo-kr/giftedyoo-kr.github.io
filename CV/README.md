@@ -266,3 +266,20 @@ PROJECTS의 `역할` 값은 목록의 역할 알약과 ROLE 필터에 사용됩�
 - Kor 화면: `역할`
 - Eng 화면: `역할_영문`
 - 선택한 언어의 값이 비어 있으면 다른 언어의 역할 값을 대체 표시합니다.
+
+
+## 모바일 가로 넘침 방지
+
+좁은 세로형 모바일 화면에서 긴 배지나 그리드 요소 때문에 페이지 폭이 늘어나
+오른쪽에 흰 여백이 생기지 않도록 `html/body`의 가로 overflow와 주요 모바일
+컨테이너의 최대 폭을 제한합니다.
+
+
+### 모바일 오른쪽 흰 여백 보정
+
+모바일 규칙에서 `.hero`가 `overflow: visible !important`로 덮어써져
+히어로 장식용 원형 요소가 viewport 밖으로 확장될 수 있던 문제를 수정했습니다.
+
+- 모바일/태블릿 `.hero`: `overflow: hidden/clip`
+- `html/body`: `overflow-x: hidden` + `overflow-x: clip`
+- 최상위 레이아웃 박스: `width/max-width: 100%`
