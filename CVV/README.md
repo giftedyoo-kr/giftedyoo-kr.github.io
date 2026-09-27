@@ -308,3 +308,94 @@ logo_image=images/current_position_logo.png
 - Eng 화면: `_en` 값
 - `company_url`: CURRENT POSITION 로고 클릭 링크
 - `logo_image`: 로고 이미지 경로
+
+
+### PROFILE 데이터 단일 관리
+
+PROFILE의 실제 데이터는 `index.html`이나 `script.js`에 중복 저장하지 않습니다.
+다음 항목은 모두 `personal_data.txt`에서만 수정합니다.
+
+- `[profile]`: ResearchGate / Google Scholar 링크 및 라벨
+- `[current_position]`: 소속, 부서, 직위, 기관 URL, 로고
+- `[professional_experience]`: 경력
+- `[education]`: 학력
+
+`index.html`에는 표시용 구조와 빈 컨테이너만 유지합니다.
+
+
+### PROFILE 이름 설정
+
+```text
+[profile]
+name_kor=유영재
+name_eng=Youngjae Yoo
+name_eng_init=YJ
+```
+
+- `name_kor`: meta description 이름
+- `name_eng`: title, 이미지 alt, 푸터, 상단 로고 이름
+- `name_eng_init`: 상단 로고 이니셜
+
+
+### CONTACT 데이터 단일 관리
+
+EMAIL, OFFICE PHONE, ADDRESS 등 실제 연락처 값과 링크는 `personal_data.txt`의 반복 `[contact]` 블록에서만 관리합니다.
+
+
+### Publications 저자명 강조 설정
+
+Publications에서 본인 이름을 강조하는 기준도 `personal_data.txt`의 `[profile]`에서 관리합니다.
+
+```text
+[profile]
+publication_highlight_name_ko=유영재
+publication_highlight_name_en=Yoo, Y.
+```
+
+- `publication_highlight_name_ko`: 국문 저자명 강조 기준
+- `publication_highlight_name_en`: 영문 저자명 강조 기준
+- 여러 표기를 허용하려면 `|`로 구분할 수 있습니다.
+  - 예: `publication_highlight_name_en=Yoo, Y.|Youngjae Yoo`
+
+
+### personal_data 단일 소스 원칙
+
+`personal_data.txt`로 이동한 값은 HTML/JS에 실제 값을 중복 하드코딩하지 않습니다.
+
+변경 시 항상 다음을 함께 수행합니다.
+
+1. `personal_data.txt`에 설정값 추가
+2. HTML/JS의 기존 실제 값 제거
+3. JS는 `personal_data.txt` 값을 읽는 렌더링 로직만 유지
+4. ZIP 생성 전 동일 실제 값이 HTML/JS에 남아 있는지 검색 검증
+
+
+### personal_data 단일 섹션과 반복 섹션
+
+파서는 모든 `[section]`을 내부적으로 배열로 저장합니다.
+
+- 단일 섹션: `[profile]`, `[current_position]`, `[google_sheets]`
+  - 첫 번째 블록만 사용합니다.
+- 반복 섹션: `[professional_experience]`, `[education]`, `[contact]`
+  - 작성된 모든 블록을 순서대로 사용합니다.
+
+JS에서는 단일 섹션을 `personalSingleSection()`으로 읽도록 통일하여,
+`[profile]` 값이 비어 보이는 문제를 방지합니다.
+
+
+### Publications 점진적 로딩
+
+SCI, KCI, BOOK은 서로 독립적으로 불러옵니다.
+
+- 먼저 응답한 시트는 즉시 목록에 표시
+- KCI가 느려도 SCI/BOOK 표시를 기다리지 않음
+- 각 시트의 로딩 성공/실패를 개별 처리
+- Google Sheets 요청의 불필요한 매회 cache-busting을 제거하여 재방문 로딩을 개선
+- 한 시트의 응답 제한 시간은 10초
+
+
+### KCI 렌더링 오류 수정
+
+KCI 저자명 강조 분기에서 존재하지 않는 `raw` 변수를 참조하던 오류를 수정했습니다.
+SCI/KCI 모두 `publicationAuthors()`에서 얻은 실제 저자 문자열을
+`personal_data.txt`의 강조 이름 설정에 따라 동일하게 처리합니다.

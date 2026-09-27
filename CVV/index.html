@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="김윤지 | 이력서" />
-  <title>Yoonji Kim | Curriculum Vitae</title>
+  <meta name="description" content="" data-profile-meta-description />
+  <title data-profile-title></title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,8 +16,8 @@
 
 <header class="header" id="header">
   <a class="logo" href="#main">
-    <span class="logo-main">YJ.</span>
-    <span class="logo-sub">Yoonji Kim</span>
+    <span class="logo-main" data-profile-name-init></span>
+    <span class="logo-sub" data-profile-name-eng></span>
   </a>
 
   <nav class="nav" aria-label="주요 메뉴">
@@ -150,63 +150,51 @@
         <div class="optional-image-slot namecard-slot">
           <img class="adaptive-image namecard-image"
                src="images/profile.png"
-               alt="Youngjae Yoo profile">
+               alt="" data-profile-image-alt>
         </div>
 
-        <div class="profile-external-links" aria-label="Research profiles">
-          <a href="https://www.researchgate.net/profile/Youngjae-Yoo-4"
-             target="_blank"
-             rel="noopener noreferrer">ResearchGate ↗</a>
-          <a href="https://scholar.google.co.kr/citations?user=jX31rFIAAAAJ&hl=ko"
-             target="_blank"
-             rel="noopener noreferrer">Google Scholar ↗</a>
-        </div>
+        <div class="profile-external-links" aria-label="Research profiles" data-profile-links></div>
 
         <p class="mini-label emphasis-label current-position-label">CURRENT POSITION</p>
 
         <div class="optional-image-slot current-position-logo-slot">
           <a class="current-position-logo-link"
              data-current-company-link
-             href="https://kric.re.kr/"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="한국기후변화연구원 홈페이지">
+             aria-label="Current position homepage">
             <img class="current-position-logo"
-                 src="images/current_position_logo.png" data-current-logo
-                 alt="Korea Research Institute on Climate Change logo">
+                 data-current-logo
+                 alt="">
           </a>
         </div>
 
         <div class="current-position">
-          <!-- Kor: 소속 / 부서 / 직위 -->
           <div class="current-position-language current-position-ko">
             <div class="current-position-row">
               <span class="current-position-field">소속</span>
-              <strong class="current-position-value" data-current-company-ko>한국기후변화연구원</strong>
+              <strong class="current-position-value" data-current-company-ko></strong>
             </div>
             <div class="current-position-row">
               <span class="current-position-field">부서</span>
-              <strong class="current-position-value" data-current-department-ko>기후재난연구실</strong>
+              <strong class="current-position-value" data-current-department-ko></strong>
             </div>
             <div class="current-position-row">
               <span class="current-position-field">직위</span>
-              <strong class="current-position-value" data-current-position-ko>선임연구원</strong>
+              <strong class="current-position-value" data-current-position-ko></strong>
             </div>
           </div>
 
-          <!-- Eng: Affiliation / Department / Position -->
           <div class="current-position-language current-position-en">
             <div class="current-position-row">
               <span class="current-position-field">AFFILIATION</span>
-              <strong class="current-position-value" data-current-company-en>Korea Research Institute on Climate Change</strong>
+              <strong class="current-position-value" data-current-company-en></strong>
             </div>
             <div class="current-position-row">
               <span class="current-position-field">DEPARTMENT</span>
-              <strong class="current-position-value" data-current-department-en>Climate Disaster Research Department</strong>
+              <strong class="current-position-value" data-current-department-en></strong>
             </div>
             <div class="current-position-row">
               <span class="current-position-field">POSITION</span>
-              <strong class="current-position-value" data-current-position-en>Senior Researcher</strong>
+              <strong class="current-position-value" data-current-position-en></strong>
             </div>
           </div>
         </div>
@@ -215,50 +203,12 @@
       <div class="career-detail">
         <div class="career-group">
           <p class="mini-label emphasis-label">PROFESSIONAL EXPERIENCE</p>
-          <div class="timeline" id="professionalExperienceList">
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodCurrent">2026.08.–현재</div>
-              <div>
-                <span class="timeline-type">SENIOR RESEARCHER</span>
-                <h4 class="institution-ko experience-institution-ko">한국기후변화연구원</h4>
-                <p class="institution-en experience-institution-en">Korea Research Institute on Climate Change (KRIC)</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodProfessor">2023.03.–2026.08.</div>
-              <div>
-                <span class="timeline-type">RESEARCH PROFESSOR</span>
-                <h4 class="institution-ko experience-institution-ko">고려대학교 오정리질리언스연구원</h4>
-                <p class="institution-en experience-institution-en">OJEong Resilience Institute (OJERI), Korea University</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodResearcher">2019.01.–2019.08.</div>
-              <div>
-                <span class="timeline-type">RESEARCHER</span>
-                <h4 class="institution-ko experience-institution-ko">고려대학교 환경 GIS/RS센터</h4>
-                <p class="institution-en experience-institution-en">Environmental GIS/RS Center, Korea University</p>
-              </div>
-            </div>
-          </div>
+          <div class="timeline" id="professionalExperienceList"></div>
         </div>
 
         <div class="career-group education-group">
           <p class="education-label mini-label emphasis-label">EDUCATION</p>
-          <div class="timeline" id="educationList">
-            <div class="timeline-item">
-              <div class="timeline-period" data-i18n="profile.periodEducation">2019.09.–2023.02.</div>
-              <div class="education-content">
-                <span class="timeline-type">Ph.D.</span>
-                <p class="degree-detail education-ko">이학박사 · 환경계획및조경학</p>
-                <p class="degree-detail education-en">Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture</p>
-                <h4 class="institution-ko">고려대학교 일반대학원 환경생태공학과</h4>
-                <p class="institution-en">Department of Environmental Science and Ecological Engineering, Korea University</p>
-              </div>
-            </div>
-          </div>
+          <div class="timeline" id="educationList"></div>
         </div>
       </div>
     </div>
@@ -436,23 +386,13 @@
                src="images/namecard_kor.png"
                data-src-ko="images/namecard_kor.png"
                data-src-en="images/namecard_eng.png"
-               alt="Youngjae Yoo name card">
+               alt="" data-profile-namecard-alt>
         </div>
       </div>
 
       <div>
         <p class="mini-label emphasis-label contact-right-label">GET IN TOUCH</p>
-        <div class="contact-info" id="contactInfo">
-          <div>
-            <span>EMAIL</span>
-            <a href="mailto:giftedyoo@kric.re.kr">giftedyoo@kric.re.kr</a>
-          </div>
-
-          <div>
-            <span data-i18n="contact.phoneLabel">OFFICE PHONE</span>
-            <a href="tel:+82332590127" data-i18n="contact.phone">033-259-0127</a>
-          </div>
-        </div>
+        <div class="contact-info" id="contactInfo"></div>
       </div>
     </div>
   </section>
@@ -460,7 +400,7 @@
 </main>
 
 <footer>
-  <div>© 2026 Youngjae Yoo.</div>
+  <div>© 2026 <span data-profile-footer-name></span>.</div>
   <div>CLIMATE CHANGE ADAPTATION · ECOLOGICAL CONSERVATION · PLANNING AND POLICY</div>
   <a href="#main">BACK TO TOP ↑</a>
 </footer>

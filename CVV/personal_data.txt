@@ -5,6 +5,11 @@
 # =========================================================
 
 [profile]
+publication_highlight_name_en=Kim, Y.
+publication_highlight_name_ko=김윤지
+name_eng_init=YJ.
+name_eng=Yoonji Kim
+name_kor=김윤지
 profile_image=images/profile.png
 researchgate_url=https://www.researchgate.net/profile/Yoonji-Kim-11
 researchgate_label=ResearchGate
@@ -33,7 +38,6 @@ institution_en=OJEong Resilience Institute (OJERI), Korea University
 position_k=연구교수
 position_e=RESEARCH PROFESSOR
 
-
 # [education] 블록을 반복하면 학력이 그 수만큼 표시됩니다.
 # 기존 키(period, degree, degree_detail_ko/en, school_department_ko/en)를 그대로 사용할 수 있습니다.
 # 필요하면 각 항목에 _k / _e 형식도 사용할 수 있습니다.
@@ -44,6 +48,7 @@ degree_detail_ko=이학박사 · 환경계획및조경학
 degree_detail_en=Doctor of Philosophy (Ph.D.) in Environmental Planning and Landscape Architecture
 school_department_ko=고려대학교 일반대학원 환경생태공학과
 school_department_en=Department of Environmental Science and Ecological Engineering, Korea University
+
 
 # =========================================================
 # CONTACT
@@ -73,7 +78,6 @@ title_k=주소
 title_e=ADDRESS
 value_k=(02841) 서울특별시 성북구 안암로 145, 고려대학교 자연계캠퍼스 생명과학관 서관 320호
 value_e=#320, West Building, College of Life Sciences and Biotechnology, Korea University, 145 Anam-ro, Seongbuk-gu, Seoul, 02841, Republic of Korea
-
 
 # =========================================================
 # Google Sheets 연동

@@ -69,10 +69,7 @@ const I18N = {
     "home.projects.total": "총 참여과제수",
     "home.projects.rnd": "R&D 과제수",
     "home.projects.service": "용역과제수",
-    "home.projects.note": "※ R&D 과제는 연차와 관계없이 연속과제일 경우 하나의 과제로 집계하였습니다.",
-    "contact.phoneLabel": "OFFICE PHONE",
-    "contact.phone": "033-259-0127",
-    "load.partial": "일부 탭을 불러오지 못했습니다",
+    "home.projects.note": "※ R&D 과제는 연차와 관계없이 연속과제일 경우 하나의 과제로 집계하였습니다.",    "load.partial": "일부 탭을 불러오지 못했습니다",
     "profile.periodCurrent": "2026.08.–현재",
     "profile.periodProfessor": "2023.03.–2026.08.",
     "profile.periodResearcher": "2019.01.–2019.08.",
@@ -114,10 +111,7 @@ const I18N = {
     "home.projects.total": "Total Projects",
     "home.projects.rnd": "R&D Projects",
     "home.projects.service": "Research Contracts",
-    "home.projects.note": "※ Continuous R&D projects are counted as one project regardless of the project year.",
-    "contact.phoneLabel": "OFFICE PHONE",
-    "contact.phone": "+82-33-259-0127",
-    "load.partial": "Some sheets could not be loaded",
+    "home.projects.note": "※ Continuous R&D projects are counted as one project regardless of the project year.",    "load.partial": "Some sheets could not be loaded",
     "profile.periodCurrent": "Aug 2026–Present",
     "profile.periodProfessor": "Mar 2023–Aug 2026",
     "profile.periodResearcher": "Jan 2019–Aug 2019",
@@ -214,6 +208,11 @@ function parsePersonalData(text) {
   });
 
   return sections;
+}
+
+function personalSingleSection(sectionName) {
+  const blocks = personalDataSections[sectionName];
+  return Array.isArray(blocks) && blocks.length ? blocks[0] : {};
 }
 
 function personalLocalizedValue(block, code) {
@@ -345,7 +344,9 @@ function personalContactUrl(block) {
 
 function renderPersonalContacts() {
   const container = document.getElementById("contactInfo");
-  if (!container || !personalContactBlocks.length) return;
+  if (!container) return;
+
+  container.innerHTML = "";
 
   const items = personalContactBlocks.map(block => {
     const title = personalLocalizedValue(block, "title");
@@ -354,9 +355,7 @@ function renderPersonalContacts() {
 
     if (!title && !value) return "";
 
-    const labelHtml = title
-      ? `<span>${escapeHtml(title)}</span>`
-      : "";
+    const labelHtml = title ? `<span>${escapeHtml(title)}</span>` : "";
 
     let valueHtml = "";
     if (value) {
@@ -371,11 +370,69 @@ function renderPersonalContacts() {
     return `<div>${labelHtml}${valueHtml}</div>`;
   }).filter(Boolean);
 
-  if (items.length) container.innerHTML = items.join("");
+  container.innerHTML = items.join("");
+}
+
+function renderProfileIdentity() {
+  const block = personalSingleSection("profile");
+  const nameKor = normalizeText(block.name_kor || "");
+  const nameEng = normalizeText(block.name_eng || "");
+  const nameEngInit = normalizeText(block.name_eng_init || "");
+
+  const titleEl = document.querySelector("[data-profile-title]");
+  if (titleEl) titleEl.textContent = `${nameEng} | Curriculum Vitae`;
+
+  const metaDescription = document.querySelector("[data-profile-meta-description]");
+  if (metaDescription) metaDescription.setAttribute("content", `${nameKor} | 이력서`);
+
+  const initEl = document.querySelector("[data-profile-name-init]");
+  if (initEl) initEl.textContent = nameEngInit;
+
+  const nameEl = document.querySelector("[data-profile-name-eng]");
+  if (nameEl) nameEl.textContent = nameEng;
+
+  const footerName = document.querySelector("[data-profile-footer-name]");
+  if (footerName) footerName.textContent = nameEng;
+
+  const profileImage = document.querySelector("[data-profile-image-alt]");
+  if (profileImage) profileImage.alt = nameEng ? `${nameEng} profile` : "Profile";
+
+  const namecard = document.querySelector("[data-profile-namecard-alt]");
+  if (namecard) namecard.alt = nameEng ? `${nameEng} name card` : "Name card";
+}
+
+function renderProfileLinks() {
+  const block = personalSingleSection("profile");
+  const container = document.querySelector("[data-profile-links]");
+  if (!container) return;
+
+  const links = [
+    {
+      url: normalizeText(block.researchgate_url || ""),
+      label: normalizeText(block.researchgate_label || "ResearchGate")
+    },
+    {
+      url: normalizeText(block.google_scholar_url || ""),
+      label: normalizeText(block.google_scholar_label || "Google Scholar")
+    }
+  ];
+
+  container.innerHTML = "";
+
+  links.forEach(({ url, label }) => {
+    if (!url || !/^https?:\/\//i.test(url)) return;
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = `${label} ↗`;
+    container.appendChild(a);
+  });
 }
 
 function renderCurrentPosition() {
-  const block = personalDataSections.current_position || {};
+  const block = personalSingleSection("current_position");
 
   const companyKo = normalizeText(block.company_name_ko || "");
   const companyEn = normalizeText(block.company_name_en || companyKo);
@@ -388,7 +445,7 @@ function renderCurrentPosition() {
 
   const setText = (selector, value) => {
     const el = document.querySelector(selector);
-    if (el && value) el.textContent = value;
+    if (el) el.textContent = value;
   };
 
   setText("[data-current-company-ko]", companyKo);
@@ -399,7 +456,19 @@ function renderCurrentPosition() {
   setText("[data-current-position-en]", positionEn);
 
   const logo = document.querySelector("[data-current-logo]");
-  if (logo && logoImage) logo.src = logoImage;
+  const logoSlot = document.querySelector(".current-position-logo-slot");
+
+  if (logo) {
+    if (logoImage) {
+      logo.src = logoImage;
+      logo.alt = companyEn ? `${companyEn} logo` : "Current position logo";
+      if (logoSlot) logoSlot.hidden = false;
+    } else {
+      logo.removeAttribute("src");
+      logo.alt = "";
+      if (logoSlot) logoSlot.hidden = true;
+    }
+  }
 
   const link = document.querySelector("[data-current-company-link]");
   if (link) {
@@ -407,11 +476,25 @@ function renderCurrentPosition() {
       link.href = companyUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
+      link.setAttribute("aria-label", companyEn ? `${companyEn} homepage` : "Current position homepage");
     } else {
       link.removeAttribute("href");
       link.removeAttribute("target");
       link.removeAttribute("rel");
     }
+  }
+}
+
+function validatePersonalSingletonSections() {
+  const profile = personalSingleSection("profile");
+  const currentPosition = personalSingleSection("current_position");
+
+  if (!profile.name_eng || !profile.name_eng_init) {
+    console.warn("[personal_data] [profile] name_eng/name_eng_init is missing.");
+  }
+
+  if (!currentPosition.company_name_ko && !currentPosition.company_name_en) {
+    console.warn("[personal_data] [current_position] company name is missing.");
   }
 }
 
@@ -422,6 +505,9 @@ async function loadPersonalData() {
 
     const text = await response.text();
     personalDataSections = parsePersonalData(text);
+    validatePersonalSingletonSections();
+    renderProfileIdentity();
+    renderProfileLinks();
     renderCurrentPosition();
     personalExperienceBlocks = personalDataSections.professional_experience || [];
     personalEducationBlocks = personalDataSections.education || [];
@@ -483,7 +569,7 @@ const SHEETS = {
 };
 
 function configureGoogleSheetsFromPersonalData() {
-  const config = personalDataSections.google_sheets?.[0] || {};
+  const config = personalSingleSection("google_sheets");
 
   SPREADSHEET_ID = normalizeText(config.spreadsheet_id);
   SHEETS.SCI.gid = normalizeText(config.publication_sci_gid);
@@ -536,7 +622,7 @@ function loadGoogleSheet(config) {
     const timer = setTimeout(() => {
       cleanup();
       reject(new Error(`${config.label}: 응답 시간 초과`));
-    }, 15000);
+    }, 10000);
 
     window[callbackName] = (response) => {
       clearTimeout(timer);
@@ -564,7 +650,7 @@ function loadGoogleSheet(config) {
     };
 
     const tqx = encodeURIComponent(`responseHandler:${callbackName}`);
-    script.src = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?gid=${encodeURIComponent(config.gid)}&headers=1&tqx=${tqx}&_=${Date.now()}`;
+    script.src = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?gid=${encodeURIComponent(config.gid)}&headers=1&tqx=${tqx}`;
     document.head.appendChild(script);
   });
 }
@@ -836,6 +922,68 @@ function publicationIndexing(pub) {
   return pick(pub, ["학술지 등급", "학술지등급", "등급", "색인", "Indexing"]) || pub.__type;
 }
 
+function isPublicationHighlightedAuthor(name) {
+  const value = normalizeText(name);
+  if (!value) return false;
+
+  const profile = personalSingleSection("profile");
+  const aliases = [
+    normalizeText(profile.publication_highlight_name_ko || ""),
+    normalizeText(profile.publication_highlight_name_en || "")
+  ]
+    .flatMap(item => item.split("|"))
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  const compactValue = value.replace(/\s+/g, "").toLowerCase();
+
+  return aliases.some(alias => {
+    const compactAlias = alias.replace(/\s+/g, "").toLowerCase();
+    return compactAlias && compactValue === compactAlias;
+  });
+}
+
+function highlightPublicationAuthorText(text) {
+  const source = String(text ?? "");
+  if (!source) return "";
+
+  const profile = personalSingleSection("profile");
+  const aliases = [
+    normalizeText(profile.publication_highlight_name_ko || ""),
+    normalizeText(profile.publication_highlight_name_en || "")
+  ]
+    .flatMap(item => item.split("|"))
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  if (!aliases.length) return escapeHtml(source);
+
+  const escapedSource = escapeHtml(source);
+
+  // Match configured aliases only. Longest first prevents a shorter alias
+  // from consuming part of a longer alias.
+  const sortedAliases = aliases
+    .map(alias => alias.trim())
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length);
+
+  let result = escapedSource;
+
+  sortedAliases.forEach(alias => {
+    const escapedAlias = escapeHtml(alias);
+    const pattern = escapedAlias
+      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      .replace(/\s+/g, "\\s*");
+
+    result = result.replace(
+      new RegExp(pattern, "gi"),
+      match => `<strong class="author-highlight">${match}</strong>`
+    );
+  });
+
+  return result;
+}
+
 function publicationRole(pub) {
   const roleKo = pick(pub, [
     "역할",
@@ -908,18 +1056,14 @@ function highlightedAuthors(pub) {
   const authors = publicationAuthors(pub);
   if (!authors) return "";
 
-  let safe = escapeHtml(authors);
   const badges = authorRoleBadges(pub);
 
-  if (pub.__type === "SCI") {
-    safe = safe.replace(/Yoo,\s*Y\.?/i, match => `<strong class="author-highlight">${match}</strong>`);
-  } else if (pub.__type === "KCI") {
-    if (/유영재/.test(safe)) {
-      safe = safe.replace(/유영재/, '<strong class="author-highlight">유영재</strong>');
-    } else {
-      safe = safe.replace(/Yoo,\s*Y\.?/i, match => `<strong class="author-highlight">${match}</strong>`);
-    }
-  }
+  // SCI/KCI 모두 원문 저자명을 동일한 personal_data 기반 강조 함수에 전달합니다.
+  // highlightPublicationAuthorText() 내부에서 escapeHtml()을 수행하므로
+  // 여기서 미리 escape하지 않아 이중 escape를 방지합니다.
+  const safe = (pub.__type === "SCI" || pub.__type === "KCI")
+    ? highlightPublicationAuthorText(authors)
+    : escapeHtml(authors);
 
   return `${badges ? `${badges} ` : ""}${safe}`;
 }
@@ -983,14 +1127,79 @@ function renderPublications(filter = currentPublicationFilter) {
   }
 }
 
+function publicationRowKey(row) {
+  return [
+    normalizeText(row.__type),
+    normalizeText(publicationTitle(row)),
+    normalizeText(displayYear(row)),
+    normalizeText(publicationAuthors(row))
+  ].join("||");
+}
+
+function dedupePublicationRows(rows) {
+  const seen = new Set();
+  return rows.filter(row => {
+    const key = publicationRowKey(row);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 async function loadPublications() {
   const status = document.getElementById("publicationStatus");
-  const { rows, failed } = await settleSheets([SHEETS.SCI, SHEETS.KCI, SHEETS.BOOK]);
-  publications = rows.filter(publicationTitle).sort((a,b) => parseFlexibleDate(b)-parseFlexibleDate(a));
-  updatePublicationCounts();
-  renderPublications("ALL");
-  renderHomeOverview();
-  status.textContent = failed.length ? `${t("load.partial")}: ${failed.join(" | ")}` : "";
+  const configs = [SHEETS.SCI, SHEETS.KCI, SHEETS.BOOK];
+
+  publications = [];
+  const failed = [];
+  let completed = 0;
+
+  if (status) {
+    status.textContent = currentLang === "en"
+      ? "Loading publications…"
+      : "논문·저서 목록을 불러오는 중…";
+  }
+
+  const refresh = () => {
+    publications = dedupePublicationRows(publications)
+      .filter(publicationTitle)
+      .sort((a, b) => parseFlexibleDate(b) - parseFlexibleDate(a));
+
+    updatePublicationCounts();
+    renderPublications(currentPublicationFilter || "ALL");
+    renderHomeOverview();
+
+    if (status) {
+      if (completed < configs.length) {
+        const loadedLabels = configs
+          .filter(config => publications.some(row => row.__type === config.type))
+          .map(config => config.label);
+
+        status.textContent = currentLang === "en"
+          ? `Loading publications… ${completed}/${configs.length}${loadedLabels.length ? ` · ${loadedLabels.join(", ")}` : ""}`
+          : `논문·저서 목록을 불러오는 중… ${completed}/${configs.length}${loadedLabels.length ? ` · ${loadedLabels.join(", ")}` : ""}`;
+      } else {
+        status.textContent = failed.length
+          ? `${t("load.partial")}: ${failed.join(" | ")}`
+          : "";
+      }
+    }
+  };
+
+  const tasks = configs.map(async config => {
+    try {
+      const rows = await loadGoogleSheet(config);
+      publications.push(...rows);
+    } catch (error) {
+      console.error(`${config.label} publication load error:`, error);
+      failed.push(`${config.label}: ${error?.message || "오류"}`);
+    } finally {
+      completed += 1;
+      refresh();
+    }
+  });
+
+  await Promise.all(tasks);
 }
 document.querySelectorAll(".pub-filter").forEach(button => {
   button.addEventListener("click", () => {
