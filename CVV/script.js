@@ -374,6 +374,47 @@ function renderPersonalContacts() {
   if (items.length) container.innerHTML = items.join("");
 }
 
+function renderCurrentPosition() {
+  const block = personalDataSections.current_position || {};
+
+  const companyKo = normalizeText(block.company_name_ko || "");
+  const companyEn = normalizeText(block.company_name_en || companyKo);
+  const departmentKo = normalizeText(block.department_name_ko || "");
+  const departmentEn = normalizeText(block.department_name_en || departmentKo);
+  const positionKo = normalizeText(block.position_ko || "");
+  const positionEn = normalizeText(block.position_en || positionKo);
+  const companyUrl = normalizeText(block.company_url || "");
+  const logoImage = normalizeText(block.logo_image || "");
+
+  const setText = (selector, value) => {
+    const el = document.querySelector(selector);
+    if (el && value) el.textContent = value;
+  };
+
+  setText("[data-current-company-ko]", companyKo);
+  setText("[data-current-company-en]", companyEn);
+  setText("[data-current-department-ko]", departmentKo);
+  setText("[data-current-department-en]", departmentEn);
+  setText("[data-current-position-ko]", positionKo);
+  setText("[data-current-position-en]", positionEn);
+
+  const logo = document.querySelector("[data-current-logo]");
+  if (logo && logoImage) logo.src = logoImage;
+
+  const link = document.querySelector("[data-current-company-link]");
+  if (link) {
+    if (companyUrl && /^https?:\/\//i.test(companyUrl)) {
+      link.href = companyUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    } else {
+      link.removeAttribute("href");
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+    }
+  }
+}
+
 async function loadPersonalData() {
   try {
     const response = await fetch(`personal_data.txt?_=${Date.now()}`, { cache: "no-store" });
@@ -381,19 +422,22 @@ async function loadPersonalData() {
 
     const text = await response.text();
     personalDataSections = parsePersonalData(text);
+    renderCurrentPosition();
     personalExperienceBlocks = personalDataSections.professional_experience || [];
     personalEducationBlocks = personalDataSections.education || [];
     personalContactBlocks = personalDataSections.contact || [];
 
+    configureGoogleSheetsFromPersonalData();
     renderProfessionalExperience();
     renderEducation();
     renderPersonalContacts();
+    return true;
   } catch (error) {
     console.warn("personal_data.txt could not be loaded; using HTML fallback.", error);
+    return false;
   }
 }
 
-loadPersonalData();
 
 
 /* OPTIONAL IMAGES — hide missing assets and adapt image orientation. */
@@ -426,16 +470,30 @@ document.querySelectorAll(".optional-image-slot img").forEach((img) => {
    Google Visualization JSONP is used to load each sheet tab.
 ========================================================= */
 
-const SPREADSHEET_ID = "15DexGfSfuem7AJMuJEjm_QOB43uTK07_enAjPhgq900";
+let SPREADSHEET_ID = "";
 
+// 실제 spreadsheet ID와 gid 값은 personal_data.txt의 [google_sheets]에서만 관리합니다.
 const SHEETS = {
-  SCI:     { gid: "1044637119", type: "SCI", label: "SCI" },
-  KCI:     { gid: "977487788",  type: "KCI", label: "KCI" },
-  RND:     { gid: "445426444",  type: "RND", label: "R&D" },
-  SERVICE: { gid: "2133901227", type: "SERVICE", label: "용역" },
-  AWARD:   { gid: "1362262409", type: "AWARD", label: "수상" },
-  BOOK:    { gid: "1750437029", type: "BOOK", label: "저서" }
+  SCI:     { gid: "", type: "SCI", label: "SCI" },
+  KCI:     { gid: "", type: "KCI", label: "KCI" },
+  RND:     { gid: "", type: "RND", label: "R&D" },
+  SERVICE: { gid: "", type: "SERVICE", label: "용역" },
+  AWARD:   { gid: "", type: "AWARD", label: "수상" },
+  BOOK:    { gid: "", type: "BOOK", label: "저서" }
 };
+
+function configureGoogleSheetsFromPersonalData() {
+  const config = personalDataSections.google_sheets?.[0] || {};
+
+  SPREADSHEET_ID = normalizeText(config.spreadsheet_id);
+  SHEETS.SCI.gid = normalizeText(config.publication_sci_gid);
+  SHEETS.KCI.gid = normalizeText(config.publication_kci_gid);
+  SHEETS.BOOK.gid = normalizeText(config.publication_book_gid);
+  SHEETS.RND.gid = normalizeText(config.project_rnd_gid);
+  SHEETS.SERVICE.gid = normalizeText(config.project_service_gid);
+  SHEETS.AWARD.gid = normalizeText(config.award_gid);
+}
+
 
 function normalizeText(value) {
   return String(value ?? "")
@@ -459,6 +517,14 @@ function escapeHtml(value) {
 */
 function loadGoogleSheet(config) {
   return new Promise((resolve, reject) => {
+    if (!SPREADSHEET_ID) {
+      reject(new Error("personal_data.txt의 [google_sheets] spreadsheet_id가 비어 있습니다."));
+      return;
+    }
+    if (!config?.gid) {
+      reject(new Error(`${config?.label || "Sheet"}: personal_data.txt에 gid가 설정되지 않았습니다.`));
+      return;
+    }
     const callbackName = `__gs_${config.type}_${Date.now()}_${Math.random().toString(36).slice(2)}`;
     const script = document.createElement("script");
 
@@ -1309,6 +1375,28 @@ async function loadAwards() {
   }
 }
 
-loadPublications();
-loadProjects();
-loadAwards();
+async function initializeSiteData() {
+  const personalLoaded = await loadPersonalData();
+
+  if (!personalLoaded) {
+    const message = currentLang === "en"
+      ? "Google Sheets settings could not be loaded from personal_data.txt."
+      : "personal_data.txt에서 Google Sheets 설정을 불러오지 못했습니다.";
+
+    const publicationStatus = document.getElementById("publicationStatus");
+    const projectStatus = document.getElementById("projectStatus");
+    const awardStatus = document.getElementById("awardStatus");
+    if (publicationStatus) publicationStatus.textContent = message;
+    if (projectStatus) projectStatus.textContent = message;
+    if (awardStatus) awardStatus.textContent = message;
+    return;
+  }
+
+  await Promise.all([
+    loadPublications(),
+    loadProjects(),
+    loadAwards()
+  ]);
+}
+
+initializeSiteData();
