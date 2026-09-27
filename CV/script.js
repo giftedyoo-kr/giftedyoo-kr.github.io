@@ -210,6 +210,11 @@ function parsePersonalData(text) {
   return sections;
 }
 
+function personalSingleSection(sectionName) {
+  const blocks = personalDataSections[sectionName];
+  return Array.isArray(blocks) && blocks.length ? blocks[0] : {};
+}
+
 function personalLocalizedValue(block, code) {
   if (!block) return "";
 
@@ -369,7 +374,7 @@ function renderPersonalContacts() {
 }
 
 function renderProfileIdentity() {
-  const block = personalDataSections.profile || {};
+  const block = personalSingleSection("profile");
   const nameKor = normalizeText(block.name_kor || "");
   const nameEng = normalizeText(block.name_eng || "");
   const nameEngInit = normalizeText(block.name_eng_init || "");
@@ -397,7 +402,7 @@ function renderProfileIdentity() {
 }
 
 function renderProfileLinks() {
-  const block = personalDataSections.profile || {};
+  const block = personalSingleSection("profile");
   const container = document.querySelector("[data-profile-links]");
   if (!container) return;
 
@@ -427,7 +432,7 @@ function renderProfileLinks() {
 }
 
 function renderCurrentPosition() {
-  const block = personalDataSections.current_position || {};
+  const block = personalSingleSection("current_position");
 
   const companyKo = normalizeText(block.company_name_ko || "");
   const companyEn = normalizeText(block.company_name_en || companyKo);
@@ -480,6 +485,19 @@ function renderCurrentPosition() {
   }
 }
 
+function validatePersonalSingletonSections() {
+  const profile = personalSingleSection("profile");
+  const currentPosition = personalSingleSection("current_position");
+
+  if (!profile.name_eng || !profile.name_eng_init) {
+    console.warn("[personal_data] [profile] name_eng/name_eng_init is missing.");
+  }
+
+  if (!currentPosition.company_name_ko && !currentPosition.company_name_en) {
+    console.warn("[personal_data] [current_position] company name is missing.");
+  }
+}
+
 async function loadPersonalData() {
   try {
     const response = await fetch(`personal_data.txt?_=${Date.now()}`, { cache: "no-store" });
@@ -487,6 +505,7 @@ async function loadPersonalData() {
 
     const text = await response.text();
     personalDataSections = parsePersonalData(text);
+    validatePersonalSingletonSections();
     renderProfileIdentity();
     renderProfileLinks();
     renderCurrentPosition();
@@ -550,7 +569,7 @@ const SHEETS = {
 };
 
 function configureGoogleSheetsFromPersonalData() {
-  const config = personalDataSections.google_sheets?.[0] || {};
+  const config = personalSingleSection("google_sheets");
 
   SPREADSHEET_ID = normalizeText(config.spreadsheet_id);
   SHEETS.SCI.gid = normalizeText(config.publication_sci_gid);
@@ -903,6 +922,68 @@ function publicationIndexing(pub) {
   return pick(pub, ["학술지 등급", "학술지등급", "등급", "색인", "Indexing"]) || pub.__type;
 }
 
+function isPublicationHighlightedAuthor(name) {
+  const value = normalizeText(name);
+  if (!value) return false;
+
+  const profile = personalSingleSection("profile");
+  const aliases = [
+    normalizeText(profile.publication_highlight_name_ko || ""),
+    normalizeText(profile.publication_highlight_name_en || "")
+  ]
+    .flatMap(item => item.split("|"))
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  const compactValue = value.replace(/\s+/g, "").toLowerCase();
+
+  return aliases.some(alias => {
+    const compactAlias = alias.replace(/\s+/g, "").toLowerCase();
+    return compactAlias && compactValue === compactAlias;
+  });
+}
+
+function highlightPublicationAuthorText(text) {
+  const source = String(text ?? "");
+  if (!source) return "";
+
+  const profile = personalSingleSection("profile");
+  const aliases = [
+    normalizeText(profile.publication_highlight_name_ko || ""),
+    normalizeText(profile.publication_highlight_name_en || "")
+  ]
+    .flatMap(item => item.split("|"))
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  if (!aliases.length) return escapeHtml(source);
+
+  const escapedSource = escapeHtml(source);
+
+  // Match configured aliases only. Longest first prevents a shorter alias
+  // from consuming part of a longer alias.
+  const sortedAliases = aliases
+    .map(alias => alias.trim())
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length);
+
+  let result = escapedSource;
+
+  sortedAliases.forEach(alias => {
+    const escapedAlias = escapeHtml(alias);
+    const pattern = escapedAlias
+      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      .replace(/\s+/g, "\\s*");
+
+    result = result.replace(
+      new RegExp(pattern, "gi"),
+      match => `<strong class="author-highlight">${match}</strong>`
+    );
+  });
+
+  return result;
+}
+
 function publicationRole(pub) {
   const roleKo = pick(pub, [
     "역할",
@@ -979,13 +1060,9 @@ function highlightedAuthors(pub) {
   const badges = authorRoleBadges(pub);
 
   if (pub.__type === "SCI") {
-    safe = safe.replace(/Yoo,\s*Y\.?/i, match => `<strong class="author-highlight">${match}</strong>`);
+    safe = highlightPublicationAuthorText(safe);
   } else if (pub.__type === "KCI") {
-    if (/유영재/.test(safe)) {
-      safe = safe.replace(/유영재/, '<strong class="author-highlight">유영재</strong>');
-    } else {
-      safe = safe.replace(/Yoo,\s*Y\.?/i, match => `<strong class="author-highlight">${match}</strong>`);
-    }
+    safe = highlightPublicationAuthorText(raw);
   }
 
   return `${badges ? `${badges} ` : ""}${safe}`;

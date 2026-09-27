@@ -5,6 +5,8 @@
 # =========================================================
 
 [profile]
+publication_highlight_name_en=Yoo, Y.
+publication_highlight_name_ko=유영재
 name_eng_init=YJ
 name_eng=Youngjae Yoo
 name_kor=유영재
