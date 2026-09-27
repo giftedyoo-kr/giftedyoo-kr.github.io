@@ -381,3 +381,14 @@ publication_highlight_name_en=Yoo, Y.
 
 JS에서는 단일 섹션을 `personalSingleSection()`으로 읽도록 통일하여,
 `[profile]` 값이 비어 보이는 문제를 방지합니다.
+
+
+### Publications 점진적 로딩
+
+SCI, KCI, BOOK은 서로 독립적으로 불러옵니다.
+
+- 먼저 응답한 시트는 즉시 목록에 표시
+- KCI가 느려도 SCI/BOOK 표시를 기다리지 않음
+- 각 시트의 로딩 성공/실패를 개별 처리
+- Google Sheets 요청의 불필요한 매회 cache-busting을 제거하여 재방문 로딩을 개선
+- 한 시트의 응답 제한 시간은 10초

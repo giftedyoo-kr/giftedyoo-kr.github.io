@@ -622,7 +622,7 @@ function loadGoogleSheet(config) {
     const timer = setTimeout(() => {
       cleanup();
       reject(new Error(`${config.label}: 응답 시간 초과`));
-    }, 15000);
+    }, 10000);
 
     window[callbackName] = (response) => {
       clearTimeout(timer);
@@ -650,7 +650,7 @@ function loadGoogleSheet(config) {
     };
 
     const tqx = encodeURIComponent(`responseHandler:${callbackName}`);
-    script.src = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?gid=${encodeURIComponent(config.gid)}&headers=1&tqx=${tqx}&_=${Date.now()}`;
+    script.src = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?gid=${encodeURIComponent(config.gid)}&headers=1&tqx=${tqx}`;
     document.head.appendChild(script);
   });
 }
@@ -1127,14 +1127,79 @@ function renderPublications(filter = currentPublicationFilter) {
   }
 }
 
+function publicationRowKey(row) {
+  return [
+    normalizeText(row.__type),
+    normalizeText(publicationTitle(row)),
+    normalizeText(displayYear(row)),
+    normalizeText(publicationAuthors(row))
+  ].join("||");
+}
+
+function dedupePublicationRows(rows) {
+  const seen = new Set();
+  return rows.filter(row => {
+    const key = publicationRowKey(row);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 async function loadPublications() {
   const status = document.getElementById("publicationStatus");
-  const { rows, failed } = await settleSheets([SHEETS.SCI, SHEETS.KCI, SHEETS.BOOK]);
-  publications = rows.filter(publicationTitle).sort((a,b) => parseFlexibleDate(b)-parseFlexibleDate(a));
-  updatePublicationCounts();
-  renderPublications("ALL");
-  renderHomeOverview();
-  status.textContent = failed.length ? `${t("load.partial")}: ${failed.join(" | ")}` : "";
+  const configs = [SHEETS.SCI, SHEETS.KCI, SHEETS.BOOK];
+
+  publications = [];
+  const failed = [];
+  let completed = 0;
+
+  if (status) {
+    status.textContent = currentLang === "en"
+      ? "Loading publications…"
+      : "논문·저서 목록을 불러오는 중…";
+  }
+
+  const refresh = () => {
+    publications = dedupePublicationRows(publications)
+      .filter(publicationTitle)
+      .sort((a, b) => parseFlexibleDate(b) - parseFlexibleDate(a));
+
+    updatePublicationCounts();
+    renderPublications(currentPublicationFilter || "ALL");
+    renderHomeOverview();
+
+    if (status) {
+      if (completed < configs.length) {
+        const loadedLabels = configs
+          .filter(config => publications.some(row => row.__type === config.type))
+          .map(config => config.label);
+
+        status.textContent = currentLang === "en"
+          ? `Loading publications… ${completed}/${configs.length}${loadedLabels.length ? ` · ${loadedLabels.join(", ")}` : ""}`
+          : `논문·저서 목록을 불러오는 중… ${completed}/${configs.length}${loadedLabels.length ? ` · ${loadedLabels.join(", ")}` : ""}`;
+      } else {
+        status.textContent = failed.length
+          ? `${t("load.partial")}: ${failed.join(" | ")}`
+          : "";
+      }
+    }
+  };
+
+  const tasks = configs.map(async config => {
+    try {
+      const rows = await loadGoogleSheet(config);
+      publications.push(...rows);
+    } catch (error) {
+      console.error(`${config.label} publication load error:`, error);
+      failed.push(`${config.label}: ${error?.message || "오류"}`);
+    } finally {
+      completed += 1;
+      refresh();
+    }
+  });
+
+  await Promise.all(tasks);
 }
 document.querySelectorAll(".pub-filter").forEach(button => {
   button.addEventListener("click", () => {
